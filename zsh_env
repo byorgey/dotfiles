@@ -1,0 +1,22 @@
+setopt ALL_EXPORT
+
+PATH="/scratch/local/bin:$HOME/local/bin:$HOME/local/mybin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/stow/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
+MANPATH="$HOME/local/man:$MANPATH"
+USE_X_FORWARDING="no"
+TZ="America/New_York"
+HISTFILE=$HOME/.zhistory
+HISTSIZE=10000
+SAVEHIST=10000
+HIST_VERIFY=1
+HOSTNAME="`hostname`"
+PAGER='less'
+EDITOR='emacs -nw'
+WORDCHARS='*?_[]~=&;!#$%^(){}'
+LC_ALL='en_US.utf8'
+LANG='en_US.utf8'
+LC_CTYPE=C
+TEXINPUTS=.:$HOME/local/texmf//:
+MUTT_EDITOR='emacs -nw'
+PACMAN=pacman
+TERM=rxvt-unicode
+unsetopt ALL_EXPORT

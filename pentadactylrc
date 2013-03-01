@@ -1,0 +1,59 @@
+"1.0b6 (created: 2011/03/09 09:25:18)
+
+loadplugins '\.(js|penta)$'
+group user
+set guioptions=bCrsn
+
+" :au LocationChange .* js modes.passAllKeys = /(fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
+
+:au LocationChange '(fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
+
+:qmark  1  http://www.cis.upenn.edu/~cis194/
+:qmark  3  http://www.cis.upenn.edu/~cis39903/
+:qmark  G  http://dir.gmane.org/index.php?prefix=gmane.comp.lang.haskell
+:qmark  b  http://byorgey.wordpress.com/wp-admin/
+:qmark  g  http://mail.google.com/mail/#inbox
+:qmark  l  http://tunes.org/~nef/logs/haskell/
+:qmark  m  http://www.mathlesstraveled.com/wp-admin/
+:qmark  r  http://www.google.com/reader/view/#stream/user%2F17842348209674705132%2Fstate%2Fcom.google%2Freading-list
+:qmark  t  https://byorgey.fogbugz.com/
+:qmark  x  http://xmonad.org/
+:qmark  p  http://www.upenn.edu/
+:qmark  j  http://joesgoals.com/
+:qmark  P  http://www.cis.upenn.edu/~plclub/schedule/summer12.shtml
+:qmark  M  http://192.168.1.1/
+:qmark  w  http://www.cis.upenn.edu/~byorgey/
+:qmark  o  http://www.cl.cam.ac.uk/~pes20/ott/ott_manual_0.10.16.html
+:qmark  W  http://www.wunderground.com/cgi-bin/findweather/getForecast?query=19139&wuSelect=WEATHER
+:qmark  f  http://www.facebook.com/
+:qmark  a  http://www.wolframalpha.com/
+:qmark  z  http://rayninfo.co.uk/tips/zshtips.html
+:qmark  h  http://haskell.org/
+:qmark  H  http://haskell.org/haskellwiki/Hac_%CF%86
+:qmark  T  http://www.haskell.org/haskellwiki/Typeclassopedia
+:qmark  B  http://beeminder.com/byorgey
+:qmark  q  http://coq.inria.fr/
+:qmark  k  http://www.perseus.tufts.edu/hopper/search
+:qmark  d  http://www.gyford.com/pc
+:qmark  A  http://ankiweb.net/
+:qmark  D  http://projects.haskell.org/diagrams/
+:qmark  R  http://themonadreader.wordpress.com/
+:qmark  c  http://calendar.google.com/
+:qmark  e  http://e.ggtimer.com/pomodoro
+:qmark  i  http://www.instapaper.com/
+:qmark  8  http://localhost:8000/
+:qmark  X  http://www.biblegateway.com/
+:qmark  Q  http://github.com/diagrams/
+
+" :map <C-m> :set toolbars=invmenu <Enter>
+" :map <C-b> :set toolbars=invbookmarks <Enter>
+" :map <C-t> :set toolbars=invnavigation <Enter>
+
+" :imap <C-v> <C-v>
+
+:set editor="emacs"
+
+:set strictfocus='chrome:*':laissez-faire,'google.com':laissez-faire,'fogbugz.com':laissez-faire,*:moderate
+
+
+" vim: set ft=pentadactyl:

@@ -1,0 +1,17 @@
+[user]
+	name = Brent Yorgey
+	email = byorgey@cis.upenn.edu
+[merge]
+	tool = vimdiff
+[core]
+	editor = emacs
+[alias]
+	co = checkout
+	ci = commit
+	br = branch
+	st = status
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	ix = diff --cached
+[push]
+	default = simple

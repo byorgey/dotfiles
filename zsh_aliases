@@ -1,0 +1,65 @@
+alias sl="ls"
+alias x="exit"
+alias grep="egrep --color=auto"
+alias exe="chmod +x"
+alias f="finger"
+alias vz="vi ~/.zshrc"
+alias va="vi ~/.zsh_aliases"
+alias sz="source ~/.zshrc"
+alias dt="date '+%y-%m-%d'"
+alias s="screen -RR"
+alias sls="screen -ls"
+alias c='cal -3 | sed -r "s/^(.{20,42}) (`date +%e`) /\1[\2]/"'
+
+alias ls='ls --color=always'
+alias l='ls'
+alias ll='ls -l'
+alias la='ls -al'
+
+alias wso="ssh byorgey@wso.williams.edu"
+alias cho="ssh byorgey@code.haskell.org"
+alias home="ssh brent@yorgey.homelinux.net"
+alias homer="ssh brent@homer"
+alias en="ssh byorgey@eniac.seas.upenn.edu"
+alias enx="ssh -X byorgey@minus.seas.upenn.edu"
+
+alias stat="svn status -q"
+alias sdiff="svn diff"
+alias scom="svn commit"
+alias sup="svn update"
+alias slog="svn log"
+
+alias pg="ping google.com"
+alias hg="host google.com"
+
+alias kf="killall -9 -r 'firefox*'"
+
+alias cid="ca install --ghc-options=-Wall"
+alias ch="ca haddock --haddock-options=-w"
+alias cl="ca clean"
+alias dp="darcs pull --no-set-default"
+alias dpu="darcs push --no-set-default"
+alias dw="darcs whatsnew -l"
+alias dh="darcs changes"
+alias dh1="darcs changes -v --last 1 | less"
+alias dhh="darcs changes | head"
+alias dr="darcs record"
+
+alias inst="brent install"
+alias sw="brent switch"
+
+alias b=popd
+
+unalias o 2> /dev/null
+
+alias play-fast="mplayer -af scaletempo -speed 1.5"
+
+alias less="less -R"
+
+alias ssha='eval `ssh-agent` && ssh-add'
+
+eval "$(hub alias -s)"
+
+source ~/.hub.zsh_completion
+
+alias beep2="beep && sleep 0.2 && beep"

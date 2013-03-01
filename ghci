@@ -1,0 +1,14 @@
+:set -XNoMonomorphismRestriction
+
+-- hoogle integration
+:def hoogle \q -> return $ ":! hoogle --color=true --count=15  \"" ++ q ++ "\""
+:def doc    \q -> return $ ":! hoogle --color=true --info      \"" ++ q ++ "\""
+:script /home/brent/local/share/ghc-vis-0.4/ghci
+
+:m +Data.Maybe
+:m +Data.List
+:m +Data.Char
+:m +Data.Monoid
+:m +Data.List.Split
+
+:set prompt ">>> "
