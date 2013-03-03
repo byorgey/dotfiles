@@ -9,5 +9,6 @@
 :m +Data.Char
 :m +Data.Monoid
 :m +Data.List.Split
+:m +Control.Arrow
 
 :set prompt ">>> "
