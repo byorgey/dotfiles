@@ -281,7 +281,7 @@
 ;; Haskell main editing mode key bindings.
 (defun haskell-hook ()
   ;; Insert LANGUAGE pragmas.
-  (define-key haskell-mode-map [f4] 'insert-language-pragma)
+  (define-key haskell-mode-map [f8] 'insert-language-pragma)
 
   ;; Use simple indentation.
   (turn-on-haskell-simple-indent)
