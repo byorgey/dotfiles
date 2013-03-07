@@ -6,6 +6,7 @@
 
 ;; Custom load path
 (add-to-list 'load-path (expand-file-name "~/local/lib/emacs"))
+(add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
 
 ;; Enable some commands
 (put 'upcase-region 'disabled nil)
