@@ -453,7 +453,8 @@
 ;; Proof General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el"))
+(when (string= system-name "archimedes")
+  (load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda
