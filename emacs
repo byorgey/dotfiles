@@ -228,9 +228,10 @@
 ;;  Haskell-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load (expand-file-name "~/local/lib/emacs/haskell-mode-git/haskell-site-file.el"))
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (load (expand-file-name "~/local/lib/emacs/haskell-mode-git/haskell-site-file.el"))
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; make undefined red
@@ -266,7 +267,8 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; hpaste
 
-(load (expand-file-name "~/local/lib/emacs/hpaste/hpaste.el"))
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (load (expand-file-name "~/local/lib/emacs/hpaste/hpaste.el")))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ghc-mod
@@ -378,7 +380,8 @@
 (defun javascript-custom-setup ()
   (moz-minor-mode 1))
 
-(require 'moz)
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (require 'moz))
 
 (defun jk/moz-get (attr)
   (comint-send-string (inferior-moz-process) attr)
@@ -460,8 +463,9 @@
 ;; Agda
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(load-file (let ((coding-system-for-read 'utf-8))
-                (shell-command-to-string "agda-mode locate")))
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (load-file (let ((coding-system-for-read 'utf-8))
+                  (shell-command-to-string "agda-mode locate"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Darcsum
@@ -475,8 +479,9 @@
 ;; Magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(require 'magit)
-(autoload 'magit-status "magit" nil t)
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (require 'magit)
+  (autoload 'magit-status "magit" nil t))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mail
