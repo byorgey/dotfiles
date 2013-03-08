@@ -10,6 +10,8 @@
 :m +Data.Monoid
 :m +Data.List.Split
 :m +Control.Arrow
+:m +Control.Applicative
+:m +Control.Monad
 :m +Text.Groom
 
 :set prompt ">>> "
