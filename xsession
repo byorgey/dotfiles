@@ -2,7 +2,7 @@
 # gnome-volume-manager &
 # gnome-settings-daemon &
 
-eval `cat $HOME/.fehbg`  # set the background
+[ -f $HOME/.profile ] && . $HOME/.profile
 
 xmodmap -e 'clear Lock'
 xmodmap -e 'keysym Menu = Multi_key'
@@ -12,17 +12,18 @@ xmodmap -e 'keysym Caps_Lock = Escape'
 xsetroot -cursor_name left_ptr
 
 export PATH=$HOME/local/bin:/usr/local/bin:$PATH
-# export OOO_FORCE_DESKTOP=gnome
-# export AWT_TOOLKIT=MToolkit     # fix Java
 export BROWSER=firefox
 
-# gnome-panel &
 $HOME/local/bin/keynav &
 
-# ulimit -c unlimited
-
-# xscreensaver &
-# arbtt-capture &
+if [ `hostname` = 'LVN513-9' ]; then
+  xpmroot ~/images/lavender-field-2880x1024.png
+  export PATH=/scratch/local/bin:$PATH
+  /usr/local/condor/sbin/condor_kbdd -l $HOME/.kbdd.log -pidfile $HOME/.kbdd.pid
+  xscreensaver &
+else
+  eval `cat $HOME/.fehbg`
+fi
 
 eval `ssh-agent`
 xterm -e ssh-add &
