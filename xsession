@@ -11,7 +11,7 @@ xmodmap -e 'keysym Caps_Lock = Escape'
 
 xsetroot -cursor_name left_ptr
 
-export PATH=/home/brent/local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/local/bin:/usr/local/bin:$PATH
 # export OOO_FORCE_DESKTOP=gnome
 # export AWT_TOOLKIT=MToolkit     # fix Java
 export BROWSER=firefox
