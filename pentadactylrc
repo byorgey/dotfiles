@@ -4,9 +4,9 @@ loadplugins '\.(js|penta)$'
 group user
 set guioptions=bCrsn
 
-" :au LocationChange .* js modes.passAllKeys = /(fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
+" :au LocationChange .* js modes.passAllKeys = /(feedly|fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
 
-:au LocationChange '(fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
+:au LocationChange '(feedly|fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
 
 :qmark  1  http://www.cis.upenn.edu/~cis194/
 :qmark  3  http://www.cis.upenn.edu/~cis39903/
@@ -15,7 +15,7 @@ set guioptions=bCrsn
 :qmark  g  http://mail.google.com/mail/#inbox
 :qmark  l  http://tunes.org/~nef/logs/haskell/
 :qmark  m  http://www.mathlesstraveled.com/wp-admin/
-:qmark  r  http://www.google.com/reader/view/#stream/user%2F17842348209674705132%2Fstate%2Fcom.google%2Freading-list
+:qmark  r  http://www.feedly.com/
 :qmark  t  https://byorgey.fogbugz.com/
 :qmark  x  http://xmonad.org/
 :qmark  p  http://www.upenn.edu/
