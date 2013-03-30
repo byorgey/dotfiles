@@ -8,6 +8,7 @@
 :m +Data.List
 :m +Data.Char
 :m +Data.Monoid
+:m +Data.Tuple
 :m +Data.List.Split
 :m +Control.Arrow
 :m +Control.Applicative
