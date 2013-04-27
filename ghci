@@ -7,6 +7,7 @@
 :m +Data.Maybe
 :m +Data.List
 :m +Data.Char
+:m +Data.Ord
 :m +Data.Monoid
 :m +Data.Tuple
 :m +Data.List.Split
