@@ -30,7 +30,6 @@ alias sup="svn update"
 alias slog="svn log"
 
 alias pg="ping google.com"
-alias hg="host google.com"
 
 alias kf="killall -9 -r 'firefox*'"
 
