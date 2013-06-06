@@ -11,7 +11,7 @@
 :m +Data.Monoid
 :m +Data.Tuple
 :m +Data.List.Split
-:m +Control.Arrow
+import Control.Arrow hiding ((|||))
 :m +Control.Applicative
 :m +Control.Monad
 :m +Text.Groom
