@@ -230,7 +230,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (load (expand-file-name "~/local/lib/emacs/haskell-mode-git/haskell-site-file.el"))
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
@@ -575,3 +574,19 @@
 ;(el4r-boot)
 ;; End of the el4r block.
 ;; User-setting area is below this line.
+
+;; Package manager
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
+;; needed for haskell-mode under emacs 23
+
+(defun process-live-p (process)
+      "Returns non-nil if PROCESS is alive.
+    A process is considered alive if its status is `run', `open',
+    `listen', `connect' or `stop'."
+      (memq (process-status process)
+            '(run open listen connect stop)))
