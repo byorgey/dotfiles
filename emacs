@@ -198,6 +198,7 @@
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
+(global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
 
 (global-set-key (kbd "M-<f11>") 'get-firefox-title)
 (global-set-key (kbd "<f11>") 'get-firefox-url)
@@ -276,6 +277,16 @@
 (add-to-list 'load-path (expand-file-name "~/local/lib/emacs/ghc-mod"))
 (autoload 'ghc-init "ghc" nil t)
 ; (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; toggle stylish-on-save
+
+(defun toggle-stylish-on-save ()
+  "Toggle haskell-stylish-on-save"
+  (interactive)
+  (setq haskell-stylish-on-save (if (eq haskell-stylish-on-save t) nil t))
+  (message "Stylish-on-save is now %s." (if (eq haskell-stylish-on-save t) "on" "off"))
+)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Chris Done's haskell-mode stuff
