@@ -198,6 +198,7 @@
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
+(global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
 
 (global-set-key (kbd "M-<f11>") 'get-firefox-title)
 (global-set-key (kbd "<f11>") 'get-firefox-url)
@@ -229,7 +230,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (load (expand-file-name "~/local/lib/emacs/haskell-mode-git/haskell-site-file.el"))
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
@@ -276,6 +276,16 @@
 (add-to-list 'load-path (expand-file-name "~/local/lib/emacs/ghc-mod"))
 (autoload 'ghc-init "ghc" nil t)
 ; (add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; toggle stylish-on-save
+
+(defun toggle-stylish-on-save ()
+  "Toggle haskell-stylish-on-save"
+  (interactive)
+  (setq haskell-stylish-on-save (if (eq haskell-stylish-on-save t) nil t))
+  (message "Stylish-on-save is now %s." (if (eq haskell-stylish-on-save t) "on" "off"))
+)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Chris Done's haskell-mode stuff
@@ -564,3 +574,19 @@
 ;(el4r-boot)
 ;; End of the el4r block.
 ;; User-setting area is below this line.
+
+;; Package manager
+(require 'package)
+(add-to-list 'package-archives
+             '("marmalade" . "http://marmalade-repo.org/packages/"))
+(package-initialize)
+
+
+;; needed for haskell-mode under emacs 23
+
+(defun process-live-p (process)
+      "Returns non-nil if PROCESS is alive.
+    A process is considered alive if its status is `run', `open',
+    `listen', `connect' or `stop'."
+      (memq (process-status process)
+            '(run open listen connect stop)))
