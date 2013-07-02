@@ -235,6 +235,17 @@
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; multi-mode for .lhs
+
+  ;; (require 'haskell-latex)
+
+  ;; (add-to-list 'auto-mode-alist '("\\.lhs\\'" . haskell-latex-mode))
+  ;; (autoload 'haskell-latex-mode "haskell-latex")
+
+  ;; doesn't seem to work -- all the LaTeX is highlighted as if it
+  ;; were Haskell.
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; make undefined red
 
 (font-lock-add-keywords 'haskell-mode
