@@ -592,13 +592,3 @@
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
-
-
-;; needed for haskell-mode under emacs 23
-
-(defun process-live-p (process)
-      "Returns non-nil if PROCESS is alive.
-    A process is considered alive if its status is `run', `open',
-    `listen', `connect' or `stop'."
-      (memq (process-status process)
-            '(run open listen connect stop)))
