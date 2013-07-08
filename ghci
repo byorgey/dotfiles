@@ -16,4 +16,12 @@ import Control.Arrow hiding ((|||))
 :m +Control.Monad
 :m +Text.Groom
 
+import qualified Data.Map as M
+import qualified Data.Set as S
+import qualified Data.Foldable as F
+import qualified Data.Traversable as T
+
+import Control.Lens
+import Diagrams.Prelude
+
 :set prompt ">>> "
