@@ -77,6 +77,15 @@
 
 (global-set-key "\M-z" 'zap-up-to-char)
 
+; touch
+; taken from http://stackoverflow.com/questions/8989540/touch-current-file-in-emacs
+
+(defun touch ()
+    "updates mtime on the file for the current buffer"
+    (interactive)
+    (shell-command (concat "touch " (shell-quote-argument (buffer-file-name))))
+    (clear-visited-file-modtime))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -200,6 +209,7 @@
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
+(global-set-key (kbd "<f7>") 'touch)
 
 (global-set-key (kbd "M-<f11>") 'get-firefox-title)
 (global-set-key (kbd "<f11>") 'get-firefox-url)
