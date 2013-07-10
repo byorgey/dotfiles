@@ -24,7 +24,7 @@ set guioptions=bCrsn
 :qmark  M  http://192.168.1.1/
 :qmark  w  http://www.cis.upenn.edu/~byorgey/
 :qmark  o  http://www.cl.cam.ac.uk/~pes20/ott/ott_manual_0.10.16.html
-:qmark  W  http://www.wunderground.com/cgi-bin/findweather/getForecast?query=19139&wuSelect=WEATHER
+:qmark  W  http://weatherspark.com/forecasts/noaa/USA/PA/Philadelphia
 :qmark  f  http://www.facebook.com/
 :qmark  a  http://www.wolframalpha.com/
 :qmark  z  http://rayninfo.co.uk/tips/zshtips.html
