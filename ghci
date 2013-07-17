@@ -14,6 +14,7 @@
 import Control.Arrow hiding ((|||))
 :m +Control.Applicative
 :m +Control.Monad
+:m +Data.Functor.Compose
 :m +Text.Groom
 
 import qualified Data.Map as M
