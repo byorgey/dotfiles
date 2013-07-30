@@ -18,7 +18,6 @@ set guioptions=bCrsn
 :qmark  r  http://www.feedly.com/
 :qmark  t  https://byorgey.fogbugz.com/
 :qmark  x  http://xmonad.org/
-:qmark  p  http://www.upenn.edu/
 :qmark  j  http://joesgoals.com/
 :qmark  P  http://www.cis.upenn.edu/~plclub/schedule/summer12.shtml
 :qmark  M  http://192.168.1.1/
@@ -34,7 +33,7 @@ set guioptions=bCrsn
 :qmark  B  http://beeminder.com/byorgey
 :qmark  q  http://coq.inria.fr/
 :qmark  k  http://www.perseus.tufts.edu/hopper/search
-:qmark  d  http://www.gyford.com/pc
+:qmark  p  http://www.gyford.com/pc
 :qmark  A  http://ankiweb.net/
 :qmark  D  http://projects.haskell.org/diagrams/
 :qmark  R  http://themonadreader.wordpress.com/
@@ -43,7 +42,7 @@ set guioptions=bCrsn
 :qmark  i  http://www.instapaper.com/
 :qmark  8  http://localhost:8000/
 :qmark  X  http://www.biblegateway.com/
-:qmark  Q  http://github.com/diagrams/
+:qmark  d  http://drive.google.com/
 
 " :map <C-m> :set toolbars=invmenu <Enter>
 " :map <C-b> :set toolbars=invbookmarks <Enter>
