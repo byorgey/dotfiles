@@ -72,3 +72,5 @@ alias beep2="beep && sleep 0.2 && beep"
 
 hse () { source .hsenv_$1/bin/activate }
 alias dhse="deactivate_hsenv"
+
+alias git-authors="git log --format='%aN <%aE>' | sort -u"
