@@ -220,8 +220,9 @@
 (global-set-key (kbd "M-<f12>") 'get-firefox-markdown-link)
 (global-set-key (kbd "<f12>") 'get-firefox-org-link)  ;; mozrepl
 
-(global-set-key (kbd "C-c e") 'journal-goto-end)  ;; org-mode
-(global-set-key (kbd "C-c d") 'journal-add-today) ;; org-mode
+(global-set-key (kbd "C-c e") 'journal-goto-end)    ;; org-mode
+(global-set-key (kbd "C-c d") 'journal-add-today)   ;; org-mode
+(global-set-key (kbd "C-c w") 'journal-count-words) ;; org-mode
 
 (global-set-key (kbd "C-x w") 'darcsum-whatsnew)  ;; darcsum
 
@@ -393,6 +394,15 @@
 
 (fset 'journal-add-today
    (lambda (&optional arg) "Add an entry for today." (interactive "p") (kmacro-exec-ring-item (quote ([21 21 tab 134217790 3 16 tab 134217790 3 16 tab 134217790 M-return 67108896 67108896 134217777 134217852 100 97 116 101 32 43 34 37 45 100 34 13] 0 "%d")) arg)))
+
+(defun journal-count-words ()
+  (interactive)
+  (save-excursion
+    (outline-previous-visible-heading 1)
+    (next-line)
+    (let ((beginning (point)))
+      (outline-next-visible-heading 1)
+      (message "%s" (count-words-region beginning (point))))))
 
 ;; unused
 
