@@ -536,6 +536,7 @@ myKeymap host conf =
     , ("M-d d", diagramsGithub "doc")
     , ("M-d b", diagramsGithub "contrib")
     , ("M-d a", github         "diagrams/active")
+    , ("M-d m", github         "diagrams/monoid-extras")
 
     -- lockdown mode
     , ("M-C-l l", setLockdown)
