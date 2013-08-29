@@ -493,7 +493,8 @@ myKeymap host conf =
 
     -- some prompts.
       -- ability to change the working dir for a workspace.
-    , ("M-p d", changeDir myXPConfig)                           -- (11)
+      -- , ("M-p d", changeDir myXPConfig)                           -- (11)
+
       -- man page prompt
     , ("M-p m", manPrompt myXPConfig)                           -- (24)
       -- add single lines to my NOTES file from a prompt.       -- (25)
@@ -684,7 +685,8 @@ myLayoutHook =
 
     -- start all workspaces in my home directory, with the ability
     -- to switch to a new working dir.                          -- (10,11)
-    workspaceDir "~" $
+    -- workspaceDir "~" $
+    -- XXX this doesn't seem to be working, 29 August 2013
 
 {-
     -- navigate directionally rather than with mod-j/k
