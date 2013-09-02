@@ -535,6 +535,8 @@ myKeymap host conf =
     , ("M-d p", diagramsGithub "postscript")
     , ("M-d d", diagramsGithub "doc")
     , ("M-d b", diagramsGithub "contrib")
+    , ("M-d h", diagramsGithub "haddock")
+    , ("M-d u", diagramsGithub "builder")
     , ("M-d a", github         "diagrams/active")
     , ("M-d m", github         "diagrams/monoid-extras")
 
