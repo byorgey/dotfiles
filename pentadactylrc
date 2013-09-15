@@ -42,7 +42,7 @@ set guioptions=bCrsn
 :qmark  8  http://localhost:8000/
 :qmark  X  http://www.biblegateway.com/
 :qmark  d  http://drive.google.com/
-:qmark  f  http://www.biblegateway.com/passage/?search=Colossians+3:23&version=NIV
+:qmark  f  http://www.biblegateway.com/passage/?search=Colossians%203:23-4&version=NIV
 
 " :map <C-m> :set toolbars=invmenu <Enter>
 " :map <C-b> :set toolbars=invbookmarks <Enter>
