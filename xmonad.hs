@@ -675,6 +675,7 @@ myManageHook = composeAll $
             , "Floating"
             , "alsamixer"
             , "TagTime"
+            , "Caml graphics"
             ]
 
 -- specify a custom layout hook.
