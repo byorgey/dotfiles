@@ -249,6 +249,13 @@ myTopicConfig host = def
   }
  where myTopics' = myTopics host
 
+-- | Switch to the given topic, using the specified viewing method
+--   (usually 'view' or 'greedyView').
+switchTopic' :: (WorkspaceId -> WindowSet -> WindowSet)
+                -> TopicConfig -> Topic -> X ()
+switchTopic' viewMethod tg topic = do
+  windows $ viewMethod topic
+
 spawnShell :: Host -> X ()
 spawnShell host = currentTopicDir (myTopicConfig host) >>= spawnShellIn
 
