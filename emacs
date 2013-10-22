@@ -293,8 +293,8 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; hpaste
 
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (load (expand-file-name "~/local/lib/emacs/hpaste/hpaste.el")))
+;(when (not (string= system-name "ampersand.seas.upenn.edu"))
+;  (load (expand-file-name "~/local/lib/emacs/hpaste/hpaste.el")))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ghc-mod
