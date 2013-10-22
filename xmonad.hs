@@ -24,6 +24,7 @@ import           XMonad.Hooks.ManageDocks
 import           XMonad.Hooks.ManageHelpers
                                    --      windows in the middle of the
                                    --      screen
+import           XMonad.Hooks.EwmhDesktops
 
 -- Layout ----------------------------------------------------
 
@@ -120,6 +121,7 @@ myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
 myShell = "zsh"
 
 byorgeyConfig h host =
+     ewmh $
      noahProof host $
      withNavigation2DConfig def $
      myUrgencyHook $                         -- (2)
