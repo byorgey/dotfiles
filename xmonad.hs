@@ -5,7 +5,7 @@ import           XMonad
 import qualified XMonad.StackSet                       as W
 
 import           Data.Char                             (isSpace)
-import           Data.List                             ((\\))
+import           Data.List                             (find, (\\))
 import qualified Data.Map                              as M
 import           Data.Maybe                            (catMaybes, isJust)
 
@@ -357,6 +357,7 @@ myKeymap host conf =
     , ("M-S-g", promptedShift)
     , ("M-S-C-g", workspacePrompt myXPConfig $ \ws ->          -- (27)
                     withAll' (W.shiftWin ws) >> goto host ws)  -- (22)
+    , ("M-S-t", toggleTouchpad)
 
       -- in conjunction with manageHook, open a small temporary
       -- floating terminal
@@ -775,3 +776,20 @@ withLockdown :: X () -> X ()
 withLockdown act = do
   LockdownState l <- XS.get
   when (not l) act
+
+------------------------------------------------------------
+-- Touchpad
+
+toggleTouchpad :: X ()
+toggleTouchpad = do
+  sc <- (map words . lines) <$> liftIO (runProcessWithInput "/usr/bin/synclient" ["-l"] "")
+  case find ((== ["TouchpadOff"]) . take 1) sc of
+    Just [_,_,b] -> do
+      let b' :: Int
+          b' = 1 - read b
+      spawn ("synclient TouchpadOff=" ++ show b')
+      if (b' == 1)
+        then banishScreen LowerRight
+        else warpToWindow (1/2) (1/2)
+    Nothing -> do
+      return ()
