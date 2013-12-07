@@ -112,6 +112,7 @@ getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
     "archimedes" -> Laptop True
+    "reedrosenbluth-Gazelle-Professional" -> Laptop True
     "euclid"     -> Laptop False
     "LVN513-12"  -> Desktop
     _            -> Desktop
@@ -270,7 +271,7 @@ delay = io (threadDelay 0)  -- I no longer remember what this is for
 goto :: Host -> Topic -> X ()
 goto host t = do
   delay
-  withLockdown $ switchTopic' W.view (myTopicConfig host) t  -- (22b)
+  switchHook $ switchTopic' W.view (myTopicConfig host) t  -- (22b)
 
 promptedGoto :: Host -> X ()
 promptedGoto = workspacePrompt myXPConfig . goto    -- (27)
@@ -357,7 +358,7 @@ myKeymap host conf =
     , ("M-S-g", promptedShift)
     , ("M-S-C-g", workspacePrompt myXPConfig $ \ws ->          -- (27)
                     withAll' (W.shiftWin ws) >> goto host ws)  -- (22)
-    , ("M-S-t", toggleTouchpad)
+    , ("M-S-t", setTouchpadState Nothing)
 
       -- in conjunction with manageHook, open a small temporary
       -- floating terminal
@@ -418,9 +419,9 @@ myKeymap host conf =
     , ("M-C-<L>",   DO.swapWith Prev NonEmptyWS)                -- "
     , ("M-S-<R>",   DO.shiftTo Next HiddenNonEmptyWS)           -- "
     , ("M-S-<L>",   DO.shiftTo Prev HiddenNonEmptyWS)           -- "
-    , ("M-<R>",     delay >> withLockdown (DO.moveTo Next HiddenNonEmptyWS))   -- "
-    , ("M-<L>",     delay >> withLockdown (DO.moveTo Prev HiddenNonEmptyWS))   -- "
-    , ("M-f",       withLockdown $ newCodeWS)                   -- see below
+    , ("M-<R>",     delay >> switchHook (DO.moveTo Next HiddenNonEmptyWS))   -- "
+    , ("M-<L>",     delay >> switchHook (DO.moveTo Prev HiddenNonEmptyWS))   -- "
+    , ("M-f",       switchHook $ newCodeWS)                   -- see below
 
     -- expand/shrink windows
     , ("M-r k", sendMessage MirrorExpand)                       -- (5)
@@ -429,11 +430,11 @@ myKeymap host conf =
     , ("M-r l", sendMessage Expand)                             -- (0)
 
     -- switch to previous workspace
-    , ("M-z", delay >> withLockdown toggleWS)                   -- (16)
+    , ("M-z", delay >> switchHook toggleWS)                   -- (16)
 
     -- cycle workspaces in most-recently-used order
     -- see definition of custom cycleRecentWS' below, and also     (17)
-    , ("M-S-<Tab>", withLockdown
+    , ("M-S-<Tab>", switchHook
                   $ cycleRecentWS' [xK_Super_L, xK_Shift_L] xK_Tab xK_grave)
 
     -- close all windows on current workspace and move to next
@@ -453,7 +454,11 @@ myKeymap host conf =
       -- lock the screen with xscreensaver
     , ("M-S-l", spawn "xscreensaver-command -lock")             -- (0)
 
-    , ("M-S-s", spawn "systemctl suspend")
+    , ("M-S-s", spawn $
+                  case host of
+                    Laptop _ -> "pm-suspend"
+                    _        -> "systemctl suspend"
+      )
 
     -- bainsh the pointer
     , ("M-'", banishScreen LowerRight)                          -- (18)
@@ -467,7 +472,7 @@ myKeymap host conf =
     , ("M-x t", spawn "xclock -update 1")                       -- (0)
     , ("M-x S-g", spawn "javaws ~/playing/go/cgoban.jnlp")      -- (0)
     , ("M-x n", goto' "org")
-    , ("M-x e", withLockdown $ runOrRaise "evince" (className =? "Evince"))
+    , ("M-x e", switchHook $ runOrRaise "evince" (className =? "Evince"))
     , ("M-x x", spawnOn "web" "chromium")
 
     -- configuration.
@@ -780,16 +785,27 @@ withLockdown act = do
 ------------------------------------------------------------
 -- Touchpad
 
-toggleTouchpad :: X ()
-toggleTouchpad = do
+-- | Set the touchpad state to the given Bool value (True = on, False
+--   = off), or toggle it if given Nothing.
+setTouchpadState :: Maybe Bool -> X ()
+setTouchpadState s = do
   sc <- (map words . lines) <$> liftIO (runProcessWithInput "/usr/bin/synclient" ["-l"] "")
   case find ((== ["TouchpadOff"]) . take 1) sc of
     Just [_,_,b] -> do
       let b' :: Int
-          b' = 1 - read b
+          b' = case s of
+                 Just False -> 1
+                 Just True  -> 0
+                 Nothing    -> 1 - read b
       spawn ("synclient TouchpadOff=" ++ show b')
       if (b' == 1)
         then banishScreen LowerRight
-        else warpToWindow (1/2) (1/2)
+        else (when ((read b :: Int) == 1) $ warpToWindow (1/2) (1/2))
     Nothing -> do
       return ()
+
+------------------------------------------------------------
+-- Workspace switching hook
+
+switchHook :: X () -> X ()
+switchHook = withLockdown . (setTouchpadState (Just False) >>)
