@@ -260,7 +260,11 @@
 
 (when (not (string= system-name "ampersand.seas.upenn.edu"))
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
+  (add-hook 'haskell-mode-hook 'captitalized-words-mode)
+  (add-hook 'haskell-mode-hook 'turn-on-hi2)
+;  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; multi-mode for .lhs
@@ -336,11 +340,6 @@
 (defun haskell-hook ()
   ;; Insert LANGUAGE pragmas.
   (define-key haskell-mode-map [C-f8] 'insert-language-pragma)
-
-  ;; Use simple indentation.
-  (turn-on-haskell-simple-indent)
-  (define-key haskell-mode-map (kbd "<return>") 'haskell-simple-indent-newline-same-col)
-  (define-key haskell-mode-map (kbd "C-<return>") 'haskell-simple-indent-newline-indent)
 
   ;; Load the current file (and make a session if not already made).
   (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
