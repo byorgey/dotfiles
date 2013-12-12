@@ -144,7 +144,7 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-math-list (quote ((38 "land") (124 "lor") (right "Rightarrow") (up "iff") (64 "aleph") (49 "preceq") (50 "succeq") (51 "cong") (61 "equiv") (95 "models") (118 "varphi") (37 "emptyctx") (32 "sqrt") (! "neg"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (list "." (concat brent-home "local/share/agda-lib-0.7/src") (concat brent-home "src/categories")))
+ '(agda2-include-dirs (list "." (concat brent-home "local/share/agda-lib-0.7/src") (concat brent-home "src/HoTT-Agda")))
  '(compilation-read-command nil)
  '(compile-command "make -k -j2 ")
  '(darcsum-whatsnew-switches "-l")
