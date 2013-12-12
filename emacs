@@ -416,6 +416,8 @@
       (outline-next-visible-heading 1)
       (message "%s" (count-words-region beginning (point))))))
 
+;; (require 'ob-diagrams)
+
 ;; unused
 
 ;; (org-remember-insinuate)
@@ -513,24 +515,24 @@
 ;; Proof General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (string= system-name "archimedes")
-  (load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el")))
+; (when (string= system-name "archimedes")
+;   (load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (load-file (let ((coding-system-for-read 'utf-8))
-                  (shell-command-to-string "agda-mode locate"))))
+; (when (not (string= system-name "ampersand.seas.upenn.edu"))
+;   (load-file (let ((coding-system-for-read 'utf-8))
+;                   (shell-command-to-string "agda-mode locate"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Darcsum
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload 'darcsum-changes "darcsum.el" nil t)
-(autoload 'darcsum-whatsnew "darcsum.el" nil t)
-(autoload 'darcsum-view "darcsum.el" nil t)
+; (autoload 'darcsum-changes "darcsum.el" nil t)
+; (autoload 'darcsum-whatsnew "darcsum.el" nil t)
+; (autoload 'darcsum-view "darcsum.el" nil t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
