@@ -522,9 +522,9 @@
 ;; Agda
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; (when (not (string= system-name "ampersand.seas.upenn.edu"))
-;   (load-file (let ((coding-system-for-read 'utf-8))
-;                   (shell-command-to-string "agda-mode locate"))))
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (load-file (let ((coding-system-for-read 'utf-8))
+                  (shell-command-to-string "agda-mode locate"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Darcsum
