@@ -19,7 +19,10 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar brent-home
-  (cond ((string= system-name "archimedes") "/home/brent/")
+  (cond ((or (string= system-name "archimedes")
+	     (string= system-name "reedrosenbluth-Gazelle-Professional")
+	 )
+	 "/home/brent/")
         (t "/home1/b/byorgey/")))
 
 ;; Custom load path
