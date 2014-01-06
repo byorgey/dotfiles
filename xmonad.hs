@@ -797,6 +797,7 @@ setTouchpadState s = do
                  Just False -> 1
                  Just True  -> 0
                  Nothing    -> 1 - read b
+      when (b' == 0) $ liftIO (threadDelay (3*1000000))
       spawn ("synclient TouchpadOff=" ++ show b')
       if (b' == 1)
         then banishScreen LowerRight
