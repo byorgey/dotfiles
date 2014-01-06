@@ -632,7 +632,7 @@ mySelectSearch eng = selectSearch eng >> viewWeb                -- (20)
 
 -- Switch to the "web" workspace
 viewWeb :: X ()
-viewWeb = windows (W.view "web")                                -- (0,0a)
+viewWeb = switchHook $ windows (W.view "web")                   -- (0,0a)
 
 diagramsGithub :: String -> X ()
 diagramsGithub = github . ("diagrams/diagrams-" ++)
