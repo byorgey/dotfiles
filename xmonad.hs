@@ -293,7 +293,7 @@ mySPFloat :: ManageHook
 mySPFloat = customFloating scratchpadSize
 
 customTerm :: String
-customTerm = "urxvt-custom"
+customTerm = "urxvt"
 
 scratchpads :: [NamedScratchpad]
 scratchpads =
