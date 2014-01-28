@@ -1,3 +1,4 @@
+#!/bin/zsh
 # gnome-power-manager 
 # gnome-volume-manager &
 # gnome-settings-daemon &
@@ -14,7 +15,7 @@ xsetroot -cursor_name left_ptr
 export PATH=$HOME/local/bin:/usr/local/bin:$PATH
 export BROWSER=firefox
 
-$HOME/local/bin/keynav &
+keynav &
 
 if [ `hostname` = 'LVN513-9' ]; then
   xpmroot ~/images/lavender-field-2880x1024.png
