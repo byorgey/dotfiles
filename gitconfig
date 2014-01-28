@@ -1,6 +1,6 @@
 [user]
 	name = Brent Yorgey
-	email = byorgey@cis.upenn.edu
+	email = byorgey@gmail.com
 [merge]
 	tool = vimdiff
 [core]
