@@ -37,7 +37,3 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh_env
 source ~/.zsh_aliases
 source ~/.zsh_local
-
-
-# added by travis gem
-[ -f /home/brent/.travis/travis.sh ] && source /home/brent/.travis/travis.sh
