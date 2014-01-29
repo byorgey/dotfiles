@@ -21,6 +21,7 @@
 (defvar brent-home
   (cond ((or (string= system-name "archimedes")
 	     (string= system-name "reedrosenbluth-Gazelle-Professional")
+             (string= system-name "hippasus")
 	 )
 	 "/home/brent/")
         (t "/home1/b/byorgey/")))
