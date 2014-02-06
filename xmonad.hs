@@ -314,8 +314,7 @@ myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
                                 _        -> [])
   , ppOrder  = \(ws:l:t:exs) -> [t,l,ws]++exs                   -- (1)
   , ppOutput = hPutStrLn h                                      -- (1,31)
-  , ppTitle  = shorten (case host of Laptop _ -> 45
-                                     Desktop  -> 60)
+  , ppTitle  = shorten 60
   , ppSort   = fmap (namedScratchpadFilterOutWorkspace.) DO.getSortByOrder
   , ppHiddenNoWindows = const ""
   }
