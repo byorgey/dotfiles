@@ -29,3 +29,4 @@ import Control.Lens
 import Diagrams.Prelude
 
 :set prompt ">>> "
+let {infixr 8 .: ; a .: b = a + b/60 }
