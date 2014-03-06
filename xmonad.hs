@@ -121,7 +121,7 @@ myShell = "zsh"
 
 byorgeyConfig h host =
      ewmh $
-     noahProof host $
+--     noahProof host $
      withNavigation2DConfig def $
      myUrgencyHook $                         -- (2)
      def
@@ -222,6 +222,7 @@ myTopics host =
   , ti "thesis" "research/thesis"
   , ti "typmat" "research/species/type-matrices"
   , ti "hac" "documents/hac/2013"
+  , ti "williams" "teaching/talks/genfuncs-talk"
   ]
   where
     -- Make a default topic item that just spawns a shell.
@@ -621,11 +622,11 @@ bibleGateway = searchEngine "bible" "http://www.biblegateway.com/quicksearch/?qu
 myPromptSearch :: SearchEngine -> X ()
 myPromptSearch (SearchEngine _ site)
   = inputPrompt myXPConfig "Search" ?+ \s ->                    -- (27)
-      (search "firefox" site s >> viewWeb)                      -- (0,20)
+      switchHook (search "firefox" site s >> viewWeb)           -- (0,20)
 
 -- Select search: do a search based on the X selection
 mySelectSearch :: SearchEngine -> X ()
-mySelectSearch eng = selectSearch eng >> viewWeb                -- (20)
+mySelectSearch eng = switchHook (selectSearch eng >> viewWeb)   -- (20)
 
 -- Switch to the "web" workspace
 viewWeb :: X ()
