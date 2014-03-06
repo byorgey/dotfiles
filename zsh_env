@@ -19,4 +19,5 @@ TEXINPUTS=.:$HOME/local/texmf//:
 MUTT_EDITOR='emacs -nw'
 PACMAN=pacman
 TERM=rxvt-unicode
+STOW=$HOME/local/stow
 unsetopt ALL_EXPORT
