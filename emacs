@@ -266,7 +266,8 @@
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
   (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
   (add-hook 'haskell-mode-hook 'captitalized-words-mode)
-  (add-hook 'haskell-mode-hook 'turn-on-hi2)
+  (add-hook 'haskell-mode-hook 'structured-haskell-mode)
+;  (add-hook 'haskell-mode-hook 'turn-on-hi2)
 ;  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 )
 
@@ -336,6 +337,11 @@
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Chris Done's haskell-mode stuff
+
+(require 'shm)
+
+(set-face-background 'shm-current-face "#eee8d5")
+(set-face-background 'shm-quarantine-face "lemonchiffon")
 
 (add-hook 'haskell-mode-hook 'haskell-hook)
 (add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
