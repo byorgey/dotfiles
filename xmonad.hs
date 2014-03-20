@@ -496,6 +496,7 @@ myKeymap host conf =
 
     -- switch to urgent window
     , ("M-u", focusUrgent)
+    , ("M-C-u", clearUrgents)
 
     -- toggles: fullscreen, flip x, flip y, mirror, no borders
     , ("M-C-<Space>", sendMessage $ Toggle NBFULL)              -- (14)
