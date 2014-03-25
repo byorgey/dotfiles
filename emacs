@@ -338,7 +338,8 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; Chris Done's haskell-mode stuff
 
-(require 'shm)
+(when (not (string= system-name "ampersand.seas.upenn.edu"))
+  (require 'shm))
 
 (set-face-background 'shm-current-face "#eee8d5")
 (set-face-background 'shm-quarantine-face "lemonchiffon")
