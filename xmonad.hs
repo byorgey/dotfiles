@@ -372,7 +372,7 @@ myKeymap host conf =
 
     -- move floating windows with keybindings                   -- (22f)
     [ ("M-a " ++ m ++ "M-<" ++ dir ++ ">", withFocused (keysMoveWindow (dx,dy)))
-      | let big   = 50
+      | let big   = 100
             small = 20
       , (dir,m,dx,dy) <- [ ("L", "", -small, 0)
                          , ("R", "", small, 0)
