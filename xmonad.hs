@@ -527,7 +527,7 @@ myKeymap host conf =
     , ("C-<Print>", spawn "sleep 0.2; scrot -s")
 
     , ("M-y n", promptWSGroupAdd myXPConfig "Name this group: ")  -- (22d)
-    , ("M-y g", promptWSGroupView myXPConfig "Go to group: ")     -- (22d)
+    , ("M-y g", switchHook $ promptWSGroupView myXPConfig "Go to group: ")     -- (22d)
     , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ")  -- (22d)
 
     -- volume control.
