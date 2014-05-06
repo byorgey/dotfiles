@@ -1,0 +1,64 @@
+set imap_user = $LOGNAME 
+# set spoolfile=imaps://$LOGNAME.mail.seas.upenn.edu/INBOX
+# set folder=imaps://$LOGNAME.mail.seas.upenn.edu/~/Mail/
+# set spoolfile=~/Maildir/.mbox
+set folder=~/Maildir
+
+source ~/.mutt/colors
+
+set certificate_file=~/.mutt/certificates
+source ~/.mutt/aliases
+set alias_file=~/.mutt/aliases
+
+# set up gpg
+source /usr/local/doc/mutt/samples/gpg.rc
+
+# lists
+source ~/.mutt/lists
+
+# this is totally sweet
+set query_command = "mutt_ldap_query.pl '%s'"
+
+ignore *
+unignore from date subject to cc
+hdr_order From Date: From: To: Cc: Subject:
+
+set copy
+#set reply_to
+#set attribution="%f said:\n"
+set editor="emacs -nw"
+#set strict_threads      # don't take re: xxxx too seriously
+set record=+.sent/      # where to save copies of my outgoing messages
+set edit_hdrs           # let me edit those headers!
+set nosave_empty
+set sort=threads
+set read_inc=10
+set ascii_chars
+set quit=ask-yes       # prompt when quitting...
+set delete=yes         # ...but purge deleted messages without prompting
+set sleep_time=0
+set save_empty=yes
+set mark_old=no
+set pager_index_lines=6
+set postponed=~/Maildir/.post
+set mask="!^(new|tmp|cur)"
+set wrap=80
+
+set autoedit=no
+set fast_reply=yes
+set include=yes
+
+#my_hdr X-Brent-Status: Yes
+#set reverse_name # reply as the user to whom the mail was sent
+
+#set print_command="/usr/bin/muttprint"
+
+set print_split
+
+alternative_order text/plain text/html text
+auto_view text/html
+
+macro index B fcases\n
+macro index H <tag-prefix><copy-message>=.sf/<enter><enter><tag-prefix><delete-message> "Move tagged messages to cis500 mailbox"
+#macro pager <Esc>h <pipe-message>hacphi-registration<enter>
+#macro index H <tag-prefix><copy-message>=.haskell.hac/<enter><enter><tag-prefix><delete-message> "Move tagged messages to hacphi mailbox"
