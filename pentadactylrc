@@ -4,9 +4,9 @@ loadplugins '\.(js|penta)$'
 group user
 set guioptions=bCrsn
 
-" :au LocationChange .* js modes.passAllKeys = /(feedly|fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
+" :au LocationChange .* js modes.passAllKeys = /(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
 
-:au LocationChange '(feedly|fogbugz|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
+:au LocationChange '(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
 
 :qmark  1  http://www.cis.upenn.edu/~cis194/
 :qmark  3  http://www.cis.upenn.edu/~cis39903/
