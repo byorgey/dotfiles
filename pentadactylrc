@@ -4,6 +4,8 @@ loadplugins '\.(js|penta)$'
 group user
 set guioptions=bCrsn
 
+:js editor.defaultRegister="+"
+
 " :au LocationChange .* js modes.passAllKeys = /(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))/.test(buffer.URL)
 
 :au LocationChange '(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
