@@ -8,6 +8,8 @@ import           Data.Char                             (isSpace)
 import           Data.List                             (find, (\\))
 import qualified Data.Map                              as M
 import           Data.Maybe                            (catMaybes, isJust)
+import           System.Exit                           (ExitCode (ExitSuccess),
+                                                        exitWith)
 
 import           Control.Concurrent                    (threadDelay)
 import           System.Posix.Unistd
@@ -151,6 +153,7 @@ byorgeyConfig h host =
                                               -- (0c), and see below
        , handleEventHook    = followOnlyIf (queryFocused whenToFollow)
        }
+       `removeKeysP` ["M-S-q"]
        `additionalKeysP` (myKeys h host)                        -- (29)
 
 -- have urgent events flash a yellow dzen bar with black text
@@ -336,6 +339,9 @@ noahProof host conf =
 
 myKeymap :: Host -> XConfig l -> [(String, X ())]
 myKeymap host conf =
+
+    [ ("M-S-q q", io (exitWith ExitSuccess))]
+    ++
 
     -- mod-[1..],       Switch to workspace N
     -- mod-shift-[1..], Move client to workspace N
