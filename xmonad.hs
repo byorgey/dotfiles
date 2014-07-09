@@ -34,6 +34,7 @@ import           XMonad.Layout.Named
 import           XMonad.Layout.NoBorders
 import           XMonad.Layout.PerWorkspace
 import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.ThreeColumns
 import           XMonad.Layout.TwoPane
 import           XMonad.Layout.WorkspaceDir
                                    --      per-workspace
@@ -106,7 +107,8 @@ main = do h <- spawnPipe "dzen2 -ta r -fg '#a8a3f7' -bg '#3f3c6d' -e 'onstart=lo
           checkTopicConfig (myTopicNames host) (myTopicConfig host) -- (22b)
           xmonad $ byorgeyConfig h host                         -- (0)
 
-data Host = Desktop | Laptop Bool -- ^ Does the laptop have a Windows key?
+data Host = Desktop Bool -- ^ Are the desktop screens large enough for three columns?
+          | Laptop Bool -- ^ Does the laptop have a Windows key?
   deriving (Eq, Read, Show)
 
 getHost :: IO Host
@@ -114,8 +116,8 @@ getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
     "hippasus"   -> Laptop True
-    "LVN513-12"  -> Desktop
-    _            -> Desktop
+    "LVN513-12"  -> Desktop True
+    _            -> Desktop False
 
 myTerminal, myShell :: String
 myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
@@ -142,7 +144,7 @@ byorgeyConfig h host =
        , manageHook         = manageSpawn
                               <+> myManageHook
                               <+> manageHook def
-       , layoutHook         = myLayoutHook
+       , layoutHook         = myLayoutHook host
        , focusFollowsMouse  = False
 
          -- XXX fixme: comment!                                 -- (29)
@@ -234,8 +236,8 @@ myTopics host =
 
 ircAction :: Host -> X ()
 ircAction host = case host of
-  Laptop _ -> runInTerm "" "ssh byorgey@eniac.seas.upenn.edu"
-  Desktop  -> runInTerm "" "screen -dRR"
+  Laptop  _ -> runInTerm "" "ssh byorgey@eniac.seas.upenn.edu"
+  Desktop _ -> runInTerm "" "screen -dRR"
 
 edit :: String -> X ()
 edit = spawn . ("em "++)
@@ -699,7 +701,7 @@ myManageHook = composeAll $
             ]
 
 -- specify a custom layout hook.
-myLayoutHook =
+myLayoutHook host =
 
     -- automatically avoid overlapping my dzen status bar.
     avoidStrutsOn [U] $                                        -- (3)
@@ -733,11 +735,12 @@ myLayoutHook =
 
     -- ...whereas all other workspaces start tall and can switch
     -- to a grid layout with the focused window magnified.
-    myTiled |||           -- resizable tall layout
+    myTiled host |||           -- resizable tall layout
     TwoPane (3/100) (1/2)
 
 -- use ResizableTall instead of Tall, but still call it "Tall".
-myTiled = named "Tall" $ ResizableTall 1 0.03 0.5 []            -- (9,5)
+myTiled (Desktop True)  = named "Tall" $ ThreeCol 1 (3/100) (1/2)
+myTiled _               = named "Tall" $ ResizableTall 1 0.03 0.5 []            -- (9,5)
 
 {-
 findTag :: (a -> Bool) -> W.StackSet a l a1 s sd -> Maybe a
