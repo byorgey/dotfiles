@@ -216,7 +216,7 @@ myTopics host =
   , ti "unbound" "src/replib/Unbound"
   , TI "video" "video" (spawnOn "video" "cinelerra")
   , ti "tc" "writing/typeclassopedia"
-  , ti "aor" "teaching/aor"
+  , ti "aor" "teaching/fp-aor"
   , ti "monoid-pearl" "src/diagrams/monoid-pearl"
   , ti "bl" "src/BlogLiterately"
   , TI "view" "" (return ())
@@ -731,7 +731,7 @@ myLayoutHook host =
     smartBorders $                                              -- (7)
 
     -- "web", "irc", and "view" start in Full mode and can switch to tiled...
-    onWorkspaces ["web","irc","view"] (Full ||| myTiled) $               -- (10,0)
+    onWorkspaces ["web","irc","view"] (Full ||| myTiled host) $               -- (10,0)
 
     -- ...whereas all other workspaces start tall and can switch
     -- to a grid layout with the focused window magnified.
@@ -739,7 +739,7 @@ myLayoutHook host =
     TwoPane (3/100) (1/2)
 
 -- use ResizableTall instead of Tall, but still call it "Tall".
-myTiled (Desktop True)  = named "Tall" $ ThreeCol 1 (3/100) (1/2)
+-- myTiled (Desktop True)  = named "Tall" $ ThreeCol 1 (3/100) (1/2)
 myTiled _               = named "Tall" $ ResizableTall 1 0.03 0.5 []            -- (9,5)
 
 {-
