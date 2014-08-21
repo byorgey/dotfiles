@@ -543,11 +543,14 @@ myKeymap host conf =
     , ("<XF86AudioLowerVolume>", spawn "amixer -q set Master 5%- unmute")
     , ("<XF86AudioRaiseVolume>", spawn "amixer -q set Master 5%+ unmute")
     , ("<XF86AudioPlay>", spawn "cmus-remote -u")
-
---    , ("<XF86Display>", spawn "sudo pm-suspend")   -- this never worked very well
+    ]
+    ++
+    [ ("M-S-C-" ++ [k], spawn ("cmus-remote -" ++ [c])) | [k,c] <- ["zr", "xp", "cu", "vs", "bn"] ]
+    ++
+    [
 
     -- disable browser back/forward keys.
-    , ("<XF86Back>", return ())
+      ("<XF86Back>", return ())
     , ("<XF86Forward>", return ())
 
     -- diagrams github shortcuts
