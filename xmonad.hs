@@ -539,9 +539,9 @@ myKeymap host conf =
     , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ")  -- (22d)
 
     -- volume and music control.
-    , ("<XF86AudioMute>", spawn "amixer -q set Master toggle")
-    , ("<XF86AudioLowerVolume>", spawn "amixer -q set Master 5%- unmute")
-    , ("<XF86AudioRaiseVolume>", spawn "amixer -q set Master 5%+ unmute")
+    , ("M-S-C-0", spawn "amixer -q -c 1 set Master toggle")       -- <XF86AudioMute>
+    , ("M-S-C--", spawn "amixer -q -c 1 set Master 5%- unmute")   -- <XF86AudioLowerVolume>
+    , ("M-S-C-=", spawn "amixer -q -c 1 set Master 5%+ unmute")   -- <XF86AudioRaiseVolume>
     , ("<XF86AudioPlay>", spawn "cmus-remote -u")
     ]
     ++
