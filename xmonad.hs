@@ -538,10 +538,11 @@ myKeymap host conf =
     , ("M-y g", switchHook $ promptWSGroupView myXPConfig "Go to group: ")     -- (22d)
     , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ")  -- (22d)
 
-    -- volume control.
+    -- volume and music control.
     , ("<XF86AudioMute>", spawn "amixer -q set Master toggle")
     , ("<XF86AudioLowerVolume>", spawn "amixer -q set Master 5%- unmute")
     , ("<XF86AudioRaiseVolume>", spawn "amixer -q set Master 5%+ unmute")
+    , ("<XF86AudioPlay>", spawn "cmus-remote -u")
 
 --    , ("<XF86Display>", spawn "sudo pm-suspend")   -- this never worked very well
 
