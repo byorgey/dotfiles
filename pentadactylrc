@@ -10,8 +10,8 @@ set guioptions=bCrsn
 
 :au LocationChange '(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
 
-:qmark  1  http://www.cis.upenn.edu/~cis194/
-:qmark  3  http://www.cis.upenn.edu/~cis39903/
+:qmark  1  http://dept.cs.williams.edu/~cs134/index.html
+:qmark  3  https://glow2.williams.edu/courses/1324331
 :qmark  G  http://dir.gmane.org/index.php?prefix=gmane.comp.lang.haskell
 :qmark  b  http://byorgey.wordpress.com/wp-admin/
 :qmark  g  http://mail.google.com/mail/#inbox
