@@ -228,6 +228,8 @@
 (global-set-key (kbd "C-x t") 'text-scale-increase)
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
 
+(global-set-key (kbd "C-x C-k c") 'BAY-comment)
+
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
 (global-set-key (kbd "<f7>") 'touch)
@@ -257,6 +259,9 @@
 
 (fset 'typo-fix
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 34 18 13 67108896 19 34 19 13 134217847 32 45 45 62 32 25] 0 "%d")) arg)))
+
+(fset 'BAY-comment
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("{- *** BAY: " 0 "%d")) arg)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Haskell-mode
