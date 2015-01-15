@@ -225,7 +225,7 @@ myTopics host =
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
   , ti "thesis" "research/thesis"
-  , ti "typmat" "research/species/type-matrices"
+  , ti "typmat" "research/type-matrices"
   , ti "hac" "documents/hac/2013"
   , ti "williams" "teaching/talks/genfuncs-talk"
   ]
