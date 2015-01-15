@@ -185,7 +185,8 @@
  '(tex-dvi-view-command "xdvi -s 5")
  '(tex-start-commands "")
  '(tool-bar-mode nil)
- '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark))))
+ '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+ '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
@@ -261,6 +262,8 @@
 (global-set-key (kbd "C-x g") 'magit-status)      ;; magit
 
 (global-set-key (kbd "C-x y") 'typo-fix)
+
+(global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grading/feedback
