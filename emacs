@@ -246,6 +246,7 @@
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
+(global-set-key (kbd "C-c n") 'note-other-window)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
@@ -280,7 +281,15 @@
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 34 18 13 67108896 19 34 19 13 134217847 32 45 45 62 32 25] 0 "%d")) arg)))
 
 (fset 'BAY-comment
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("{- *** BAY: " 0 "%d")) arg)))
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("-- *** BAY: " 0 "%d")) arg)))
+
+;; Type a number and then execute this macro.  If the point is
+;; following nn, it searches for #nn in the other window and replaces
+;; nn in the current window with the result of C-x C-k c (currently
+;; bound to BAY-comment) followed by the rest of the line following
+;; #nn in the other window.
+(fset 'note-other-window
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([M-left 67108896 5 23 24 111 134217788 19 35 25 13 right 67108896 5 134217847 24 111 24 11 99 25] 0 "%d")) arg)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Haskell-mode
