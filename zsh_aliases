@@ -11,7 +11,7 @@ alias s="screen -RR"
 alias sls="screen -ls"
 alias c='cal -3 | sed -r "s/^(.{20,42}) (`date +%e`) /\1[\2]/"'
 
-alias ls='ls --color=always'
+alias ls='ls -F'
 alias l='ls'
 alias ll='ls -l'
 alias la='ls -al'
@@ -21,7 +21,8 @@ alias cho="ssh byorgey@code.haskell.org"
 alias home="ssh brent@yorgey.homelinux.net"
 alias homer="ssh brent@homer"
 alias en="ssh byorgey@eniac.seas.upenn.edu"
-alias enx="ssh -X byorgey@minus.seas.upenn.edu"
+alias hip="ssh hip"
+alias rath="ssh rath"
 
 alias stat="svn status -q"
 alias sdiff="svn diff"
