@@ -188,7 +188,6 @@ myTopics host =
                  runInTerm "" "sudo tail -f /var/log/wicd/wicd.log")
   , ti "conf" ""
   , ti "misc" ""
-  , ti "500" "teaching/500/sf"
   , ti "ref" "documents/reference"
   , ti "play" ""
   , TI "tex-conf" "texmf/tex" (edit "~/texmf/tex/brent.sty")
@@ -208,14 +207,8 @@ myTopics host =
   , ti "dia-play" "src/diagrams/play"
   , ti "active" "src/diagrams/active"
   , ti "sp" "research/species/jc"
-  , ti "pweb" "documents/sites/upenn"
-  , ti "hask" "teaching/haskell"
   , TI "anki" "" (spawnOn "anki" "anki")
-  , ti "CG" "documents/CG"
-  , ti "replib" "src/replib"
-  , ti "unbound" "src/replib/Unbound"
   , TI "video" "video" (spawnOn "video" "cinelerra")
-  , ti "tc" "writing/typeclassopedia"
   , ti "aor" "teaching/fp-aor"
   , ti "monoid-pearl" "src/diagrams/monoid-pearl"
   , ti "bl" "src/BlogLiterately"
@@ -224,10 +217,9 @@ myTopics host =
     (edit "~/documents/bible/study/Hebrews.tex" >>
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  , ti "thesis" "research/thesis"
   , ti "typmat" "research/type-matrices"
-  , ti "hac" "documents/hac/2013"
-  , ti "williams" "teaching/talks/genfuncs-talk"
+  , ti "136" "teaching/cs136"
+  , ti "jobtalk" "teaching/talks/2015-jobtalk-DSLs"
   ]
   where
     -- Make a default topic item that just spawns a shell.
