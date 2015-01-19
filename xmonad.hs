@@ -220,6 +220,7 @@ myTopics host =
   , ti "typmat" "research/type-matrices"
   , ti "136" "teaching/cs136"
   , ti "jobtalk" "teaching/talks/2015-jobtalk-DSLs"
+  , ti "joyal" "writing/translation/series-formelles"
   ]
   where
     -- Make a default topic item that just spawns a shell.
