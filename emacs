@@ -244,6 +244,7 @@
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-x t") 'text-scale-increase)
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
 (global-set-key (kbd "C-c n") 'note-other-window)
@@ -333,18 +334,12 @@
       (insert (concat string "\n")))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; delete trailing whitespace
+  ;; delete whitespace forward
 
-;; (defun delete-trailing-whitespace-if-confirmed ()
-;;  "Delete all the trailing whitespace across the current buffer,
-;;   asking user for confirmation."
-;;  (if (and (eq major-mode 'haskell-mode)
-;;           (save-excursion (goto-char (point-min))
-;;                           (re-search-forward "[[:space:]]$" nil t))
-;;           (y-or-n-p (format "Delete trailing whitespace from %s? " (buffer-name))))
-;;      (delete-trailing-whitespace)))
-
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace-if-confirmed)
+(defun delete-horizontal-space-forward () ; adapted from `delete-horizontal-space'
+  "*Delete all spaces and tabs after point."
+  (interactive "*")
+  (delete-region (point) (progn (skip-chars-forward " \t") (point))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; hpaste
