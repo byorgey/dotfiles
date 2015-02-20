@@ -107,9 +107,20 @@
     (shell-command (concat "touch " (shell-quote-argument (buffer-file-name))))
     (clear-visited-file-modtime))
 
+; Mac-specific stuff
+
+(setq mac-command-key-is-meta t)
+(setq mac-command-modifier 'meta)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; rainbow-delimiters
+
+(require 'rainbow-delimiters)
+(add-hook 'haskell-mode-hook 'rainbow-delimiters-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Ott
@@ -183,7 +194,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 85 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+ '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
  '(font-lock-builtin-face ((((class color) (background light)) (:bold t :foreground "ForestGreen"))))
  '(font-lock-comment-face ((((class color) (background light)) (:bold t :foreground "DarkOrchid4"))))
  '(font-lock-constant-face ((((class color) (background light)) (:foreground "DarkGreen"))))
@@ -262,25 +273,40 @@
 ;;  Haskell-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-  (add-hook 'haskell-mode-hook 'turn-on-haskell-doc)
-  (add-hook 'haskell-mode-hook 'captitalized-words-mode)
-  (add-hook 'haskell-mode-hook 'structured-haskell-mode)
-;  (add-hook 'haskell-mode-hook 'turn-on-hi2)
-;  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+
+(eval-after-load 'haskell-mode
+          '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+
+(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+  (add-to-list 'exec-path my-cabal-path))
+(custom-set-variables '(haskell-tags-on-save t))
+
+(custom-set-variables
+  '(haskell-process-suggest-remove-import-lines t)
+  '(haskell-process-auto-import-loaded-modules t)
+  '(haskell-process-log t))
+(eval-after-load 'haskell-mode '(progn
+  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
+  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)))
+(eval-after-load 'haskell-cabal '(progn
+  (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+  (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+(custom-set-variables '(haskell-process-type 'cabal-repl))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; multi-mode for .lhs
+  ;; hindent
 
-  ;; (require 'haskell-latex)
-
-  ;; (add-to-list 'auto-mode-alist '("\\.lhs\\'" . haskell-latex-mode))
-  ;; (autoload 'haskell-latex-mode "haskell-latex")
-
-  ;; doesn't seem to work -- all the LaTeX is highlighted as if it
-  ;; were Haskell.
+(add-hook 'haskell-mode-hook #'hindent-mode)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; make undefined red
@@ -323,7 +349,17 @@
   ;; ghc-mod
 
 (autoload 'ghc-init "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init) (flymake-mode)))
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+
+  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  ;; company-ghc
+
+(require 'company)
+(add-hook 'haskell-mode-hook 'company-mode)
+
+(add-to-list 'company-backends 'company-ghc)
+(custom-set-variables '(company-ghc-show-info t))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; toggle stylish-on-save
@@ -334,73 +370,6 @@
   (setq haskell-stylish-on-save (if (eq haskell-stylish-on-save t) nil t))
   (message "Stylish-on-save is now %s." (if (eq haskell-stylish-on-save t) "on" "off"))
 )
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; Chris Done's haskell-mode stuff
-
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (require 'shm))
-
-(set-face-background 'shm-current-face "#eee8d5")
-(set-face-background 'shm-quarantine-face "lemonchiffon")
-
-(add-hook 'haskell-mode-hook 'haskell-hook)
-(add-hook 'haskell-cabal-mode-hook 'haskell-cabal-hook)
-
-;; Haskell main editing mode key bindings.
-(defun haskell-hook ()
-  ;; Insert LANGUAGE pragmas.
-  (define-key haskell-mode-map [C-f8] 'insert-language-pragma)
-
-  ;; Load the current file (and make a session if not already made).
-  (define-key haskell-mode-map [?\C-c ?\C-l] 'haskell-process-load-file)
-  (define-key haskell-mode-map [f5] 'haskell-process-load-file)
-
-  ;; Switch to the REPL.
-  (define-key haskell-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch)
-  ;; “Bring” the REPL, hiding all other windows apart from the source
-  ;; and the REPL.
-  (define-key haskell-mode-map (kbd "C-`") 'haskell-interactive-bring)
-
-  ;; Build the Cabal project.
-  (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  ;; Interactively choose the Cabal command to run.
-  (define-key haskell-mode-map (kbd "C-c v") 'haskell-process-cabal)
-
-  ;; Get the type and info of the symbol at point, print it in the
-  ;; message buffer.
-  (define-key haskell-mode-map (kbd "C-c C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-i") 'haskell-process-do-info)
-
-  ;; Contextually do clever things on the space key, in particular:
-  ;;   1. Complete imports, letting you choose the module name.
-  ;;   2. Show the type of the symbol after the space.
-  (define-key haskell-mode-map (kbd "SPC") 'haskell-mode-contextual-space)
-
-  ;; Jump to the imports. Keep tapping to jump between import
-  ;; groups. C-u f8 to jump back again.
-  (define-key haskell-mode-map [f8] 'haskell-navigate-imports)
-
-  ;; Jump to the definition of the current symbol.
-  (define-key haskell-mode-map (kbd "M-.") 'haskell-mode-tag-find)
-
-  ;; Indent the below lines on columns after the current column.
-  (define-key haskell-mode-map (kbd "C-M-<right>")
-    (lambda ()
-      (interactive)
-      (haskell-move-nested 1)))
-  ;; Same as above but backwards.
-  (define-key haskell-mode-map (kbd "C-M-<left>")
-    (lambda ()
-      (interactive)
-      (haskell-move-nested -1))))
-
-;; Useful to have these keybindings for .cabal files, too.
-(defun haskell-cabal-hook ()
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-cabal-mode-map (kbd "C-c v") 'haskell-process-cabal)
-  (define-key haskell-cabal-mode-map (kbd "C-`") 'haskell-interactive-bring)
-  (define-key haskell-cabal-mode-map [?\C-c ?\C-z] 'haskell-interactive-switch))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Org-mode
