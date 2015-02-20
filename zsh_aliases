@@ -85,3 +85,5 @@ battery () {
   acpi | grep -o "[0-9]*%" | head -c-1
   echo -n '%'
 }
+
+nuke () { rm -rf $HOME/.cabal/packages/hackage.haskell.org/$1 }
