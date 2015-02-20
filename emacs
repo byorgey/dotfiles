@@ -88,6 +88,19 @@
 
 (add-hook 'emacs-startup-hook 'toggle-window-split)
 
+;; Toggle window dedication
+
+(defun toggle-window-dedicated ()
+  "Toggle whether the current active window is dedicated or not"
+  (interactive)
+
+  (message
+   (if (let (window (get-buffer-window (current-buffer)))
+	 (set-window-dedicated-p window (not (window-dedicated-p window))))
+       "Window '%s' is dedicated"
+       "Window '%s' is normal")
+   (current-buffer)))
+
 ; zap-up-to-char
 
 (autoload 'zap-up-to-char "misc"
@@ -158,12 +171,15 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-math-list (quote ((38 "land") (124 "lor") (right "Rightarrow") (up "iff") (64 "aleph") (49 "preceq") (50 "succeq") (51 "cong") (61 "equiv") (95 "models") (118 "varphi") (37 "emptyctx") (32 "sqrt") (! "neg"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.7/src" "/home/brent/src/equality"))) ;; "/home/brent/src/HoTT-Agda" "/home/brent/src/categories"
+ '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(compilation-read-command nil)
  '(compile-command "make -k -j2 ")
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
+ '(face-font-family-alternatives (quote (("arial black" "arial" "DejaVu Sans") ("arial" "DejaVu Sans") ("courier" "Monospace") ("monaco" "Monospace") ("xiki" "verdana") ("verdana" "DejaVu Sans"))))
+ '(font-lock-keywords-case-fold-search t t)
+ '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
  '(haskell-notify-p t)
  '(haskell-process-path-ghci "ghci")
@@ -183,7 +199,8 @@
  '(tex-dvi-view-command "xdvi -s 5")
  '(tex-start-commands "")
  '(tool-bar-mode nil)
- '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark))))
+ '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+ '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
@@ -238,6 +255,10 @@
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-x t") 'text-scale-increase)
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
+
+(global-set-key (kbd "C-x C-k c") 'BAY-comment)
+(global-set-key (kbd "C-c n") 'note-other-window)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
@@ -258,6 +279,8 @@
 
 (global-set-key (kbd "C-x y") 'typo-fix)
 
+(global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grading/feedback
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -268,6 +291,17 @@
 
 (fset 'typo-fix
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 34 18 13 67108896 19 34 19 13 134217847 32 45 45 62 32 25] 0 "%d")) arg)))
+
+(fset 'BAY-comment
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("-- *** BAY: " 0 "%d")) arg)))
+
+;; Type a number and then execute this macro.  If the point is
+;; following nn, it searches for #nn in the other window and replaces
+;; nn in the current window with the result of C-x C-k c (currently
+;; bound to BAY-comment) followed by the rest of the line following
+;; #nn in the other window.
+(fset 'note-other-window
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([M-left 67108896 5 23 24 111 134217788 19 35 25 13 right 67108896 5 134217847 24 111 24 11 99 25] 0 "%d")) arg)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Haskell-mode
@@ -326,18 +360,12 @@
       (insert (concat string "\n")))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; delete trailing whitespace
+  ;; delete whitespace forward
 
-;; (defun delete-trailing-whitespace-if-confirmed ()
-;;  "Delete all the trailing whitespace across the current buffer,
-;;   asking user for confirmation."
-;;  (if (and (eq major-mode 'haskell-mode)
-;;           (save-excursion (goto-char (point-min))
-;;                           (re-search-forward "[[:space:]]$" nil t))
-;;           (y-or-n-p (format "Delete trailing whitespace from %s? " (buffer-name))))
-;;      (delete-trailing-whitespace)))
-
-;; (add-hook 'before-save-hook 'delete-trailing-whitespace-if-confirmed)
+(defun delete-horizontal-space-forward () ; adapted from `delete-horizontal-space'
+  "*Delete all spaces and tabs after point."
+  (interactive "*")
+  (delete-region (point) (progn (skip-chars-forward " \t") (point))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; hpaste
@@ -495,8 +523,7 @@
 ;; Proof General
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; (when (string= system-name "archimedes")
-;   (load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el")))
+(load (expand-file-name "~/local/lib/ProofGeneral/generic/proof-site.el"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Agda
