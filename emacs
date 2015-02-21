@@ -154,6 +154,12 @@
 ;; Extra modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; smart-compile
+
+(require 'smart-compile)
+(add-to-list 'smart-compile-alist '("\\.java$" . "javac %f"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; rainbow-delimiters
 
@@ -198,8 +204,8 @@
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src" "/Users/brent/local/share/agda-stdlib-0.9/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
+ '(company-ghc-show-info t)
  '(compilation-read-command nil)
- '(compile-command "make -k -j2 ")
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
  '(face-font-family-alternatives (quote (("arial black" "arial" "DejaVu Sans") ("arial" "DejaVu Sans") ("courier" "Monospace") ("monaco" "Monospace") ("xiki" "verdana") ("verdana" "DejaVu Sans"))))
@@ -207,8 +213,11 @@
  '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
  '(haskell-notify-p t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
  '(haskell-process-path-ghci "ghci")
- '(haskell-process-type (quote ghci))
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl))
  '(haskell-program-name "ghci \"+.\"")
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
@@ -224,6 +233,7 @@
  '(tex-dvi-view-command "xdvi -s 5")
  '(tex-start-commands "")
  '(tool-bar-mode nil)
+ '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
  '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
  '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
 
@@ -276,7 +286,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; built-in emacs functions
-(global-set-key (kbd "C-c c") 'compile)
+(global-set-key (kbd "C-c c") 'smart-compile)
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-x t") 'text-scale-increase)
 (global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
@@ -340,12 +350,9 @@
 (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
   (add-to-list 'exec-path my-cabal-path))
-(custom-set-variables '(haskell-tags-on-save t))
 
-(custom-set-variables
-  '(haskell-process-suggest-remove-import-lines t)
-  '(haskell-process-auto-import-loaded-modules t)
-  '(haskell-process-log t))
+
+
 (eval-after-load 'haskell-mode '(progn
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -360,7 +367,7 @@
   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-(custom-set-variables '(haskell-process-type 'cabal-repl))
+
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; hindent
@@ -412,7 +419,7 @@
 (add-hook 'haskell-mode-hook 'company-mode)
 
 (add-to-list 'company-backends 'company-ghc)
-(custom-set-variables '(company-ghc-show-info t))
+
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; toggle stylish-on-save
