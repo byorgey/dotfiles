@@ -18,6 +18,8 @@
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq-default indent-tabs-mode nil)
+
 (defvar brent-home
   (cond ((or (string= system-name "archimedes")
              (string= system-name "hippasus")
