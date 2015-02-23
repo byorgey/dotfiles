@@ -25,6 +25,7 @@
              (string= system-name "hippasus")
 	 )
 	 "/home/brent/")
+	((string= system-name "eudoxus") "/Users/brent/")
         (t "/home1/b/byorgey/")))
 
 ;; Custom load path
