@@ -175,9 +175,7 @@
 ;; smart-compile
 
 (require 'smart-compile)
-(add-to-list 'smart-compile-alist '("\\.java$" . "javac %f"))
-(add-to-list 'smart-compile-alist '("\\.tex$" . "pdflatex %f"))
-(add-to-list 'smart-compile-alist '("\\.lhs$" . "runhaskell Shake"))
+(add-to-list 'smart-compile-alist '("\\.lhs\\'" . "runhaskell Shake"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; rainbow-delimiters
