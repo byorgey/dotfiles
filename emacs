@@ -638,6 +638,8 @@
   (require 'magit)
   (autoload 'magit-status "magit" nil t))
 
+(setq magit-last-seen-setup-instructions "1.4.0")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Mail
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
