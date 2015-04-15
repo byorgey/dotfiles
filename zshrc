@@ -37,3 +37,7 @@ source $ZSH/oh-my-zsh.sh
 source ~/.zsh_env
 source ~/.zsh_aliases
 source ~/.zsh_local
+
+
+source ~/.xsh
+
