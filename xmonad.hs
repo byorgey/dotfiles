@@ -81,6 +81,7 @@ import           XMonad.Actions.PerWorkspaceKeys
 
 import           XMonad.Prompt
 import           XMonad.Prompt.AppendFile
+import           XMonad.Prompt.FuzzyMatch
 import           XMonad.Prompt.Input
 import           XMonad.Prompt.Man
 import           XMonad.Prompt.Ssh
@@ -437,18 +438,18 @@ myKeymap host conf =
                   $ cycleRecentWS' [xK_Super_L, xK_Shift_L] xK_Tab xK_grave)
 
     -- close all windows on current workspace and move to next
-    , ("M-S-z", killAll >> DO.moveTo Prev HiddenNonEmptyWS)     -- (22, 22e)
+    , ("M-S-z", switchHook $ killAll >> DO.moveTo Prev HiddenNonEmptyWS)     -- (22, 22e)
 
     -- dynamic workspace bindings
     , ("M-n", addWorkspacePrompt myXPConfig)                    -- (22c)
     , ("M-S-n", renameWorkspace myXPConfig)                     -- "
-    , ("M-C-r", removeWorkspace)                                -- "
-    , ("M-C-S-r", killAll >> removeWorkspace)                   --
+    , ("M-C-r", switchHook $ removeWorkspace)                                -- "
+    , ("M-C-S-r", switchHook $ killAll >> removeWorkspace)                   --
 
     -- move between screens
-    , ("M-s", nextScreen)
-    , ("M-w", swapNextScreen)
-    , ("M-e", shiftNextScreen)
+    , ("M-s", switchHook $ nextScreen)
+    , ("M-w", switchHook $ swapNextScreen)
+    , ("M-e", switchHook $ shiftNextScreen)
 
       -- lock the screen with xscreensaver
     , ("M-S-l", spawn "xscreensaver-command -lock")             -- (0)
@@ -647,10 +648,12 @@ github r = safeSpawn "firefox" ["http://github.com/" ++ r] >> viewWeb
 -- some nice colors for the prompt windows to match the dzen status bar.
 myXPConfig :: XPConfig
 myXPConfig = def                                                -- (23)
-    { fgColor = "#a8a3f7"
-    , bgColor = "#3f3c6d"
-    , promptKeymap = emacsLikeXPKeymap' myWordSep
-    , historyFilter = deleteConsecutive
+    { fgColor         = "#a8a3f7"
+    , bgColor         = "#3f3c6d"
+    , promptKeymap    = emacsLikeXPKeymap' myWordSep
+    , historyFilter   = deleteConsecutive
+    , searchPredicate = fuzzyMatch
+    , sorter          = fuzzySort
     }
 
 myWordSep :: Char -> Bool
