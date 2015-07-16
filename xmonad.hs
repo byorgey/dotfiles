@@ -81,7 +81,6 @@ import           XMonad.Actions.PerWorkspaceKeys
 
 import           XMonad.Prompt
 import           XMonad.Prompt.AppendFile
-import           XMonad.Prompt.FuzzyMatch
 import           XMonad.Prompt.Input
 import           XMonad.Prompt.Man
 import           XMonad.Prompt.Ssh
@@ -652,8 +651,6 @@ myXPConfig = def                                                -- (23)
     , bgColor         = "#3f3c6d"
     , promptKeymap    = emacsLikeXPKeymap' myWordSep
     , historyFilter   = deleteConsecutive
-    , searchPredicate = fuzzyMatch
-    , sorter          = fuzzySort
     }
 
 myWordSep :: Char -> Bool
