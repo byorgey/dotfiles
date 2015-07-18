@@ -687,6 +687,7 @@ myManageHook = composeAll $
                      , "Game"
                      , "Caml graphics"
                      , "Sifflet"
+                     , "Gimp"
                      ]
           myFloatTitles =
             [ "Bridge Bid"
