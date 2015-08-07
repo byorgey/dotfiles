@@ -218,8 +218,7 @@ myTopics host =
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
   , ti "typmat" "research/type-matrices"
-  , ti "136" "teaching/cs136"
-  , ti "jobtalk" "teaching/talks/2015-jobtalk-DSLs"
+  , ti "150" "teaching/150"
   , ti "joyal" "writing/translation/series-formelles"
   ]
   where
