@@ -87,3 +87,5 @@ battery () {
 }
 
 nuke () { rm -rf $HOME/.cabal/packages/hackage.haskell.org/$1 }
+
+source ~/dotfiles/haskell-prompt-info.zsh
