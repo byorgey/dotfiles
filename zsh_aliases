@@ -72,8 +72,6 @@ alias ssha='eval `ssh-agent` && ssh-add'
 
 eval "$(hub alias -s)"
 
-source ~/.hub.zsh_completion
-
 alias beep2="beep && sleep 0.2 && beep"
 
 hse () { source .hsenv_$1/bin/activate }
