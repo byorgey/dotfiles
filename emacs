@@ -212,6 +212,10 @@
 
 (setq yas-prompt-functions '(yas-dropdown-prompt yas-ido-prompt))
 
+(define-key yas-minor-mode-map (kbd "<tab>") nil)
+(define-key yas-minor-mode-map (kbd "TAB") nil)
+(define-key yas-minor-mode-map (kbd "C-<tab>") 'yas-expand-from-trigger-key)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; smart-compile
 
@@ -403,7 +407,7 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; indentation
 
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keymap
@@ -463,17 +467,17 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ghc-mod
 
-(autoload 'ghc-init "ghc" nil t)
-(autoload 'ghc-debug "ghc" nil t)
-(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+; (autoload 'ghc-init "ghc" nil t)
+; (autoload 'ghc-debug "ghc" nil t)
+; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; company-ghc
 
-(require 'company)
-(add-hook 'haskell-mode-hook 'company-mode)
+;; (require 'company)
+;; (add-hook 'haskell-mode-hook 'company-mode)
 
-(add-to-list 'company-backends 'company-ghc)
+;; (add-to-list 'company-backends 'company-ghc)
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
