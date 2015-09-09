@@ -10,8 +10,7 @@ set guioptions=bCrsn
 
 :au LocationChange '(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
 
-:qmark  1  http://dept.cs.williams.edu/~cs134/index.html
-:qmark  3  https://glow2.williams.edu/courses/1324331
+:qmark  1  http://mgoadric.github.io/csci150/
 :qmark  G  http://dir.gmane.org/index.php?prefix=gmane.comp.lang.haskell
 :qmark  b  http://byorgey.wordpress.com/wp-admin/
 :qmark  g  http://mail.google.com/mail/#inbox
@@ -20,12 +19,10 @@ set guioptions=bCrsn
 :qmark  r  http://www.feedly.com/
 :qmark  t  https://byorgey.fogbugz.com/
 :qmark  x  http://xmonad.org/
-:qmark  j  http://joesgoals.com/
-:qmark  P  http://www.cis.upenn.edu/~plclub/schedule/summer12.shtml
 :qmark  M  http://192.168.1.1/
 :qmark  w  http://ozark.hendrix.edu/~yorgey
 :qmark  o  http://www.cl.cam.ac.uk/~pes20/ott/ott_manual_0.10.16.html
-:qmark  W  http://weatherspark.com/forecasts/noaa/USA/MA/Williamstown
+:qmark  W  http://weatherspark.com/forecasts/noaa/USA/AR/Conway
 :qmark  a  http://www.wolframalpha.com/
 :qmark  z  http://rayninfo.co.uk/tips/zshtips.html
 :qmark  h  http://haskell.org/
