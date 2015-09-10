@@ -264,7 +264,7 @@
  ;; If there is more than one, they won't work right.
  '(LaTeX-math-list (quote ((38 "land") (124 "lor") (right "Rightarrow") (up "iff") (64 "aleph") (49 "preceq") (50 "succeq") (51 "cong") (61 "equiv") (95 "models") (118 "varphi") (37 "emptyctx") (32 "sqrt") (! "neg"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src" "/Users/brent/local/share/agda-stdlib-0.9/src")))
+ '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(company-ghc-show-info t)
  '(compilation-read-command nil)
