@@ -45,14 +45,9 @@ alias dh1="darcs changes -v --last 1 | less"
 alias dhh="darcs changes | head"
 alias dr="darcs record"
 
-thesis() {
-  bmndr research $1
-  bmndr thesis $1
-}
-
 host() {
-  scp $1 byorgey@eniac.seas.upenn.edu:public_html/hosted
-  HOST_URL="http://www.cis.upenn.edu/~byorgey/hosted/$1"
+  scp $1 yorgey@ozark:ozark/hosted/
+  HOST_URL="http://ozark.hendrix.edu/~yorgey/hosted/$1"
   echo $HOST_URL
   echo -n $HOST_URL | xclip -i
 }
