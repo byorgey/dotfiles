@@ -37,7 +37,7 @@ set guioptions=bCrsn
 :qmark  R  http://themonadreader.wordpress.com/
 :qmark  c  http://calendar.google.com/
 :qmark  e  http://e.ggtimer.com/pomodoro
-:qmark  i  http://www.instapaper.com/
+:qmark  i  http://inbox.google.com/
 :qmark  8  http://localhost:8000/
 :qmark  X  http://www.biblegateway.com/
 :qmark  d  http://drive.google.com/
