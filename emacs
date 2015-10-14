@@ -34,6 +34,8 @@
     company
     auto-complete
     markdown-mode
+    request       ;; needed for beeminder
+    seq           ;; needed for beeminder
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -55,6 +57,16 @@
     (when (not (package-installed-p p))
       (package-install p))))
 
+;; Custom load path
+(add-to-list 'load-path (expand-file-name "~/local/lib/emacs"))
+(add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
+
+;; A few other packages
+;; (require 'beeminder)
+  ;; as of 14 Oct 2015, beeminder.el does not work on emacs 24
+  ;; at such time in the future as I upgrade to emacs 25, should
+  ;; try reinstating it.
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -68,10 +80,6 @@
 	 "/home/brent/")
 	((string= system-name "eudoxus") "/Users/brent/")
         (t "/home1/b/byorgey/")))
-
-;; Custom load path
-(add-to-list 'load-path (expand-file-name "~/local/lib/emacs"))
-(add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
 
 ;; Enable some commands
 (put 'upcase-region 'disabled nil)
@@ -262,15 +270,41 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(LaTeX-math-list (quote ((38 "land") (124 "lor") (right "Rightarrow") (up "iff") (64 "aleph") (49 "preceq") (50 "succeq") (51 "cong") (61 "equiv") (95 "models") (118 "varphi") (37 "emptyctx") (32 "sqrt") (! "neg"))))
+ '(LaTeX-math-list
+   (quote
+    ((38 "land")
+     (124 "lor")
+     (right "Rightarrow")
+     (up "iff")
+     (64 "aleph")
+     (49 "preceq")
+     (50 "succeq")
+     (51 "cong")
+     (61 "equiv")
+     (95 "models")
+     (118 "varphi")
+     (37 "emptyctx")
+     (32 "sqrt")
+     (! "neg"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
+ '(agda2-include-dirs
+   (quote
+    ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
+ '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
+ '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
  '(compilation-read-command nil)
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
- '(face-font-family-alternatives (quote (("arial black" "arial" "DejaVu Sans") ("arial" "DejaVu Sans") ("courier" "Monospace") ("monaco" "Monospace") ("xiki" "verdana") ("verdana" "DejaVu Sans"))))
+ '(face-font-family-alternatives
+   (quote
+    (("arial black" "arial" "DejaVu Sans")
+     ("arial" "DejaVu Sans")
+     ("courier" "Monospace")
+     ("monaco" "Monospace")
+     ("xiki" "verdana")
+     ("verdana" "DejaVu Sans"))))
  '(font-lock-keywords-case-fold-search t t)
  '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
@@ -283,7 +317,9 @@
  '(haskell-program-name "ghci \"+.\"")
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(ido-ignore-files (quote ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
+ '(ido-ignore-files
+   (quote
+    ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
  '(ido-mode (quote both) nil (ido))
  '(load-home-init-file t t)
  '(mark-even-if-inactive t)
@@ -296,8 +332,12 @@
  '(tex-start-commands "")
  '(tool-bar-mode nil)
  '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
- '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
- '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
+ '(whitespace-style
+   (quote
+    (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+ '(writegood-weasel-words
+   (quote
+    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
