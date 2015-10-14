@@ -172,7 +172,6 @@ myTopics :: Host -> [TopicItem]
 myTopics host =
   [ TI "web" "" (spawnOn "web" "firefox")
   , TI "irc" "" (ircAction host)
-  , TI "mail" "" (runInTerm "" "ssh en")
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
@@ -210,14 +209,12 @@ myTopics host =
   , TI "anki" "" (spawnOn "anki" "anki")
   , TI "video" "video" (spawnOn "video" "cinelerra")
   , ti "aor" "teaching/fp-aor"
-  , ti "monoid-pearl" "src/diagrams/monoid-pearl"
   , ti "bl" "src/BlogLiterately"
   , TI "view" "" (return ())
   , TI "heb" "documents/bible/study"
     (edit "~/documents/bible/study/Hebrews.tex" >>
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  , ti "typmat" "research/type-matrices"
   , ti "150" "teaching/150"
   , ti "joyal" "writing/translation/series-formelles"
   ]
