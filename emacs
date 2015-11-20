@@ -280,14 +280,7 @@
  '(compilation-read-command nil)
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
- '(face-font-family-alternatives
-   (quote
-    (("arial black" "arial" "DejaVu Sans")
-     ("arial" "DejaVu Sans")
-     ("courier" "Monospace")
-     ("monaco" "Monospace")
-     ("xiki" "verdana")
-     ("verdana" "DejaVu Sans"))))
+ '(face-font-family-alternatives (quote (("arial black" "arial" "DejaVu Sans") ("arial" "DejaVu Sans") ("courier" "Monospace") ("monaco" "Monospace") ("xiki" "verdana") ("verdana" "DejaVu Sans"))))
  '(font-lock-keywords-case-fold-search t t)
  '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
@@ -300,9 +293,7 @@
  '(haskell-program-name "ghci \"+.\"")
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(ido-ignore-files
-   (quote
-    ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
+ '(ido-ignore-files (quote ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
  '(ido-mode (quote both) nil (ido))
  '(load-home-init-file t t)
  '(mark-even-if-inactive t)
@@ -315,12 +306,8 @@
  '(tex-start-commands "")
  '(tool-bar-mode nil)
  '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
- '(whitespace-style
-   (quote
-    (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
- '(writegood-weasel-words
-   (quote
-    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously"))))
+ '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+ '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
