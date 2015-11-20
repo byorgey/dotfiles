@@ -208,7 +208,6 @@ myTopics host =
   , ti "sp" "research/species/jc"
   , TI "anki" "" (spawnOn "anki" "anki")
   , TI "video" "video" (spawnOn "video" "cinelerra")
-  , ti "aor" "teaching/fp-aor"
   , ti "bl" "src/BlogLiterately"
   , TI "view" "" (return ())
   , TI "heb" "documents/bible/study"
@@ -216,6 +215,8 @@ myTopics host =
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
   , ti "150" "teaching/150"
+  , ti "490" "teaching/490"
+  , ti "280" "teaching/280"
   , ti "joyal" "writing/translation/series-formelles"
   ]
   where
