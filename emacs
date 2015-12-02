@@ -28,6 +28,7 @@
     rainbow-delimiters
     moz
     haskell-mode
+    idris-mode
     ghc
     darcsum
     company-ghc
