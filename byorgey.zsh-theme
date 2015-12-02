@@ -14,5 +14,5 @@ ZSH_THEME_GIT_PROMPT_DIVERGED_REMOTE='↕'
 
 PROMPT='%m %{${fg_bold[blue]}%}:: %{$reset_color%}%{${fg[green]}%}%3~ %{${fg_bold[$CARETCOLOR]}%}»%{${reset_color}%} '
 
-RPS1='${return_code} $(git_prompt_info)%{$fg[yellow]%}$(git_remote_status)%{$reset_color%} %{${fg[cyan]}%}[$(battery) %t]%{$reset_color%}'
+RPROMPT='${return_code} $(git_prompt_info)%{$fg[yellow]%}$(git_remote_status)%{$reset_color%} %{${fg[cyan]}%}[$(battery) %t]%{$reset_color%}'
 
