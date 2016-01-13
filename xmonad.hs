@@ -116,6 +116,7 @@ getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
     "hippasus"   -> Laptop True
+    "augustine"  -> Laptop True
     "LVN513-12"  -> Desktop True
     _            -> Desktop False
 
