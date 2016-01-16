@@ -383,7 +383,7 @@
 
 (global-set-key (kbd "C-x w") 'darcsum-whatsnew)  ;; darcsum
 
-(global-set-key (kbd "C-x g") 'magit-status)      ;; magit
+(global-set-key (kbd "C-x g") 'vc-status)         ;; magit & darcsum
 
 (global-set-key (kbd "C-x y") 'typo-fix)
 
@@ -642,6 +642,12 @@
 ; (autoload 'darcsum-changes "darcsum.el" nil t)
 ; (autoload 'darcsum-whatsnew "darcsum.el" nil t)
 ; (autoload 'darcsum-view "darcsum.el" nil t)
+
+(defun vc-status ()
+  (interactive)
+  (if (file-exists-p ".git")
+      (call-interactively 'magit-status)
+      (call-interactively 'darcsum-whatsnew)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
