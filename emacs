@@ -37,6 +37,7 @@
     markdown-mode
     request       ;; needed for beeminder
     seq           ;; needed for beeminder
+    synosaurus
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
