@@ -646,9 +646,12 @@
 
 (defun vc-status ()
   (interactive)
-  (if (file-exists-p ".git")
-      (call-interactively 'magit-status)
-      (call-interactively 'darcsum-whatsnew)))
+  (let ((gitproject (locate-dominating-file (buffer-file-name) ".git"))
+        (darcsproject (locate-dominating-file (buffer-file-name) "_darcs")))
+    (when gitproject
+      (call-interactively 'magit-status))
+    (when darcsproject
+      (darcsum-whatsnew darcsproject))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
