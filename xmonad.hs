@@ -349,7 +349,7 @@ myKeymap host conf =
 
     ++
     [ ("M-S-x", spawnShell host)                          -- (0)
-    , ("M-S-b", spawn "urxvt-big")
+    , ("M-S-b", spawn "$HOME/local/mybin/urxvt-big")
     , ("M-g",   promptedGoto host)
     , ("M-C-g", promptedGotoOtherScreen host)
     , ("M-S-g", promptedShift)
