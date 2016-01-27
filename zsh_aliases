@@ -9,7 +9,7 @@ alias sz="source ~/.zshrc"
 alias dt="date '+%y-%m-%d'"
 alias s="screen -RR"
 alias sls="screen -ls"
-alias c='cal -3 | sed -r "s/^(.{20,42}) (`date +%e`) /\1[\2]/"'
+alias c='cal -3'
 
 alias ls='ls -F'
 alias l='ls'
