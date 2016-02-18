@@ -383,7 +383,8 @@
 (global-set-key (kbd "C-c w") 'journal-count-words) ;; org-mode
 
 (global-set-key (kbd "C-x w") 'darcsum-whatsnew)  ;; darcsum
-
+(add-hook 'darcsum-mode-hook
+  (lambda () (local-set-key (kbd "s") #'darcs-push)))  ;; darcs push
 (global-set-key (kbd "C-x g") 'vc-status)         ;; magit & darcsum
 
 (global-set-key (kbd "C-x y") 'typo-fix)
@@ -652,6 +653,11 @@
       (call-interactively 'magit-status))
     (when darcsproject
       (darcsum-whatsnew darcsproject))))
+
+(defun darcs-push ()
+  (interactive)
+  (message "Pushing changes...")
+  (shell-command "darcs push -a"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
