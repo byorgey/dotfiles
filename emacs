@@ -385,7 +385,10 @@
 (global-set-key (kbd "C-x w") 'darcsum-whatsnew)  ;; darcsum
 (add-hook 'darcsum-mode-hook
   (lambda () (local-set-key (kbd "s") #'darcs-push)))  ;; darcs push
+(add-hook 'darcsum-mode-hook
+  (lambda () (local-set-key (kbd "x") #'darcs-pull)))  ;; darcs pull
 (global-set-key (kbd "C-x g") 'vc-status)         ;; magit & darcsum
+(global-set-key (kbd "C-x v") 'darcsum-view)
 
 (global-set-key (kbd "C-x y") 'typo-fix)
 
@@ -654,6 +657,11 @@
   (interactive)
   (message "Pushing changes...")
   (shell-command "darcs push -a"))
+
+(defun darcs-pull ()
+  (interactive)
+  (message "Pulling...")
+  (shell-command "darcs pull -a"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
