@@ -641,10 +641,6 @@
 ;; Darcsum
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; (autoload 'darcsum-changes "darcsum.el" nil t)
-; (autoload 'darcsum-whatsnew "darcsum.el" nil t)
-; (autoload 'darcsum-view "darcsum.el" nil t)
-
 (defun vc-status ()
   (interactive)
   (let ((gitproject (locate-dominating-file (buffer-file-name) ".git"))
