@@ -199,6 +199,13 @@
 
 (global-set-key (kbd "C-c C-k") 'copy-line)
 
+; Align paragraph on =
+(defun align-on-equals ()
+  (interactive)
+  (save-excursion
+    (mark-paragraph)
+    (align-regexp (point) (mark) "\\(\\s-*\\)=")))
+
 ; Mac-specific stuff
 
 (setq mac-command-key-is-meta t)
@@ -360,10 +367,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; built-in emacs functions
-(global-set-key (kbd "C-c c") 'smart-compile)
+(global-set-key (kbd "C-c c")   'smart-compile)
 (global-set-key (kbd "C-x a r") 'align-regexp)
-(global-set-key (kbd "C-x t") 'text-scale-increase)
-(global-set-key (kbd "<f9>") 'delete-trailing-whitespace)
+(global-set-key (kbd "C-=")     'align-on-equals)
+(global-set-key (kbd "C-x t")   'text-scale-increase)
+(global-set-key (kbd "<f9>")    'delete-trailing-whitespace)
 (global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
@@ -432,7 +440,7 @@
   (add-to-list 'exec-path my-cabal-path))
 
 (eval-after-load 'haskell-mode '(progn
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
+  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
   (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
@@ -479,9 +487,9 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ghc-mod
 
-; (autoload 'ghc-init "ghc" nil t)
-; (autoload 'ghc-debug "ghc" nil t)
-; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; company-ghc
