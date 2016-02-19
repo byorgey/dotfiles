@@ -391,8 +391,12 @@
 (global-set-key (kbd "C-c w") 'journal-count-words) ;; org-mode
 
 (global-set-key (kbd "C-x w") 'darcsum-whatsnew)  ;; darcsum
-
+(add-hook 'darcsum-mode-hook
+  (lambda () (local-set-key (kbd "s") #'darcs-push)))  ;; darcs push
+(add-hook 'darcsum-mode-hook
+  (lambda () (local-set-key (kbd "x") #'darcs-pull)))  ;; darcs pull
 (global-set-key (kbd "C-x g") 'vc-status)         ;; magit & darcsum
+(global-set-key (kbd "C-x v") 'darcsum-view)
 
 (global-set-key (kbd "C-x y") 'typo-fix)
 
@@ -648,10 +652,6 @@
 ;; Darcsum
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-; (autoload 'darcsum-changes "darcsum.el" nil t)
-; (autoload 'darcsum-whatsnew "darcsum.el" nil t)
-; (autoload 'darcsum-view "darcsum.el" nil t)
-
 (defun vc-status ()
   (interactive)
   (let ((gitproject (locate-dominating-file (buffer-file-name) ".git"))
@@ -660,6 +660,16 @@
       (call-interactively 'magit-status))
     (when darcsproject
       (darcsum-whatsnew darcsproject))))
+
+(defun darcs-push ()
+  (interactive)
+  (message "Pushing changes...")
+  (shell-command "darcs push -a"))
+
+(defun darcs-pull ()
+  (interactive)
+  (message "Pulling...")
+  (shell-command "darcs pull -a"))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Magit
