@@ -31,7 +31,7 @@ set guioptions=bCrsn
 :qmark  h  http://haskell.org/
 :qmark  H  http://www.hendrix.edu/
 :qmark  T  http://www.haskell.org/haskellwiki/Typeclassopedia
-:qmark  B  http://beeminder.com/byorgey
+:qmark  B  http://beeminder.com/dashboard
 :qmark  q  http://coq.inria.fr/
 :qmark  k  http://www.perseus.tufts.edu/hopper/search
 :qmark  p  http://www.gyford.com/pc
