@@ -237,7 +237,7 @@
 ;; smart-compile
 
 (require 'smart-compile)
-(add-to-list 'smart-compile-alist '("\\.lhs\\'" . "runhaskell Shake"))
+;; smart-compile-alist configured above in custom variables section
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; rainbow-delimiters
@@ -279,9 +279,28 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(LaTeX-math-list (quote ((38 "land") (124 "lor") (right "Rightarrow") (up "iff") (64 "aleph") (49 "preceq") (50 "succeq") (51 "cong") (61 "equiv") (95 "models") (118 "varphi") (37 "emptyctx") (32 "sqrt") (! "neg") (35 "frac") (36 "sum"))))
+ '(LaTeX-math-list
+   (quote
+    ((38 "land")
+     (124 "lor")
+     (right "Rightarrow")
+     (up "iff")
+     (64 "aleph")
+     (49 "preceq")
+     (50 "succeq")
+     (51 "cong")
+     (61 "equiv")
+     (95 "models")
+     (118 "varphi")
+     (37 "emptyctx")
+     (32 "sqrt")
+     (! "neg")
+     (35 "frac")
+     (36 "sum"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (quote ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
+ '(agda2-include-dirs
+   (quote
+    ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-username "byorgey")
@@ -289,7 +308,14 @@
  '(compilation-read-command nil)
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
- '(face-font-family-alternatives (quote (("arial black" "arial" "DejaVu Sans") ("arial" "DejaVu Sans") ("courier" "Monospace") ("monaco" "Monospace") ("xiki" "verdana") ("verdana" "DejaVu Sans"))))
+ '(face-font-family-alternatives
+   (quote
+    (("arial black" "arial" "DejaVu Sans")
+     ("arial" "DejaVu Sans")
+     ("courier" "Monospace")
+     ("monaco" "Monospace")
+     ("xiki" "verdana")
+     ("verdana" "DejaVu Sans"))))
  '(font-lock-keywords-case-fold-search t t)
  '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
@@ -302,7 +328,9 @@
  '(haskell-program-name "ghci \"+.\"")
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(ido-ignore-files (quote ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
+ '(ido-ignore-files
+   (quote
+    ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
  '(ido-mode (quote both) nil (ido))
  '(load-home-init-file t t)
  '(mark-even-if-inactive t)
@@ -311,12 +339,37 @@
  '(perl-indent-level 2)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
+ '(smart-compile-alist
+   (quote
+    (("\\.lhs\\'" . "runhaskell Shake")
+     (emacs-lisp-mode emacs-lisp-byte-compile)
+     (html-mode browse-url-of-buffer)
+     (nxhtml-mode browse-url-of-buffer)
+     (html-helper-mode browse-url-of-buffer)
+     (octave-mode run-octave)
+     ("\\.c\\'" . "gcc -O2 %f -lm -o %n")
+     ("\\.[Cc]+[Pp]*\\'" . "g++ -O2 %f -lm -o %n")
+     ("\\.m\\'" . "gcc -O2 %f -lobjc -lpthread -o %n")
+     ("\\.java\\'" . "javac %f")
+     ("\\.php\\'" . "php -l %f")
+     ("\\.f90\\'" . "gfortran %f -o %n")
+     ("\\.[Ff]\\'" . "gfortran %f -o %n")
+     ("\\.cron\\(tab\\)?\\'" . "crontab %f")
+     ("\\.tex\\'" . "rubber -d %f")
+     ("\\.texi\\'" . "makeinfo %f")
+     ("\\.mp\\'" . "mptopdf %f")
+     ("\\.pl\\'" . "perl %f")
+     ("\\.rb\\'" . "ruby %f"))))
  '(tex-dvi-view-command "xdvi -s 5")
  '(tex-start-commands "")
  '(tool-bar-mode nil)
  '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
- '(whitespace-style (quote (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
- '(writegood-weasel-words (quote ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course"))))
+ '(whitespace-style
+   (quote
+    (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+ '(writegood-weasel-words
+   (quote
+    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
