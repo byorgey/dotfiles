@@ -29,7 +29,7 @@ fi
 eval `ssh-agent`
 xterm -e ssh-add &
 
-xflux -z 19139
+xflux -z 72032
 # $HOME/src/TagTime/tagtimed.pl &
 
 $HOME/local/bin/xmonad 
