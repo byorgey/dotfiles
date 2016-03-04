@@ -540,8 +540,12 @@ myKeymap host conf =
     ++
     [
 
+    -- backlight control.
+      ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
+    , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
+
     -- disable browser back/forward keys.
-      ("<XF86Back>", return ())
+    , ("<XF86Back>", return ())
     , ("<XF86Forward>", return ())
 
     -- diagrams github shortcuts
