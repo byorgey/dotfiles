@@ -45,6 +45,9 @@ alias dh1="darcs changes -v --last 1 | less"
 alias dhh="darcs changes | head"
 alias dr="darcs record"
 
+alias agu="sudo apt-get update && sudo apt-get upgrade"
+alias agdu="sudo apt-get update && sudo apt-get dist-upgrade"
+
 host() {
   scp $1 yorgey@ozark:ozark/hosted/
   HOST_URL="http://ozark.hendrix.edu/~yorgey/hosted/$1"
