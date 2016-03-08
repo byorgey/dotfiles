@@ -431,6 +431,7 @@
 (global-set-key (kbd "C-c n") 'note-other-window)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
+(global-set-key (kbd "<f5>") 'auto-fill-mode)
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
 (global-set-key (kbd "<f7>") 'touch)
 
