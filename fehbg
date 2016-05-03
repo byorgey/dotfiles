@@ -1,1 +1,2 @@
+#!/bin/sh
 feh  --bg-scale '/home/brent/images/spies-of-saruman.jpg' 
