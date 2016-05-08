@@ -1,6 +1,6 @@
 URxvt.perl-lib: ~/.urxvt/
-URxvt.perl-ext: selection,mark-yank-urls
-URxvt.keysym.M-u: perl:mark-yank-urls:activate_mark_mode
+URxvt.perl-ext: default,matcher
+URxvt.keysym.M-u: perl:matcher:select
 URxvt.underlineURLs: true
 URxvt.urlLauncher: firefox
 URxvt.urgentOnBell: true

@@ -44,3 +44,4 @@ source ~/.zsh_local
 
 source ~/.xsh
 
+$HOME/local/mybin/doomsday-test
