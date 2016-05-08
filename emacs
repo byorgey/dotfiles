@@ -38,6 +38,7 @@
     request       ;; needed for beeminder
     seq           ;; needed for beeminder
     synosaurus
+    unicode-fonts
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -214,6 +215,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extra modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; unicode-fonts
+
+(unicode-fonts-setup)
+;(set-frame-font "PragmataPro 12")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; auto-complete
