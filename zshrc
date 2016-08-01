@@ -41,6 +41,10 @@ source ~/.zsh_env
 source ~/.zsh_aliases
 source ~/.zsh_local
 
+autoload bashcompinit
+bashcompinit
+source ~/local/bin/todo.txt_cli-2.10/todo_completion
+complete -F _todo t
 
 source ~/.xsh
 
