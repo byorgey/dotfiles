@@ -604,6 +604,7 @@ mySearchMap method = M.fromList $                               -- (0b)
         , ((0, xK_p), method maps)                              --  "
         , ((0, xK_a), method alpha)                             --  "
         , ((0, xK_l), method lucky)                             --  "
+        , ((0, xK_z), method amazon)                            --  "
 
         -- custom searches (see below)
         , ((0, xK_i), method images)
