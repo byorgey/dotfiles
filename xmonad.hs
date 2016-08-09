@@ -223,6 +223,7 @@ myTopics host =
   -- , ti "490" "teaching/490"
   -- , ti "280" "teaching/280"
   , ti "joyal" "writing/translation/series-formelles"
+  , ti "twist" "research/raaz"
   ]
   where
     -- Make a default topic item that just spawns a shell.
