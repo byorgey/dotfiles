@@ -1,2 +1,2 @@
 #!/bin/sh
-feh  --bg-scale '/home/brent/images/spies-of-saruman.jpg' 
+feh  --bg-fill '/home/brent/images/Barnstable-wallpaper.jpg' 
