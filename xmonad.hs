@@ -298,6 +298,7 @@ scratchpads :: [NamedScratchpad]
 scratchpads =
   [ NS "term"  (customTerm ++ " -title term") (title =? "term") mySPFloat
   , NS "term2" (customTerm ++ " -title term2") (title =? "term2") mySPFloat
+  , NS "term3" (customTerm ++ " -title term3") (title =? "term3") mySPFloat
   , NS "ghci"  (customTerm ++ " -e ghci") (title =? "ghci") mySPFloat
   , NS "sync"  (customTerm ++ " -e sy") (title =? "sy") mySPFloat
   , NS "top"   (customTerm ++ " -e htop") (title =? "htop") mySPFloat
@@ -365,6 +366,7 @@ myKeymap host conf =
       -- floating terminal
     , ("M-a s", namedScratchpadAction scratchpads "term")       -- (30)
     , ("M-a d", namedScratchpadAction scratchpads "term2")
+    , ("M-a f", namedScratchpadAction scratchpads "term3")
     , ("M-a g", namedScratchpadAction scratchpads "ghci")
     , ("M-a t", namedScratchpadAction scratchpads "top")
     , ("M-a c", namedScratchpadAction scratchpads "stopwatch")
