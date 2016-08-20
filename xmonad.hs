@@ -614,6 +614,7 @@ mySearchMap method = M.fromList $                               -- (0b)
         , ((0, xK_k), method greek)
         , ((0, xK_d), method merriamWebster)
         , ((0, xK_b), method bibleGateway)
+        , ((shiftMask, xK_g), method leoGerman)
         ]
 
 -- Search Perseus for ancient Greek dictionary entries
@@ -631,6 +632,9 @@ merriamWebster = searchEngine "dict" "http://www.merriam-webster.com/dictionary/
 
 bibleGateway :: SearchEngine
 bibleGateway = searchEngine "bible" "http://www.biblegateway.com/quicksearch/?quicksearch="
+
+leoGerman :: SearchEngine
+leoGerman = searchEngine "leo" "https://dict.leo.org/ende/index_de.html#/search="
 
 -- Prompt search: get input from the user via a prompt, then
 --   run the search in firefox and automatically switch to the web
