@@ -306,6 +306,7 @@ scratchpads =
   , NS "stopwatch" (customTerm ++ " -e utimer -s") (title =? "utimer") mySPFloat
   , NS "timer" (customTerm ++ " -e timer 25m") (title =? "timer") mySPFloat
   , NS "ping"  (customTerm ++ " -e ping google.com") (title =? "ping") mySPFloat
+  , NS "blink"  (customTerm ++ " -e blink-class") (title =? "blink") mySPFloat
   ]
 
 myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
@@ -373,6 +374,7 @@ myKeymap host conf =
     , ("M-a c", namedScratchpadAction scratchpads "stopwatch")
     , ("M-a w", namedScratchpadAction scratchpads "timer")
     , ("M-a p", namedScratchpadAction scratchpads "ping")
+    , ("M-a b", namedScratchpadAction scratchpads "blink")
     ]
     ++
 
