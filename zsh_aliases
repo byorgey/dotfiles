@@ -23,6 +23,7 @@ alias homer="ssh brent@homer"
 alias en="ssh byorgey@eniac.seas.upenn.edu"
 alias hip="ssh hip"
 alias rath="ssh rath"
+alias oz="ssh ozark"
 
 alias stat="svn status -q"
 alias sdiff="svn diff"
