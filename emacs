@@ -308,7 +308,7 @@
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs
    (quote
-    ("." "/home/brent/local/share/agda-lib-0.8/src" "/home/brent/local/share/agda-stdlib-0.9/src")))
+    ("." "/home/brent/local/share/agda-stdlib-0.11/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-username "byorgey")
