@@ -1,5 +1,4 @@
 alias sl="ls"
-alias x="exit"
 alias grep="egrep --color=auto"
 alias exe="chmod +x"
 alias f="finger"
