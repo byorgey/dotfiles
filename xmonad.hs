@@ -309,6 +309,7 @@ scratchpads =
   , NS "ping"  (customTerm ++ " -e ping google.com") (title =? "ping") mySPFloat
   , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class") mySPFloat
   , NS "hip"   (customTerm ++ " -title hip -e ssh hip") (title =? "hip") mySPFloat
+  , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark") mySPFloat
   ]
 
 myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
@@ -378,6 +379,7 @@ myKeymap host conf =
     , ("M-a p", namedScratchpadAction scratchpads "ping")
     , ("M-a b", namedScratchpadAction scratchpads "blink")
     , ("M-a h", namedScratchpadAction scratchpads "hip")
+    , ("M-a o", namedScratchpadAction scratchpads "ozark")
     ]
     ++
 
