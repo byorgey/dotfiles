@@ -182,7 +182,7 @@ myTopics host =
   , TI "xm-conf" ".xmonad"
     (edit "~/.xmonad/xmonad.hs" >>
      shell)
-  , ti "xm-hack" "src/xmonad/XMonadContrib"
+  , ti "xm-hack" "src/xmonad/xmonad-contrib"
   , TI "em-conf" "" (edit "~/.emacs")
   , TI "music" "" (runInTerm "" "ssh milo")
   , TI "net" "" (spawnOn "net" "wicd-client -n" >>
