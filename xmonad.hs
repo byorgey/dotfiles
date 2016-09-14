@@ -197,7 +197,7 @@ myTopics host =
   ]
   ++ map diaWS
        [ "doc", "core", "lib", "cairo", "contrib", "svg", "gtk", "canvas"
-       , "builder", "haddock", "play", "ci", "doc", "travis", "html5", "input", "pgf"
+       , "builder", "haddock", "play", "ci", "travis", "html5", "input", "pgf"
        , "solve", "reflex" ]
   ++ map (uncurry diaWS')
        [ ("dia-ps", "postscript"), ("active", "active")
