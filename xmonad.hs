@@ -579,8 +579,8 @@ myKeymap host conf =
     , ("M-d m", github         "diagrams/monoid-extras")
 
     -- lockdown mode
-    , ("M-C-l l", setLockdown)
-    , ("M-C-l o c k d o w n 2 1 4 3 6 5 8 7 0 9", releaseLockdown)
+    , ("M-C-l l", toggleLockdown)
+    -- , ("M-C-l o c k d o w n 2 1 4 3 6 5 8 7 0 9", releaseLockdown)
     ]
   where goto' = goto host
 
@@ -805,6 +805,9 @@ setLockdown = XS.put (LockdownState True)
 
 releaseLockdown :: X ()
 releaseLockdown = XS.put (LockdownState False)
+
+toggleLockdown :: X ()
+toggleLockdown = XS.modify (\(LockdownState l) -> LockdownState (not l))
 
 -- | Perform the given action only if not on lockdown
 withLockdown :: X () -> X ()
