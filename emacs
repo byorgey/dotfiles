@@ -436,7 +436,7 @@
 (global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
-(global-set-key (kbd "C-c n") 'note-other-window)
+; (global-set-key (kbd "C-c n") 'note-other-window)
 
 (global-set-key (kbd "<f2>") 'toggle-window-split) ;; misc emacs stuff @ top
 (global-set-key (kbd "<f5>") 'auto-fill-mode)
@@ -506,6 +506,8 @@
   (add-to-list 'exec-path my-cabal-path))
 
 (eval-after-load 'haskell-mode '(progn
+  (define-key haskell-mode-map (kbd "C-c n") 'haskell-goto-next-error)
+  (define-key haskell-mode-map (kbd "C-c p") 'haskell-goto-prev-error)
   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
@@ -552,17 +554,17 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; ghc-mod
 
-;; (autoload 'ghc-init "ghc" nil t)
-;; (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
+(autoload 'ghc-init "ghc" nil t)
+(autoload 'ghc-debug "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda () (ghc-init)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; company-ghc
 
-;; (require 'company)
-;; (add-hook 'haskell-mode-hook 'company-mode)
+(require 'company)
+(add-hook 'haskell-mode-hook 'company-mode)
 
-;; (add-to-list 'company-backends 'company-ghc)
+(add-to-list 'company-backends 'company-ghc)
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
