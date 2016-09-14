@@ -194,21 +194,18 @@ myTopics host =
   , TI "tex-conf" "texmf/tex" (edit "~/texmf/tex/brent.sty")
   , ti "mlt" "writing/mlt"
   , ti "dia" "src/diagrams"
-  , ti "dia-doc" "src/diagrams/doc"
-  , ti "dia-core" "src/diagrams/core"
-  , ti "dia-lib" "src/diagrams/lib"
-  , ti "dia-cairo" "src/diagrams/cairo"
-  , ti "dia-contrib" "src/diagrams/contrib"
-  , ti "dia-svg" "src/diagrams/svg"
-  , ti "dia-gtk" "src/diagrams/gtk"
-  , ti "dia-canvas" "src/diagrams/canvas"
-  , ti "dia-ps" "src/diagrams/postscript"
-  , ti "dia-builder" "src/diagrams/builder"
-  , ti "dia-haddock" "src/diagrams/haddock"
-  , ti "dia-play" "src/diagrams/play"
-  , ti "dia-ci" "src/diagrams/ci"
-  , ti "active" "src/diagrams/active"
-  , ti "sp" "research/species/jc"
+  ]
+  ++ map diaWS
+       [ "doc", "core", "lib", "cairo", "contrib", "svg", "gtk", "canvas"
+       , "builder", "haddock", "play", "ci", "doc", "travis", "html5", "input", "pgf"
+       , "solve", "reflex" ]
+  ++ map (uncurry diaWS')
+       [ ("dia-ps", "postscript"), ("active", "active")
+       , ("dia-raster", "rasterific"), ("palette", "palette")
+       , ("SVGFonts", "SVGFonts")
+       ]
+  ++
+  [ ti "sp" "research/species/jc"
   , TI "anki" "" (spawnOn "anki" "anki")
   , TI "video" "video" (spawnOn "video" "cinelerra")
   , ti "bl" "src/BlogLiterately"
@@ -232,6 +229,11 @@ myTopics host =
     ti t d = TI t d shell
     shell = spawnShell host
 
+    diaWS repo = diaWS' ("dia-" ++ repo) repo
+    diaWS' wsName dirName
+      = TI wsName ("src/diagrams/" ++ dirName)
+           (shell >> (editVC $ "~/src/diagrams/" ++ dirName ++ "/*.cabal"))
+
 ircAction :: Host -> X ()
 ircAction host = case host of
   Laptop  _ -> runInTerm "" "ssh byorgey@eniac.seas.upenn.edu"
@@ -239,6 +241,9 @@ ircAction host = case host of
 
 edit :: String -> X ()
 edit = spawn . ("emacs "++)
+
+editVC :: String -> X ()
+editVC file = spawn ("emacs " ++ file ++ " -f vc-status -f toggle-window-split")
 
 myTopicNames :: Host -> [Topic]
 myTopicNames = map topicName . myTopics
