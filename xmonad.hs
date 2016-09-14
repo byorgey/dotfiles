@@ -67,6 +67,7 @@ import           XMonad.Actions.WithAll
 import           XMonad.Actions.DynamicWorkspaces
 import           XMonad.Actions.TopicSpace
                                    -- (22c)
+import qualified XMonad.Actions.TopicSpace             as TS
 
 import           XMonad.Actions.DynamicWorkspaceGroups
                                    -- (22d)
@@ -259,6 +260,8 @@ switchTopic' :: (WorkspaceId -> WindowSet -> WindowSet)
                 -> TopicConfig -> Topic -> X ()
 switchTopic' viewMethod tg topic = do
   windows $ viewMethod topic
+  wins <- gets (W.integrate' . W.stack . W.workspace . W.current . windowset)
+  when (null wins) $ TS.topicAction tg topic
 
 spawnShell :: Host -> X ()
 spawnShell host = currentTopicDir (myTopicConfig host) >>= spawnShellIn
