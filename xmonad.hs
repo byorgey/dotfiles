@@ -236,7 +236,7 @@ myTopics host =
 
 ircAction :: Host -> X ()
 ircAction host = case host of
-  Laptop  _ -> runInTerm "" "ssh byorgey@eniac.seas.upenn.edu"
+  Laptop  _ -> runInTerm "" "ssh -t hip screen -dRR"
   Desktop _ -> runInTerm "" "screen -dRR"
 
 edit :: String -> X ()
