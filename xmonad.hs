@@ -177,7 +177,7 @@ myTopics host =
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
-    (spawn "emacs --name org ~/notes/journal.org ~/notes/research.org")
+    (spawn "emacs --name org ~/notes/journal.org -f vc-status -f toggle-window-split")
   , TI "draw" "" (spawnOn "draw" "inkscape")
   , TI "xm-conf" ".xmonad"
     (edit "~/.xmonad/xmonad.hs" >>
@@ -238,7 +238,7 @@ ircAction host = case host of
   Desktop _ -> runInTerm "" "screen -dRR"
 
 edit :: String -> X ()
-edit = spawn . ("em "++)
+edit = spawn . ("emacs "++)
 
 myTopicNames :: Host -> [Topic]
 myTopicNames = map topicName . myTopics
