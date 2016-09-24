@@ -433,7 +433,8 @@
 (global-set-key (kbd "C-=")     'align-on-equals)
 (global-set-key (kbd "C-x t")   'text-scale-increase)
 (global-set-key (kbd "<f9>")    'delete-trailing-whitespace)
-(global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
+(global-set-key (kbd "C-c SPC")   'delete-horizontal-space-forward)
+(global-set-key (kbd "C-c C-SPC") 'delete-horizontal-space-forward)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
 ; (global-set-key (kbd "C-c n") 'note-other-window)
