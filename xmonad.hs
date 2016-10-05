@@ -116,9 +116,8 @@ getHost :: IO Host
 getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
-    "hippasus"   -> Laptop True
+    "hippasus"   -> Desktop True
     "augustine"  -> Laptop True
-    "LVN513-12"  -> Desktop True
     _            -> Desktop False
 
 myTerminal, myShell :: String
