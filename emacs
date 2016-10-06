@@ -37,6 +37,7 @@
     markdown-mode
     request       ;; needed for beeminder
     seq           ;; needed for beeminder
+    anaphora      ;; needed for beeminder
     synosaurus
     unicode-fonts
     writegood-mode
@@ -66,10 +67,7 @@
 (add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
 
 ;; A few other packages
-;; (require 'beeminder)
-  ;; as of 14 Oct 2015, beeminder.el does not work on emacs 24
-  ;; at such time in the future as I upgrade to emacs 25, should
-  ;; try reinstating it.
+(require 'beeminder)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
@@ -271,7 +269,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; AucTeX
 
-(load "auctex.el" nil t t)
+; (load "auctex.el" nil t t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Whitespace
@@ -311,6 +309,10 @@
     ("." "/home/brent/local/share/agda-stdlib-0.11/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
+ '(beeminder-default-filter-days 2)
+ '(beeminder-everyday-goals-list
+   (quote
+    (time-with-god work-journal jn dishes ac-liturgy morning itch)))
  '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
  '(compilation-read-command nil)
@@ -344,6 +346,9 @@
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files (quote ("~/notes/")))
+ '(package-selected-packages
+   (quote
+    (anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
  '(perl-indent-level 2)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
