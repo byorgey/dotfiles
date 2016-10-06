@@ -382,7 +382,7 @@
     (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
  '(writegood-weasel-words
    (quote
-    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course"))))
+    ("many" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course" "really" "nice"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
@@ -438,7 +438,8 @@
 (global-set-key (kbd "C-=")     'align-on-equals)
 (global-set-key (kbd "C-x t")   'text-scale-increase)
 (global-set-key (kbd "<f9>")    'delete-trailing-whitespace)
-(global-set-key (kbd "C-c SPC") 'delete-horizontal-space-forward)
+(global-set-key (kbd "C-c SPC")   'delete-horizontal-space-forward)
+(global-set-key (kbd "C-c C-SPC") 'delete-horizontal-space-forward)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
 ; (global-set-key (kbd "C-c n") 'note-other-window)
