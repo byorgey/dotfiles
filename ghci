@@ -25,8 +25,5 @@ import qualified Data.Set as S
 import qualified Data.Foldable as F
 import qualified Data.Traversable as T
 
-import Control.Lens
-import Diagrams.Prelude
-
 :set prompt ">>> "
 let {infixr 8 .: ; a .: b = a + b/60 }
