@@ -176,7 +176,7 @@ myTopics host =
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
-    (edit "--name org ~/notes/journal.org -f vc-status -f toggle-window-split")
+    (edit "--name org ~/notes/journal.org -f vc-status -f other-window -f toggle-window-split")
   , TI "draw" "" (spawnOn "draw" "inkscape")
   , TI "xm-conf" ".xmonad"
     (edit "~/.xmonad/xmonad.hs" >>
