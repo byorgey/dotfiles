@@ -309,7 +309,7 @@
     ("." "/home/brent/local/share/agda-stdlib-0.12/src")))
  '(agda2-program-args (quote ("+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
- '(beeminder-default-filter-days 2)
+ '(beeminder-default-filter-days 3)
  '(beeminder-everyday-goals-list
    (quote
     (time-with-god work-journal jn dishes ac-liturgy morning itch)))
