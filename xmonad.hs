@@ -88,6 +88,7 @@ import           XMonad.Prompt.Ssh
                                     --      making more generic search
                                     --      prompts than those in
                                     --      XMonad.Prompt.Search
+import           XMonad.Prompt.Unicode
 import           XMonad.Prompt.Workspace
 
 -- Utilities -------------------------------------------------
@@ -536,6 +537,7 @@ myKeymap host conf =
       -- shell prompt.
     , ("M-p s", sshPrompt myXPConfig)                         -- (26)
     , ("M-p e", spawn "exe=`echo | yeganesh -x` && eval \"exec $exe\"")
+    , ("M-p u", unicodePrompt myXPConfig)
 
       -- some searches.
     , ("M-/", submap . mySearchMap $ myPromptSearch)            -- (19,20)
