@@ -440,6 +440,7 @@
 (global-set-key (kbd "<f9>")    'delete-trailing-whitespace)
 (global-set-key (kbd "C-c SPC")   'delete-horizontal-space-forward)
 (global-set-key (kbd "C-c C-SPC") 'delete-horizontal-space-forward)
+(global-set-key (kbd "M-C-}")   'transpose-paragraphs)
 
 (global-set-key (kbd "C-x C-k c") 'BAY-comment)
 ; (global-set-key (kbd "C-c n") 'note-other-window)
