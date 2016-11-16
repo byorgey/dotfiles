@@ -467,6 +467,8 @@
 (global-set-key (kbd "C-x g") 'vc-status)         ;; magit & darcsum
 (global-set-key (kbd "C-x v") 'darcsum-view)
 
+(global-set-key (kbd "C-c C-b") 'beeminder-list-goals)
+
 (global-set-key (kbd "C-x y") 'typo-fix)
 
 (global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
