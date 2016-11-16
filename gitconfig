@@ -13,5 +13,6 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	ix = diff --cached
+        pulled = log -p --reverse --no-merges --stat @{1}..
 [push]
 	default = simple
