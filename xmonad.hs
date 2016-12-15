@@ -219,10 +219,12 @@ myTopics host =
   , ti "410" "teaching/410"
   -- , ti "150" "teaching/150"
   -- , ti "490" "teaching/490"
-  -- , ti "280" "teaching/280"
+  , ti "280" "teaching/280"
   , ti "joyal" "writing/translation/series-formelles"
   , ti "twist" "research/raaz"
-  , ti "disco"  "projects/disco"
+  , ti "disco" "projects/disco"
+  , ti "aoc"   "playing/AoC"
+  , ti "idris" "src/Idris-dev"
   ]
   where
     -- Make a default topic item that just spawns a shell.
