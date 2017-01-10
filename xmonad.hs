@@ -214,12 +214,12 @@ myTopics host =
     (edit "~/documents/bible/study/Hebrews.tex" >>
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  , ti "151" "teaching/151"
-  , ti "360" "teaching/360"
-  , ti "410" "teaching/410"
-  -- , ti "150" "teaching/150"
+  -- , ti "151" "teaching/151"
+  -- , ti "360" "teaching/360"
+  -- , ti "410" "teaching/410"
+  , ti "150" "teaching/150"
   -- , ti "490" "teaching/490"
-  -- , ti "280" "teaching/280"
+  , ti "280" "teaching/280"
   , ti "joyal" "writing/translation/series-formelles"
   , ti "twist" "research/raaz"
   , ti "disco"  "projects/disco"
