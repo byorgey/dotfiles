@@ -10,7 +10,7 @@ set guioptions=bCrsn
 
 :au LocationChange '(feedly|code\.google|mail\.google|google\.com\/(reader|calendar))' :normal! <C-z>
 
-:qmark  1  http://ozark.hendrix.edu/~yorgey/151/
+:qmark  1  http://ozark.hendrix.edu/~yorgey/150/
 :qmark  2  http://ozark.hendrix.edu/~yorgey/280/
 :qmark  3  http://ozark.hendrix.edu/~yorgey/360/
 :qmark  4  http://ozark.hendrix.edu/~yorgey/410/
