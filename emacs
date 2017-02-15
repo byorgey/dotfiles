@@ -637,6 +637,7 @@
 (global-set-key (kbd "<f5>") 'auto-fill-mode)
 (global-set-key (kbd "<f6>") 'toggle-stylish-on-save)
 (global-set-key (kbd "<f7>") 'touch)
+(global-set-key (kbd "<f8>") 'toggle-window-dedicated)
 
 (global-set-key (kbd "M-<f11>") 'get-firefox-title)
 (global-set-key (kbd "<f11>") 'get-firefox-url)
