@@ -222,6 +222,9 @@ myTopics host =
   -- , ti "490" "teaching/490"
   , ti "280" "teaching/280"
   , ti "joyal" "writing/translation/series-formelles"
+  , TI "GCBP"  "research/GCBP"
+    (edit "~/research/GCBP/GCBP-paper.lhs" >>
+     spawn "evince ~/research/GCBP/GCBP-paper.pdf")
   , ti "twist" "research/raaz"
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
