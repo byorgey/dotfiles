@@ -226,6 +226,7 @@ myTopics host =
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
+  , ti "GCBP"  "research/GCBP"
   ]
   where
     -- Make a default topic item that just spawns a shell.
