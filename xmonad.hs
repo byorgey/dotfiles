@@ -104,7 +104,7 @@ import qualified XMonad.Util.ExtensibleState           as XS
 import           Control.Monad                         (when)
                                                                 -- (31)
 main :: IO ()
-main = do h <- spawnPipe "dzen2 -ta r -fg '#a8a3f7' -bg '#3f3c6d' -e 'onstart=lower'"
+main = do h <- spawnPipe "dzen2 -ta r -fg '#a8a3f7' -bg '#3f3c6d' -dock"
           host <- getHost
           checkTopicConfig (myTopicNames host) (myTopicConfig host) -- (22b)
           xmonad $ byorgeyConfig h host                         -- (0)
@@ -126,6 +126,7 @@ myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
 myShell = "zsh"
 
 byorgeyConfig h host =
+     docks $
      ewmh $
 --     noahProof host $
      withNavigation2DConfig def $
@@ -734,7 +735,7 @@ myManageHook = composeAll $
 myLayoutHook host =
 
     -- automatically avoid overlapping my dzen status bar.
-    avoidStrutsOn [U] $                                        -- (3)
+    avoidStruts $                                        -- (3)
 
     -- make manual gap adjustment possible.
     gaps (zip [U,D,L,R] (repeat 0)) $
