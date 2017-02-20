@@ -194,6 +194,7 @@ myTopics host =
   , ti "play" ""
   , TI "tex-conf" "texmf/tex" (edit "~/texmf/tex/brent.sty")
   , ti "mlt" "writing/mlt"
+  , ti "blog" "writing/blog"
   , ti "dia" "src/diagrams"
   ]
   ++ map diaWS
