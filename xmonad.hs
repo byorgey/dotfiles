@@ -478,6 +478,15 @@ myKeymap host conf =
     , ("M-w", switchHook $ swapNextScreen)
     , ("M-e", switchHook $ shiftNextScreen)
 
+    -- Move the current window to the "view" workspace and switch to
+    -- that workspace on the other monitor. A common operation I do
+    -- with PDFs.
+    , ("M-v", do windows (W.shift "view")
+                 nextScreen
+                 goto' "view"
+                 nextScreen
+      )
+
       -- lock the screen with xscreensaver
     , ("M-S-l", spawn "xscreensaver-command -lock")             -- (0)
 

@@ -26,7 +26,7 @@ set guioptions=bCrsn
 :qmark  m  http://www.mathlesstraveled.com/
 :qmark  w  http://ozark.hendrix.edu/~yorgey
 :qmark  o  http://www.cl.cam.ac.uk/~pes20/ott/ott_manual_0.10.16.html
-:qmark  W  http://weatherspark.com/forecasts/noaa/USA/AR/Conway
+:qmark  W  http://www.weather.gov/lzk
 :qmark  a  http://www.wolframalpha.com/
 :qmark  z  http://rayninfo.co.uk/tips/zshtips.html
 :qmark  h  http://haskell.org/
