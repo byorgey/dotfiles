@@ -24,12 +24,6 @@ alias hip="ssh hip"
 alias rath="ssh rath"
 alias oz="ssh ozark"
 
-alias stat="svn status -q"
-alias sdiff="svn diff"
-alias scom="svn commit"
-alias sup="svn update"
-alias slog="svn log"
-
 alias pg="ping google.com"
 
 alias kf="killall -9 -r 'firefox*'"
