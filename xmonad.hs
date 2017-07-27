@@ -302,31 +302,35 @@ promptedGotoOtherScreen host =
 promptedShift :: X ()
 promptedShift = workspacePrompt myXPConfig $ windows . W.shift  -- (27)
 
--- XXX offset scratchpad windows by a bit --- each one different?
 scratchpadSize :: W.RationalRect
 scratchpadSize = W.RationalRect (1/4) (1/4) (1/2) (1/2)
 
-mySPFloat :: ManageHook
-mySPFloat = customFloating scratchpadSize
+offsetRR :: (Rational,Rational) -> W.RationalRect -> W.RationalRect
+offsetRR (dl, dt) (W.RationalRect l t w h) = W.RationalRect (l+dl) (t+dt) w h
 
 customTerm :: String
 customTerm = "urxvt"
 
 scratchpads :: [NamedScratchpad]
-scratchpads =
-  [ NS "term"  (customTerm ++ " -title term") (title =? "term") mySPFloat
-  , NS "term2" (customTerm ++ " -title term2") (title =? "term2") mySPFloat
-  , NS "term3" (customTerm ++ " -title term3") (title =? "term3") mySPFloat
-  , NS "ghci"  (customTerm ++ " -e ghci") (title =? "ghci") mySPFloat
-  , NS "sync"  (customTerm ++ " -e sy") (title =? "sy") mySPFloat
-  , NS "top"   (customTerm ++ " -e htop") (title =? "htop") mySPFloat
-  , NS "stopwatch" (customTerm ++ " -e utimer -s") (title =? "utimer") mySPFloat
-  , NS "timer" (customTerm ++ " -e timer 25m") (title =? "timer") mySPFloat
-  , NS "ping"  (customTerm ++ " -e ping google.com") (title =? "ping") mySPFloat
-  , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class") mySPFloat
-  , NS "hip"   (customTerm ++ " -title hip -e ssh hip") (title =? "hip") mySPFloat
-  , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark") mySPFloat
-  ]
+scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) offsets sps
+  where
+    step    = 1/60
+    n       = length sps
+    steps   = map (subtract (step * (fromIntegral n / 2))) $ take n [0, step .. ]
+    offsets = zip steps (reverse steps)
+    sps =
+      [ NS "term"  (customTerm ++ " -title term") (title =? "term")
+      , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
+      , NS "term3" (customTerm ++ " -title term3") (title =? "term3")
+      , NS "ghci"  (customTerm ++ " -e ghci") (title =? "ghci")
+      , NS "top"   (customTerm ++ " -e htop") (title =? "htop")
+      , NS "stopwatch" (customTerm ++ " -e utimer -s") (title =? "utimer")
+      , NS "timer" (customTerm ++ " -e timer 25m") (title =? "timer")
+      , NS "ping"  (customTerm ++ " -e ping google.com") (title =? "ping")
+      , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class")
+      , NS "hip"   (customTerm ++ " -title hip -e ssh hip") (title =? "hip")
+      , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark")
+      ]
 
 myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
   { ppVisible = dzenColor "blue" "#a8a3f7" . pad
