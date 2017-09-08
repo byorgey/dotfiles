@@ -523,7 +523,7 @@ myKeymap host conf =
     (case host of Laptop _ -> [("M-c n", goto' "net")]
                   _        -> [])
     ++
-    [ ("M-c v", spawn "urxvt -e alsamixer")                     -- (0)
+    [ ("M-c v", spawn "urxvt -e alsamixer -c 1")                     -- (0)
     , ("M-c k", spawn "xkill")
     , ("M-c M-S-a", killAll)
 
