@@ -718,6 +718,7 @@ myManageHook = composeAll $
                  ++
                    -- send certain windows to certain workspaces
                  [ className =? "Rhythmbox" --> doF (W.shift "music") -- (0,0a)
+                 , className =? "Keybase"   --> doF (W.shift "keybase")
                    -- unmanage docks such as gnome-panel and dzen
                  , manageDocks                                     -- (3)
                    -- manage the scratchpad terminal window

@@ -32,5 +32,6 @@ xterm -e ssh-add &
 
 redshift -l 35.1:-92.4 &
 # $HOME/src/TagTime/tagtimed.pl &
+run_keybase
 
 $HOME/local/bin/xmonad 
