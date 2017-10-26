@@ -321,7 +321,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
     sps =
       [ NS "term"  (customTerm ++ " -title term") (title =? "term")
       , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
-      , NS "term3" (customTerm ++ " -title term3") (title =? "term3")
+      , NS "fv"    (customTerm ++ " -e /home/brent/local/mybin/fv") (title =? "fv")
       , NS "ghci"  (customTerm ++ " -e ghci") (title =? "ghci")
       , NS "top"   (customTerm ++ " -e htop") (title =? "htop")
       , NS "stopwatch" (customTerm ++ " -e utimer -s") (title =? "utimer")
@@ -391,7 +391,7 @@ myKeymap host conf =
       -- floating terminal
     , ("M-a s", namedScratchpadAction scratchpads "term")       -- (30)
     , ("M-a d", namedScratchpadAction scratchpads "term2")
-    , ("M-a f", namedScratchpadAction scratchpads "term3")
+    , ("M-a f", namedScratchpadAction scratchpads "fv")
     , ("M-a g", namedScratchpadAction scratchpads "ghci")
     , ("M-a t", namedScratchpadAction scratchpads "top")
     , ("M-a c", namedScratchpadAction scratchpads "stopwatch")
