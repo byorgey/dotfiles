@@ -44,7 +44,6 @@
 ;;    auctex
     floobits
 
-    cubicaltt
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -320,7 +319,6 @@
  '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
  '(compilation-read-command nil)
- '(cubicaltt-command "cubical")
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
  '(face-font-family-alternatives
