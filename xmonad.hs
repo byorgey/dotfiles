@@ -216,14 +216,13 @@ myTopics host =
     (edit "~/documents/bible/study/Hebrews.tex" >>
      spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  , ti "151" "teaching/151"
-  -- , ti "360" "teaching/360"
-  , ti "410" "teaching/410"
-  -- , ti "150" "teaching/150"
-  -- , ti "490" "teaching/490"
-  -- , ti "280" "teaching/280"
+  -- , ti "151" "teaching/151"
+  , ti "360" "teaching/360"
+  -- , ti "410" "teaching/410"
+  , ti "150" "teaching/150"
+  , ti "365" "teaching/365"
   , ti "382" "teaching/382"
-  , ti "joyal" "writing/translation/series-formelles"
+  -- 3, ti "joyal" "writing/translation/series-formelles"
   , TI "GCBP"  "research/GCBP"
     (edit "~/research/GCBP/GCBP-paper.lhs" >>
      spawn "evince ~/research/GCBP/GCBP-paper.pdf")
@@ -232,6 +231,8 @@ myTopics host =
   , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
+  , ti "obt"   "projects/disco/pubs/OBT18/talk"
+  , ti "keybase" ""
   ]
   where
     -- Make a default topic item that just spawns a shell.
@@ -320,7 +321,8 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
     steps   = map (subtract (step * (fromIntegral n / 2))) $ take n [0, step .. ]
     offsets = zip steps (reverse steps)
     sps =
-      [ NS "term"  (customTerm ++ " -title term") (title =? "term")
+      [ NS "mixer" (customTerm ++ " -e alsamixer -c 1") (title =? "alsamixer")
+      , NS "term"  (customTerm ++ " -title term") (title =? "term")
       , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
       , NS "fv"    (customTerm ++ " -e /home/brent/local/mybin/fv") (title =? "fv")
       , NS "ghci"  (customTerm ++ " -e ghci") (title =? "ghci")
@@ -390,6 +392,7 @@ myKeymap host conf =
 
       -- in conjunction with manageHook, open a small temporary
       -- floating terminal
+    , ("M-a a", namedScratchpadAction scratchpads "mixer")
     , ("M-a s", namedScratchpadAction scratchpads "term")       -- (30)
     , ("M-a d", namedScratchpadAction scratchpads "term2")
     , ("M-a f", namedScratchpadAction scratchpads "fv")
