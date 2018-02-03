@@ -222,7 +222,7 @@ myTopics host =
   , ti "150" "teaching/150"
   , ti "365" "teaching/365"
   , ti "382" "teaching/382"
-  -- 3, ti "joyal" "writing/translation/series-formelles"
+  , ti "joyal" "writing/translation/series-formelles"
   , TI "GCBP"  "research/GCBP"
     (edit "~/research/GCBP/GCBP-paper.lhs" >>
      spawn "evince ~/research/GCBP/GCBP-paper.pdf")
