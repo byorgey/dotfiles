@@ -222,10 +222,12 @@ myTopics host =
   , ti "150" "teaching/150"
   , ti "365" "teaching/365"
   , ti "382" "teaching/382"
-  , ti "joyal" "writing/translation/series-formelles"
-  , TI "GCBP"  "research/GCBP"
-    (edit "~/research/GCBP/GCBP-paper.lhs" >>
-     spawn "evince ~/research/GCBP/GCBP-paper.pdf")
+  , TI "joyal" "writing/translation/series-formelles" $ do
+      edit "~/writing/translation/series-formelles/series-formelles.tex"
+      spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
+  , TI "GCBP"  "research/GCBP" $ do
+      edit "~/research/GCBP/GCBP-paper.lhs"
+      spawn "evince ~/research/GCBP/GCBP-paper.pdf"
   , ti "twist" "research/raaz"
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
