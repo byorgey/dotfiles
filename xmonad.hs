@@ -562,7 +562,7 @@ myKeymap host conf =
       -- shell prompt.
     , ("M-p s", sshPrompt myXPConfig)                         -- (26)
     , ("M-p e", spawn "exe=`echo | yeganesh -x` && eval \"exec $exe\"")
-    , ("M-p u", unicodePrompt myXPConfig)
+    , ("M-p u", unicodePrompt "/usr/share/unicode/UnicodeData.txt" myXPConfig)
 
       -- some searches.
     , ("M-/", submap . mySearchMap $ myPromptSearch)            -- (19,20)
