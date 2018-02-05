@@ -365,6 +365,19 @@ noahProof host conf =
     -- disable keybindings on Noah's workspace
     disableForNoah act = bindOn [("noah", return ()), ("", act)]
 
+moveMode f = submap . M.fromList $
+    [ ((m, k), do withFocused (f (c*dx, c*dy))
+                  moveMode f)
+      | let big   = 15
+            small = 1
+      , (k,dx,dy) <- [ (xK_h, -1,  0)
+                     , (xK_l,  1,  0)
+                     , (xK_k,  0, -1)
+                     , (xK_j,  0,  1)
+                     ]
+      , (c, m) <- [(big, 0), (small, controlMask)]
+    ]
+
 myKeymap :: Host -> XConfig l -> [(String, X ())]
 myKeymap host conf =
 
@@ -407,22 +420,6 @@ myKeymap host conf =
     , ("M-a h", namedScratchpadAction scratchpads "hip")
     , ("M-a o", namedScratchpadAction scratchpads "ozark")
     ]
-    ++
-
-    -- move floating windows with keybindings                   -- (22f)
-    [ ("M-a " ++ m ++ "M-<" ++ dir ++ ">", withFocused (keysMoveWindow (dx,dy)))
-      | let big   = 100
-            small = 20
-      , (dir,m,dx,dy) <- [ ("L", "", -small, 0)
-                         , ("R", "", small, 0)
-                         , ("U", "", 0, -small)
-                         , ("D", "", 0, small)
-                         , ("L", "M-a ", -big, 0)
-                         , ("R", "M-a ", big, 0)
-                         , ("U", "M-a ", 0, -big)
-                         , ("D", "M-a ", 0, big)
-                         ]
-    ]
 
     -- sync using Unison in a new floating window, but only on my laptop
     ++ (case host of Laptop _ ->
@@ -446,6 +443,10 @@ myKeymap host conf =
     [ ("M-C-p " ++ f ++ " <" ++ dk ++ ">", sendMessage $ m d)     -- (15a)
         | (dk, d) <- [("L",L), ("D",D), ("U",U), ("R",R)]
         , (f, m)  <- [("v", ToggleGap), ("h", IncGap 40), ("f", DecGap 10)]
+    ]
+
+    ++
+    [ ("M-m", moveMode keysMoveWindow)
     ]
 
     ++
