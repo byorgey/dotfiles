@@ -222,10 +222,12 @@ myTopics host =
   , ti "150" "teaching/150"
   , ti "365" "teaching/365"
   , ti "382" "teaching/382"
-  -- 3, ti "joyal" "writing/translation/series-formelles"
-  , TI "GCBP"  "research/GCBP"
-    (edit "~/research/GCBP/GCBP-paper.lhs" >>
-     spawn "evince ~/research/GCBP/GCBP-paper.pdf")
+  , TI "joyal" "writing/translation/series-formelles" $ do
+      edit "~/writing/translation/series-formelles/series-formelles.tex"
+      spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
+  , TI "GCBP"  "research/GCBP" $ do
+      edit "~/research/GCBP/GCBP-paper.lhs"
+      spawn "evince ~/research/GCBP/GCBP-paper.pdf"
   , ti "twist" "research/raaz"
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
@@ -562,7 +564,7 @@ myKeymap host conf =
       -- shell prompt.
     , ("M-p s", sshPrompt myXPConfig)                         -- (26)
     , ("M-p e", spawn "exe=`echo | yeganesh -x` && eval \"exec $exe\"")
-    , ("M-p u", unicodePrompt myXPConfig)
+    , ("M-p u", unicodePrompt "/usr/share/unicode/UnicodeData.txt" myXPConfig)
 
       -- some searches.
     , ("M-/", submap . mySearchMap $ myPromptSearch)            -- (19,20)
