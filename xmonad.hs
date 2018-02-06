@@ -235,6 +235,7 @@ myTopics host =
   , ti "kattis" "learning/Kattis"
   , ti "obt"   "projects/disco/pubs/OBT18/talk"
   , ti "keybase" ""
+  , ti "acweb" "documents/sites/academic-web"
   ]
   where
     -- Make a default topic item that just spawns a shell.
