@@ -27,7 +27,8 @@
     smart-compile
     rainbow-delimiters
     moz
-    haskell-mode
+    ; haskell-mode
+    intero
     idris-mode
     ghc
     darcsum
@@ -598,7 +599,7 @@
 		(font-lock-mode 1))))
 
 (defvar font-lock-auto-mode-list
-  (list 'c-mode 'c++-mode 'c++-c-mode 'emacs-lisp-mode 'lisp-mode 'perl-mode 'scheme-mode 'ruby-mode 'python-mode 'haskell-mode 'latex-mode 'agda2-mode 'ott-mode 'markdown-mode)
+  (list 'c-mode 'c++-mode 'c++-c-mode 'emacs-lisp-mode 'lisp-mode 'perl-mode 'scheme-mode 'ruby-mode 'python-mode 'intero-mode 'latex-mode 'agda2-mode 'ott-mode 'markdown-mode)
   "List of modes to always start in font-lock-mode")
 
 (defvar font-lock-mode-keyword-alist
@@ -689,6 +690,8 @@
 ;;  Haskell-mode
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-hook 'haskell-mode-hook 'intero-mode)
+
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; indentation
 
@@ -697,33 +700,33 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keymap
 
-(eval-after-load 'haskell-mode
-          '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+;; (eval-after-load 'haskell-mode
+;;           '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
-(let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-  (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-  (add-to-list 'exec-path my-cabal-path))
+;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+;;   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
+;;   (add-to-list 'exec-path my-cabal-path))
 
-(eval-after-load 'haskell-mode '(progn
-  (define-key haskell-mode-map (kbd "C-c n") 'haskell-goto-next-error)
-  (define-key haskell-mode-map (kbd "C-c p") 'haskell-goto-prev-error)
-  (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-  (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-  (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-  (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-  (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
-(eval-after-load 'haskell-cabal '(progn
-  (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-  (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-  (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+;; (eval-after-load 'haskell-mode '(progn
+;;   (define-key haskell-mode-map (kbd "C-c n") 'haskell-goto-next-error)
+;;   (define-key haskell-mode-map (kbd "C-c p") 'haskell-goto-prev-error)
+;;   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
+;;   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
+;;   (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
+;;   (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
+;; (eval-after-load 'haskell-cabal '(progn
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+;;   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; make undefined red
 
-(font-lock-add-keywords 'haskell-mode
-  '(("undefined" . font-lock-warning-face)))
+;; (font-lock-add-keywords 'haskell-mode
+;;   '(("undefined" . font-lock-warning-face)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; insert LANGUAGE pragmas
@@ -760,10 +763,10 @@
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; company-ghc
 
-(require 'company)
-(add-hook 'haskell-mode-hook 'company-mode)
+;; (require 'company)
+;; (add-hook 'haskell-mode-hook 'company-mode)
 
-(add-to-list 'company-backends 'company-ghc)
+;; (add-to-list 'company-backends 'company-ghc)
 
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
