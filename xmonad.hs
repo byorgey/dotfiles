@@ -205,6 +205,7 @@ myTopics host =
        [ ("dia-ps", "postscript"), ("active", "active")
        , ("dia-raster", "rasterific"), ("palette", "palette")
        , ("SVGFonts", "SVGFonts")
+       , ("dia-geo", "geometry")
        ]
   ++
   [ ti "sp" "research/species/jc"
