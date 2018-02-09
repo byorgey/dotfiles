@@ -509,7 +509,7 @@ myKeymap host conf =
                     _        -> "systemctl suspend"
       )
 
-    -- bainsh the pointer
+    -- bainsh and unbanish the pointer
     , ("M-'", banishScreen LowerRight)                          -- (18)
     , ("M-b", warpToWindow (1/2) (1/2))
 
@@ -879,4 +879,5 @@ setTouchpadState s = do
 -- Workspace switching hook
 
 switchHook :: X () -> X ()
-switchHook = withLockdown . (setTouchpadState (Just False) >>)
+switchHook = withLockdown
+  -- . (setTouchpadState (Just False) >>)
