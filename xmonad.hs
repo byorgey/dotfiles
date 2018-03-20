@@ -515,14 +515,13 @@ myKeymap host conf =
 
     -- some programs to start with keybindings.
     , ("M-x f", spawnOn "web" "firefox")                        -- (22a)
-    , ("M-x o", spawnOn "web" "opera")                          -- "
+    , ("M-x c", spawnOn "web" "chromium-browser")
     , ("M-x g", spawnOn "draw" "gimp")                          -- "
     , ("M-x m", spawn "rhythmbox")                              -- (0)
     , ("M-x t", spawn "xclock -update 1")                       -- (0)
     , ("M-x S-g", spawn "javaws ~/playing/go/cgoban.jnlp")      -- (0)
     , ("M-x n", goto' "org")
     , ("M-x e", switchHook $ runOrRaise "evince" (className =? "Evince"))
-    , ("M-x x", spawnOn "web" "chromium")
 
     -- configuration.
     , ("M-c x", goto' "xm-conf")
