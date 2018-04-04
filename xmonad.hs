@@ -237,6 +237,9 @@ myTopics host =
   , ti "obt"   "projects/disco/pubs/OBT18/talk"
   , ti "keybase" ""
   , ti "acweb" "documents/sites/academic-web"
+  , TI "nifty" "teaching/382/hw/11-SAT/talk" $ do
+      edit "~/teaching/382/hw/11-SAT/talk/nifty-SAT.tex"
+      spawn "evince ~/teaching/382/hw/11-SAT/talk/nifty-SAT.pdf"
   ]
   where
     -- Make a default topic item that just spawns a shell.
