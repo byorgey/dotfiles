@@ -309,7 +309,7 @@
      (36 "sum"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs (quote (".")))
- '(agda2-program-args (quote ("-i" "." "+RTS" "-K200M" "-H10G" "-M10G" "-RTS")))
+ '(agda2-program-args (quote ("-i" "." "+RTS" "-K200M" "-H3G" "-M3G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-default-filter-days 2)
  '(beeminder-everyday-goals-list
