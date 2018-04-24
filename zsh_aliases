@@ -44,6 +44,10 @@ alias agdu="sudo apt-get autoremove && sudo apt-get update && sudo apt-get dist-
 
 alias t="todo.sh"
 
+fog() {
+  firefox "https://byorgey/fogbugz.com/f/cases/$1"
+}
+
 host() {
   scp $1 yorgey@ozark:ozark/hosted/
   HOST_URL="http://ozark.hendrix.edu/~yorgey/hosted/$1"
