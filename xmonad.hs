@@ -525,6 +525,7 @@ myKeymap host conf =
     , ("M-x S-g", spawn "javaws ~/playing/go/cgoban.jnlp")      -- (0)
     , ("M-x n", goto' "org")
     , ("M-x e", switchHook $ runOrRaise "evince" (className =? "Evince"))
+    , ("M-x l", spawn "evince ~/documents/personal/liturgy/Psalm90.pdf")
 
     -- configuration.
     , ("M-c x", goto' "xm-conf")
