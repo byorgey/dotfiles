@@ -46,6 +46,6 @@ bashcompinit
 source ~/local/bin/todo.txt_cli-2.10/todo_completion
 complete -F _todo t
 
-source ~/.xsh
+# source ~/.xsh
 
 # $HOME/local/mybin/doomsday-test
