@@ -350,7 +350,7 @@
  '(org-agenda-files (quote ("~/notes/")))
  '(package-selected-packages
    (quote
-    (floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
+    (markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
  '(perl-indent-level 2)
  '(scroll-bar-mode nil)
  '(show-trailing-whitespace t)
