@@ -117,9 +117,9 @@ getHost :: IO Host
 getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
-    "hippasus"   -> Desktop True
-    "augustine"  -> Laptop True
-    _            -> Desktop False
+    "hippasus"  -> Desktop True
+    "augustine" -> Laptop True
+    _           -> Desktop False
 
 myTerminal, myShell :: String
 myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
@@ -186,8 +186,6 @@ myTopics host =
   , ti "xm-hack" "src/xmonad/xmonad-contrib"
   , TI "em-conf" "" (edit "~/.emacs")
   , TI "music" "" (runInTerm "" "ssh milo")
-  , TI "net" "" (spawnOn "net" "wicd-client -n" >>
-                 runInTerm "" "sudo tail -f /var/log/wicd/wicd.log")
   , ti "conf" ""
   , ti "misc" ""
   , ti "ref" "documents/reference"
@@ -221,7 +219,7 @@ myTopics host =
   , ti "360" "teaching/360"
   -- , ti "410" "teaching/410"
   , ti "150" "teaching/150"
-  , ti "365" "teaching/365"
+  -- , ti "365" "teaching/365"
   , ti "382" "teaching/382"
   , TI "joyal" "writing/translation/series-formelles" $ do
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
@@ -229,17 +227,13 @@ myTopics host =
   , TI "GCBP"  "research/GCBP" $ do
       edit "~/research/GCBP/GCBP-paper.lhs"
       spawn "evince ~/research/GCBP/GCBP-paper.pdf"
-  , ti "twist" "research/raaz"
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
-  , ti "obt"   "projects/disco/pubs/OBT18/talk"
-  , ti "keybase" ""
   , ti "acweb" "documents/sites/academic-web"
-  , TI "nifty" "teaching/382/hw/11-SAT/talk" $ do
-      edit "~/teaching/382/hw/11-SAT/talk/nifty-SAT.tex"
-      spawn "evince ~/teaching/382/hw/11-SAT/talk/nifty-SAT.pdf"
+  , ti "adv"   "teaching/advising"
+  , ti "keybase" ""
   ]
   where
     -- Make a default topic item that just spawns a shell.
