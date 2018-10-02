@@ -226,8 +226,8 @@ myTopics host =
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
       spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
   , TI "GCBP"  "research/GCBP" $ do
-      edit "~/research/GCBP/GCBP-paper.lhs"
-      spawn "evince ~/research/GCBP/GCBP-paper.pdf"
+      edit "~/research/GCBP/talk/GCBP-talk.lhs"
+      spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
   , ti "disco" "projects/disco"
   , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
