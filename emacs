@@ -1042,3 +1042,4 @@
 ;; End of the el4r block.
 ;; User-setting area is below this line.
 
+(put 'scroll-left 'disabled nil)
