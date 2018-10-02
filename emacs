@@ -44,6 +44,7 @@
     writegood-mode
     auctex
     floobits
+    tidal
 
    ) "a list of packages to ensure are installed at launch.")
 
