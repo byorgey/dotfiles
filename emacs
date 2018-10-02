@@ -673,7 +673,7 @@
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([18 34 18 13 67108896 19 34 19 13 134217847 32 45 45 62 32 25] 0 "%d")) arg)))
 
 (fset 'BAY-comment
-   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("-- *** BAY: " 0 "%d")) arg)))
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ("*** BAY: " 0 "%d")) arg)))
 
 ;; Type a number and then execute this macro.  If the point is
 ;; following nn, it searches for #nn in the other window and replaces
