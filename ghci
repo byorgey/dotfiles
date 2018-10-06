@@ -3,10 +3,6 @@
 :seti -XGADTs
 :seti -XDataKinds
 
--- hoogle integration
-:def hoogle \q -> return $ ":! hoogle --color=true --count=15  \"" ++ q ++ "\""
-:def doc    \q -> return $ ":! hoogle --color=true --info      \"" ++ q ++ "\""
-
 :m +Data.Maybe
 :m +Data.List
 :m +Data.Char
@@ -18,12 +14,11 @@ import Control.Arrow hiding ((|||))
 :m +Control.Applicative
 :m +Control.Monad
 :m +Data.Functor.Compose
-:m +Text.Groom
 
 import qualified Data.Map as M
 import qualified Data.Set as S
 import qualified Data.Foldable as F
 import qualified Data.Traversable as T
 
-:set prompt ">>> "
+:set prompt "λ> "
 let {infixr 8 .: ; a .: b = a + b/60 }
