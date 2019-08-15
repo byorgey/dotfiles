@@ -23,15 +23,15 @@ if [ `hostname` = 'LVN513-9' ]; then
   /usr/local/condor/sbin/condor_kbdd -l $HOME/.kbdd.log -pidfile $HOME/.kbdd.pid
   xscreensaver &
 else
-  eval `cat $HOME/.fehbg`
+  source $HOME/.fehbg
 fi
 
 eval `ssh-agent`
-xterm -e ssh-add &
+urxvt -e ssh-add &
 
 
 redshift -l 35.1:-92.4 &
 # $HOME/src/TagTime/tagtimed.pl &
 run_keybase
 
-$HOME/local/bin/xmonad 
+$HOME/.local/bin/xmonad 
