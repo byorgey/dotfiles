@@ -669,6 +669,8 @@
 
 (global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
 
+(global-set-key (kbd "C-c m") 'commit-to-line-or-region)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grading/feedback
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -690,6 +692,26 @@
 ;; #nn in the other window.
 (fset 'note-other-window
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([M-left 67108896 5 23 24 111 134217788 19 35 25 13 right 67108896 5 134217847 24 111 24 11 99 25] 0 "%d")) arg)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; commits.to
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; http://ergoemacs.org/emacs/emacs_region.html
+
+(defun commit-to-line-or-region ()
+  "Commit to something in the current line or region."
+(interactive)
+(let (pos1 pos2 bds)
+  (if (use-region-p)
+     (setq pos1 (region-beginning) pos2 (region-end))
+    (progn
+      (setq bds (bounds-of-thing-at-point 'line))
+      (setq pos1 (car bds) pos2 (cdr bds))))
+
+  (copy-region-as-kill pos1 pos2)
+  (shell-command "/bin/bash /home/brent/local/mybin/commit &")
+  ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  Haskell-mode
