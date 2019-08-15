@@ -68,7 +68,7 @@ alias less="less -R"
 
 alias ssha='eval `ssh-agent` && ssh-add'
 
-eval "$(hub alias -s)"
+eval "$(hub alias -s zsh)"
 
 alias beep2="beep && sleep 0.2 && beep"
 
