@@ -29,7 +29,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(cabal git github screen darcs sudo wd)
+plugins=(cabal git github screen sudo wd nix-shell)
 # common-aliases?
 
 source $ZSH/oh-my-zsh.sh
@@ -43,7 +43,7 @@ source ~/.zsh_local
 
 autoload bashcompinit
 bashcompinit
-source ~/local/bin/todo.txt_cli-2.10/todo_completion
+source ~/local/bin/todo.txt_cli-2.11.0/todo_completion
 complete -F _todo t
 
 # source ~/.xsh
