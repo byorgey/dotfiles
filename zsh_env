@@ -22,4 +22,5 @@ MUTT_EDITOR='emacs -nw'
 PACMAN=pacman
 TERM=rxvt-unicode
 STOW=$HOME/local/stow
+_JAVA_AWT_WM_NONREPARENTING=1
 unsetopt ALL_EXPORT
