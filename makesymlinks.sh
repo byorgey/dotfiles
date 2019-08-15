@@ -8,7 +8,7 @@
 
 dir=~/dotfiles                           # dotfiles directory
 olddir=~/dotfiles_old                    # old dotfiles backup directory
-files=`ls $dir | grep -v makesymlinks`   # list of files/folders to symlink in homedir
+files=`ls $dir | grep -v makesymlinks | grep -v '\.'`   # list of files/folders to symlink in homedir
 
 echo $files
 
