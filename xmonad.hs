@@ -119,6 +119,7 @@ getHost = do
   return $ case hostName of
     "hippasus"  -> Desktop True
     "augustine" -> Laptop True
+    "plato"     -> Laptop True
     _           -> Desktop False
 
 myTerminal, myShell :: String
@@ -211,16 +212,16 @@ myTopics host =
   , TI "video" "video" (spawnOn "video" "cinelerra")
   , ti "bl" "src/BlogLiterately"
   , TI "view" "" (return ())
-  , TI "heb" "documents/bible/study"
-    (edit "~/documents/bible/study/Hebrews.tex" >>
-     spawn "evince ~/documents/bible/study/Hebrews.pdf")
+  -- , TI "heb" "documents/bible/study"
+  --   (edit "~/documents/bible/study/Hebrews.tex" >>
+  --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  , ti "151" "teaching/151"
+  -- , ti "151" "teaching/151"
   -- , ti "360" "teaching/360"
-  -- , ti "410" "teaching/410"
+  , ti "410" "teaching/410"
   , ti "150" "teaching/150"
   -- , ti "365" "teaching/365"
-  -- , ti "382" "teaching/382"
+  , ti "382" "teaching/382"
   -- , ti "exp" "teaching/explorations"
   , TI "joyal" "writing/translation/series-formelles" $ do
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
@@ -228,12 +229,14 @@ myTopics host =
   , TI "GCBP"  "research/GCBP" $ do
       edit "~/research/GCBP/talk/GCBP-talk.lhs"
       spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
+  , ti "fenwick" "research/fenwick"
   , ti "disco" "projects/disco"
-  , ti "aoc"   "playing/AoC"
+  -- , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
   , ti "acweb" "documents/sites/academic-web"
   , ti "adv"   "teaching/advising"
+  , ti "CCSC"  "projects/CCSC"
   , ti "keybase" ""
   ]
   where
