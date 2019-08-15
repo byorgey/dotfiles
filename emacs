@@ -45,7 +45,7 @@
     auctex
     floobits
     tidal
-
+    proof-general
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -224,7 +224,14 @@
 ;; unicode-fonts
 
 (unicode-fonts-setup)
-;(set-frame-font "PragmataPro 12")
+; (set-frame-font "PragmataPro 12")   -- €19 for very basic version of the font
+
+;; https://emacs.stackexchange.com/questions/251/line-height-with-unicode-characters
+;; https://www.emacswiki.org/emacs/UnicodeFonts
+
+(set-fontset-font t '(#x1d400 . #x1d7ff)
+  ;; this should throw an error if there is no such font
+  (font-xlfd-name (find-font (font-spec :family "Symbola"))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; auto-complete
@@ -508,7 +515,7 @@
      ("Letterlike Symbols"
       ("Monaco" "Noto Sans Symbols" "Segoe UI Symbol" "Apple Symbols" "Cambria Math" "DejaVu Sans:width=condensed" "Arial Unicode MS" "Code2000" "Symbola" "Quivira" "HAN NOM A" "Everson Mono:weight=bold"))
      ("Mathematical Alphanumeric Symbols"
-      ("Cambria Math" "Noto Sans Symbols" "Code2001" "Symbola" "Quivira" "Everson Mono:weight=bold"))
+      ("Quivira" "Cambria Math" "Noto Sans Symbols" "Code2001" "Symbola" "Everson Mono:weight=bold"))
      ("Mathematical Operators"
       ("Monaco" "DejaVu Sans Mono" "Segoe UI Symbol" "Cambria Math" "DejaVu Sans:width=condensed" "Noto Sans Symbols" "Apple Symbols" "Arial Unicode MS" "Code2000" "Symbola" "Quivira" "Everson Mono:weight=bold" "FreeMono"))
      ("Miscellaneous Mathematical Symbols-A"
