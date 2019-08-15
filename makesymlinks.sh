@@ -30,9 +30,7 @@ for file in $files; do
     if [ -f ~/.$file ]; then
         echo "Moving .$file from ~ to $olddir"
         mv ~/.$file ~/dotfiles_old/
-        echo "Creating symlink to $file in home directory."
-        ln -s $dir/$file ~/.$file
-    else
-        echo "No $file found."
     fi
+    echo "Creating symlink to $file in home directory."
+    ln -s $dir/$file ~/.$file
 done
