@@ -207,7 +207,7 @@ myTopics host =
        , ("dia-geo", "geometry")
        ]
   ++
-  [ ti "sp" "research/species/jc"
+  [ ti "sp" "research/species"
   , TI "anki" "" (spawnOn "anki" "anki")
   , TI "video" "video" (spawnOn "video" "cinelerra")
   , ti "bl" "src/BlogLiterately"
@@ -237,6 +237,7 @@ myTopics host =
   , ti "acweb" "documents/sites/academic-web"
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
+  , ti "AEC"   "projects/AEC"
   , ti "keybase" ""
   ]
   where
