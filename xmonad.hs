@@ -465,11 +465,17 @@ myKeymap host conf =
     , ("M-<L>",     delay >> switchHook (DO.moveTo Prev HiddenNonEmptyWS))   -- "
     , ("M-f",       switchHook $ newCodeWS)                   -- see below
 
+
+    -- Don't want to kill default M-r binding now that I have 3
+    -- monitors If I want these later, find new keybindings for them.
+    -- I never used them often enough to remember the keybindings
+    -- though.
+
     -- expand/shrink windows
-    , ("M-r k", sendMessage MirrorExpand)                       -- (5)
-    , ("M-r j", sendMessage MirrorShrink)                       -- (5)
-    , ("M-r h", sendMessage Shrink)                             -- (0)
-    , ("M-r l", sendMessage Expand)                             -- (0)
+    -- , ("M-r k", sendMessage MirrorExpand)                       -- (5)
+    -- , ("M-r j", sendMessage MirrorShrink)                       -- (5)
+    -- , ("M-r h", sendMessage Shrink)                             -- (0)
+    -- , ("M-r l", sendMessage Expand)                             -- (0)
 
     -- switch to previous workspace
     , ("M-z", delay >> switchHook toggleWS)                   -- (16)
@@ -487,11 +493,20 @@ myKeymap host conf =
     , ("M-S-n", renameWorkspace myXPConfig)                     -- "
     , ("M-C-r", switchHook $ removeWorkspace)                                -- "
     , ("M-C-S-r", switchHook $ killAll >> removeWorkspace)                   --
+    ]
+
+    -- xinerama screen numbers seem to be backwards in my setup
+    ++
+    [("M-" ++ m ++ [key], screenWorkspace sc >>= flip whenJust (windows . f))
+    | (key, sc) <- zip "rew" [0..]
+    , (f, m) <- [(W.view, ""), (W.shift, "S-")]
+    ]
+    ++
 
     -- move between screens
-    , ("M-s", switchHook $ nextScreen)
-    , ("M-w", switchHook $ swapNextScreen)
-    , ("M-e", switchHook $ shiftNextScreen)
+    [ ("M-s", switchHook $ nextScreen)
+    -- , ("M-w", switchHook $ swapNextScreen)    -- These aren't so useful now with 3 monitors
+    -- , ("M-e", switchHook $ shiftNextScreen)
 
     -- Move the current window to the "view" workspace and switch to
     -- that workspace on the other monitor. A common operation I do
