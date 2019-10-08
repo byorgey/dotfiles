@@ -16,15 +16,10 @@ export PATH=$HOME/local/bin:/usr/local/bin:$PATH
 export BROWSER=firefox
 
 keynav &
-
-if [ `hostname` = 'LVN513-9' ]; then
-  xpmroot ~/images/lavender-field-2880x1024.png
-  export PATH=/scratch/local/bin:$PATH
-  /usr/local/condor/sbin/condor_kbdd -l $HOME/.kbdd.log -pidfile $HOME/.kbdd.pid
-  xscreensaver &
-else
-  source $HOME/.fehbg
+if [ `hostname` = 'hypatia' ]; then
+  source $HOME/.screenlayout/big-big-small.sh
 fi
+source $HOME/.fehbg
 
 eval `ssh-agent`
 urxvt -e ssh-add &
