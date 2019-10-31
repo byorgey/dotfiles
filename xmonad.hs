@@ -181,9 +181,9 @@ myTopics host =
   , TI "org" "notes"
     (edit "--name org ~/notes/journal.org -f vc-status -f other-window -f toggle-window-split")
   , TI "draw" "" (spawnOn "draw" "inkscape")
-  , TI "xm-conf" ".xmonad"
-    (edit "~/.xmonad/xmonad.hs" >>
-     shell)
+  , TI "xm-conf" ".xmonad" $ do
+      edit "~/.xmonad/xmonad.hs"
+      shell
   , ti "xm-hack" "src/xmonad/xmonad-contrib"
   , TI "em-conf" "" (edit "~/.emacs")
   , TI "music" "" (runInTerm "" "ssh milo")
@@ -234,6 +234,9 @@ myTopics host =
   -- , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
+  , TI "progteam" "teaching/prog-team/reference" $ do
+      edit "~/teaching/prog-team/reference/Hendrix-comprog-reference.tex"
+      spawn "evince ~/teaching/prog-team/reference/Hendrix-comprog-reference.pdf"
   , ti "acweb" "documents/sites/academic-web"
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
@@ -256,7 +259,7 @@ ircAction host = case host of
   Desktop _ -> runInTerm "" "screen -dRR"
 
 edit :: String -> X ()
-edit = spawn . ("emacs25 "++)
+edit = spawn . ("emacs "++)
 
 editVC :: String -> X ()
 editVC file = edit $ file ++ " -f vc-status -f toggle-window-split"
