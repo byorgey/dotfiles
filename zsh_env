@@ -23,4 +23,5 @@ PACMAN=pacman
 TERM=rxvt-unicode
 STOW=$HOME/local/stow
 _JAVA_AWT_WM_NONREPARENTING=1
+source $HOME/.ghcup/env
 unsetopt ALL_EXPORT
