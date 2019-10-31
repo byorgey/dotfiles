@@ -1,2 +1,2 @@
 #!/bin/sh
-feh --bg-fill '/home/brent/images/leonard-cotte-300248-unsplash.jpg' 
+feh --no-fehbg --bg-fill '/home/brent/images/leonard-cotte-300248-unsplash.jpg' 
