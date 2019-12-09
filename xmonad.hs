@@ -118,6 +118,7 @@ getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
     "hippasus"  -> Desktop True
+    "hypatia"   -> Desktop True
     "augustine" -> Laptop True
     "plato"     -> Laptop True
     _           -> Desktop False
@@ -299,7 +300,10 @@ delay = io (threadDelay 0)  -- I no longer remember what this is for
 goto :: Host -> Topic -> X ()
 goto host t = do
   delay
-  switchHook $ switchTopic' W.view (myTopicConfig host) t  -- (22b)
+  let hostView = case host of
+        Desktop _ -> W.greedyView
+        _         -> W.view
+  switchHook $ switchTopic' hostView (myTopicConfig host) t  -- (22b)
 
 promptedGoto :: Host -> X ()
 promptedGoto = workspacePrompt myXPConfig . goto    -- (27)
