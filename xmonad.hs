@@ -218,11 +218,12 @@ myTopics host =
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
   -- , ti "151" "teaching/151"
   -- , ti "360" "teaching/360"
-  , ti "410" "teaching/410"
+  -- , ti "410" "teaching/410"
   , ti "150" "teaching/150"
-  -- , ti "365" "teaching/365"
-  , ti "382" "teaching/382"
+  , ti "365" "teaching/365"
+  -- , ti "382" "teaching/382"
   -- , ti "exp" "teaching/explorations"
+  , ti "M240" "teaching/discrete"
   , TI "joyal" "writing/translation/series-formelles" $ do
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
       spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
