@@ -224,7 +224,7 @@ myTopics host =
   , ti "365" "teaching/365"
   -- , ti "382" "teaching/382"
   -- , ti "exp" "teaching/explorations"
-  , ti "M240" "teaching/discrete"
+  , ti "M240" "teaching/M240"
   , TI "joyal" "writing/translation/series-formelles" $ do
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
       spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
