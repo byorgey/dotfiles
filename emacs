@@ -28,6 +28,7 @@
   '(
     magit
     yasnippet
+    yasnippet-snippets
     java-snippets
     smart-compile
     rainbow-delimiters
@@ -51,6 +52,7 @@
     floobits
     tidal
     proof-general
+    kotlin-mode
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
