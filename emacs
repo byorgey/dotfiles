@@ -286,11 +286,6 @@
 ; (require 'markdown-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; AucTeX
-
-(load "auctex.el" nil t t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Whitespace
 
 (require 'whitespace)
@@ -319,9 +314,10 @@
      (118 "varphi")
      (37 "emptyctx")
      (32 "sqrt")
-     (! "neg")
+     (33 "neg")
      (35 "frac")
-     (36 "sum"))))
+     (36 "sum")
+     (34 "dots"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs (quote (".")))
  '(agda2-program-args (quote ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS")))
