@@ -320,7 +320,9 @@
      (34 "dots"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs (quote (".")))
- '(agda2-program-args (quote ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS")))
+ '(agda2-program-args (if (equal (system-name) "hypatia")
+                          (quote ("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS"))
+                          (quote ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS"))))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-default-filter-days 2)
  '(beeminder-everyday-goals-list
