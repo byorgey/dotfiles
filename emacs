@@ -333,6 +333,8 @@
  '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
  '(compilation-read-command nil)
+ '(compilation-scroll-output t)
+ '(compilation-always-kill t)
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
  '(face-font-family-alternatives
