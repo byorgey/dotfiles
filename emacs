@@ -53,6 +53,8 @@
     tidal
     proof-general
     kotlin-mode
+    polymode
+    poly-markdown
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -1007,6 +1009,25 @@
 (or (assoc "mutt-" auto-mode-alist)
     (setq auto-mode-alist (cons '("mutt-" . mail-mode) auto-mode-alist)))
 (add-hook 'mail-mode-hook 'brent-mail-mode-hook)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; LaTeX + Haskell polymode
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+; See https://polymode.github.io/
+
+(define-innermode poly-haskell-latex-innermode
+  :mode 'haskell-mode
+  :head-matcher "\\\\begin{\\(diagram\\|code\\)}"
+  :tail-matcher "\\\\end{\\(diagram\\|code\\)}"
+  :head-mode 'host
+  :tail-mode 'host)
+
+(define-polymode poly-latex-haskell-mode
+  :hostmode 'pm-host/latex
+  :innermodes '(poly-haskell-latex-innermode))
+
+(add-to-list 'auto-mode-alist '("\\.tex\\'" . poly-latex-haskell-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Unused stuff
