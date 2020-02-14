@@ -322,9 +322,15 @@
      (34 "dots"))))
  '(agda-input-user-translations (quote (("bB" "𝔹"))))
  '(agda2-include-dirs (quote (".")))
- '(agda2-program-args (if (equal (system-name) "hypatia")
-                          (quote ("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS"))
-                          (quote ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS"))))
+ '(agda2-program-args
+   (if
+       (equal
+        (system-name)
+        "hypatia")
+       (quote
+        ("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS"))
+     (quote
+      ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS"))))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-default-filter-days 2)
  '(beeminder-everyday-goals-list
@@ -332,9 +338,9 @@
     (time-with-god work-journal jn dishes ac-liturgy morning itch)))
  '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
+ '(compilation-always-kill t)
  '(compilation-read-command nil)
  '(compilation-scroll-output t)
- '(compilation-always-kill t)
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
  '(face-font-family-alternatives
@@ -370,6 +376,8 @@
     (markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
  '(perl-indent-level 2)
  '(scroll-bar-mode nil)
+ '(send-mail-function (quote sendmail-send-it))
+ '(sendmail-program "/usr/bin/msmtp")
  '(show-trailing-whitespace t)
  '(smart-compile-alist
    (quote
@@ -582,6 +590,7 @@
      ("Vertical Forms"
       ("Microsoft YaHei" "Microsoft YaHei UI" "Symbola")))))
  '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
+ '(user-mail-address "yorgey@hendrix.edu")
  '(whitespace-style
    (quote
     (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
@@ -639,6 +648,7 @@
 
 ;; built-in emacs functions
 (global-set-key (kbd "C-c c")   'smart-compile)
+(global-set-key (kbd "C-c x")   'recompile-latex-harder)
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-=")     'align-on-equals)
 (global-set-key (kbd "C-x t")   'text-scale-increase)
@@ -995,20 +1005,15 @@
 ;; Mail
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload 'footnote-mode "footnote" nil t)
-(add-hook 'mail-mode-hook 'footnote-mode)
 
-(defun brent-mail-mode-hook ()
-  (turn-on-auto-fill)
-  (turn-on-font-lock)
-  ; (flush-lines "^\\(> \n\\)*> -- \n\\(\n?> .*\\)*")
-  (mail-text) ;;; Jumps to the beginning of the mail text
-  (setq make-backup-files nil)
-)
 
-(or (assoc "mutt-" auto-mode-alist)
-    (setq auto-mode-alist (cons '("mutt-" . mail-mode) auto-mode-alist)))
-(add-hook 'mail-mode-hook 'brent-mail-mode-hook)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; "Recompile LaTeX harder" if necessary
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun recompile-latex-harder ()
+  (shell-command "rm *.{aux,out}")
+  (smart-compile))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX + Haskell polymode
@@ -1028,6 +1033,7 @@
   :innermodes '(poly-haskell-latex-innermode))
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . poly-latex-haskell-mode))
+(add-to-list 'auto-mode-alist '("\\.lhs\\'" . poly-latex-haskell-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Unused stuff
