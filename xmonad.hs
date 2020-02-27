@@ -345,7 +345,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
       , NS "timer" (customTerm ++ " -e timer 25m") (title =? "timer")
       , NS "ping"  (customTerm ++ " -e ping google.com") (title =? "ping")
       , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class")
-      , NS "hip"   (customTerm ++ " -title hip -e ssh hip") (title =? "hip")
+      , NS "disco" (customTerm ++ " -title disco -e stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
       , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark")
       ]
 
