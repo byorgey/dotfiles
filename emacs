@@ -57,6 +57,7 @@
     kotlin-mode
     polymode
     poly-markdown
+    auto-yasnippet
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -653,7 +654,6 @@
 (global-set-key (kbd "C-c x")   'recompile-latex-harder)
 (global-set-key (kbd "C-x a r") 'align-regexp)
 (global-set-key (kbd "C-=")     'align-on-equals)
-(global-set-key (kbd "C-x t")   'text-scale-increase)
 (global-set-key (kbd "<f9>")    'delete-trailing-whitespace)
 (global-set-key (kbd "C-c SPC")   'delete-horizontal-space-forward)
 (global-set-key (kbd "C-c C-SPC") 'delete-horizontal-space-forward)
@@ -691,6 +691,9 @@
 (global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
 
 (global-set-key (kbd "C-c m") 'commit-to-line-or-region)
+
+; (global-set-key (kbd "H-w") #'aya-create)
+; (global-set-key (kbd "H-y") #'aya-expand)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grading/feedback
@@ -987,9 +990,8 @@
 ;; Magit
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (require 'magit)
-  (autoload 'magit-status "magit" nil t))
+(require 'magit)
+(autoload 'magit-status "magit" nil t)
 
 (setq magit-last-seen-setup-instructions "1.4.0")
 
@@ -1023,7 +1025,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun recompile-latex-harder ()
-  (shell-command "rm *.{aux,out}")
+  (shell-command "/bin/zsh -c 'rm *.{aux,out}'")
   (smart-compile))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
