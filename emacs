@@ -362,7 +362,7 @@
  '(haskell-process-log t)
  '(haskell-process-path-ghci "ghci")
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote cabal-repl))
+ '(haskell-process-type (quote stack-ghci))
  '(haskell-program-name "ghci \"+.\"")
  '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
@@ -750,6 +750,7 @@
   ;; OR:
   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
   (add-hook 'haskell-mode-hook 'dante-mode)
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   )
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
