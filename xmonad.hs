@@ -243,6 +243,8 @@ myTopics host =
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
   , ti "AEC"   "projects/AEC"
+  , ti "stream" ""
+  , ti "teams"  ""
   , ti "keybase" ""
   ]
   where
