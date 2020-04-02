@@ -692,6 +692,8 @@
 
 (global-set-key (kbd "C-c m") 'commit-to-line-or-region)
 
+(global-set-key (kbd "C-c t") 'mail-abbrev-insert-alias)
+
 ; (global-set-key (kbd "H-w") #'aya-create)
 ; (global-set-key (kbd "H-y") #'aya-expand)
 
