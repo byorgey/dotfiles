@@ -5,11 +5,7 @@
 
 [ -f $HOME/.profile ] && . $HOME/.profile
 
-xmodmap -e 'clear Lock'
-xmodmap -e 'keysym Menu = Multi_key'
-xmodmap -e 'remove Lock = Caps_Lock'
-xmodmap -e 'keysym Caps_Lock = Escape'
-
+xmodmap $HOME/.Xmodmap
 xsetroot -cursor_name left_ptr
 
 export PATH=$HOME/local/bin:/usr/local/bin:$PATH
