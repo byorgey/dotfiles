@@ -236,6 +236,7 @@ myTopics host =
   -- , ti "aoc"   "playing/AoC"
   , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
+  , ti "cf" "learning/cf"
   , TI "progteam" "teaching/prog-team/reference" $ do
       edit "~/teaching/prog-team/reference/Hendrix-comprog-reference.tex"
       spawn "evince ~/teaching/prog-team/reference/Hendrix-comprog-reference.pdf"
