@@ -104,7 +104,7 @@ import qualified XMonad.Util.ExtensibleState           as XS
 import           Control.Monad                         (when)
                                                                 -- (31)
 main :: IO ()
-main = do h <- spawnPipe "dzen2 -ta r -fg '#a8a3f7' -bg '#3f3c6d' -dock"
+main = do h <- spawnPipe "dzen2 -ta r -fg '#a8a3f7' -bg '#3f3c6d' -dock -xs 2"
           host <- getHost
           checkTopicConfig (myTopicNames host) (myTopicConfig host) -- (22b)
           xmonad $ byorgeyConfig h host                         -- (0)
