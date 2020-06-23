@@ -243,7 +243,7 @@ myTopics host =
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
   , ti "AEC"   "projects/AEC"
-  , ti "stream" ""
+  , ti "obs" ""
   , ti "teams"  ""
   , ti "keybase" ""
   ]
@@ -258,9 +258,7 @@ myTopics host =
            (shell >> (editVC $ "~/src/diagrams/" ++ dirName ++ "/*.cabal"))
 
 ircAction :: Host -> X ()
-ircAction host = case host of
-  Laptop  _ -> runInTerm "" "ssh -t hip screen -dRR"
-  Desktop _ -> runInTerm "" "screen -dRR"
+ircAction _ = runInTerm "" "mosh thales -- screen -dRR"
 
 edit :: String -> X ()
 edit = spawn . ("emacs "++)
@@ -518,6 +516,9 @@ myKeymap host conf =
     -- , ("M-w", switchHook $ swapNextScreen)    -- These aren't so useful now with 3 monitors
     -- , ("M-e", switchHook $ shiftNextScreen)
 
+    , ("M-S-d d", spawn "~/.screenlayout/dual.sh")
+    , ("M-S-d n", spawn "~/local/mybin/display-normal")
+
     -- Move the current window to the "view" workspace and switch to
     -- that workspace on the other monitor. A common operation I do
     -- with PDFs.
@@ -761,6 +762,7 @@ myManageHook = composeAll $
                  , namedScratchpadManageHook scratchpads           -- (30)
                  , appName =? "xbuffy-main" --> doFloatAt 0.92 0.66
                  , appName =? "xbuffy-aux"  --> doFloatAt 0.92 0.81
+                 , className =? "Microsoft Teams Notification" --> doFloat
                  , appName =? "Caml graphics" --> doFloat
                  ]
     -- windows to auto-float
