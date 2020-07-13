@@ -42,6 +42,8 @@ alias dr="darcs record"
 alias agu="sudo apt-get update && sudo apt-get upgrade"
 alias agdu="sudo apt-get autoremove && sudo apt-get update && sudo apt-get dist-upgrade"
 
+alias clearswap="sudo swapoff -a && sudo swapon -a"
+
 alias t="todo.sh"
 
 fog() {
