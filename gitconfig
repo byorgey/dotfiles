@@ -14,5 +14,6 @@
 	last = log -1 HEAD
 	ix = diff --cached
         pulled = log -p --reverse --no-merges --stat @{1}..
+        url =! bash -c 'git config --get remote.origin.url | sed -E "s/.+:\\(.+\\)\\.git$/https:\\\\/\\\\/github\\\\.com\\\\/\\\\1/g"'
 [push]
 	default = simple
