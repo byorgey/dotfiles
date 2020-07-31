@@ -176,7 +176,7 @@ data TopicItem = TI { topicName   :: Topic   -- (22b)
 myTopics :: Host -> [TopicItem]
 myTopics host =
   [ TI "web" "" (spawnOn "web" "firefox")
-  , TI "irc" "" (ircAction host)
+  , TI "irc" "" (liftIO (threadDelay (5*1000000)) >> ircAction host)
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
