@@ -219,7 +219,7 @@ myTopics host =
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
   -- , ti "151" "teaching/151"
   -- , ti "360" "teaching/360"
-  -- , ti "410" "teaching/410"
+  , ti "410" "teaching/410"
   -- , ti "150" "teaching/150"
   -- , ti "365" "teaching/365"
   , ti "382" "teaching/382"
