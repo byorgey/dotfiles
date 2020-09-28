@@ -695,6 +695,8 @@ mySearchMap method = M.fromList $                               -- (0b)
         , ((0, xK_k), method greek)
         , ((0, xK_d), method merriamWebster)
         , ((0, xK_b), method bibleGateway)
+        , ((0, xK_n), method stepNT)
+        , ((0, xK_o), method stepOT)
         , ((shiftMask, xK_g), method leoGerman)
         ]
 
@@ -713,6 +715,14 @@ merriamWebster = searchEngine "dict" "http://www.merriam-webster.com/dictionary/
 
 bibleGateway :: SearchEngine
 bibleGateway = searchEngine "bible" "http://www.biblegateway.com/quicksearch/?quicksearch="
+
+stepNT :: SearchEngine
+stepNT = searchEngineF "step-NT" $ \q ->
+  "https://www.stepbible.org/?q=version=ESV|reference=" ++ q ++ "|version=SBLG&options=HVGUN&display=COLUMN"
+
+stepOT :: SearchEngine
+stepOT = searchEngineF "step-OT" $ \q ->
+  "https://www.stepbible.org/?q=version=ESV|version=OHB|reference=" ++ q ++ "|version=LXX&options=HVGUN&display=COLUMN"
 
 leoGerman :: SearchEngine
 leoGerman = searchEngine "leo" "https://dict.leo.org/ende/index_de.html#/search="
