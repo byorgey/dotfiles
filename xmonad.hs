@@ -513,10 +513,15 @@ myKeymap host conf =
     ]
     ++
 
+    -- Swap workspaces
+    [ ("M-C-t", switchHook $ swapNextScreen)  -- Still useful with 2 monitors sometimes
+    ]
+    ++
+
     -- move between screens
     [ ("M-s", switchHook $ nextScreen)
     -- , ("M-w", switchHook $ swapNextScreen)    -- These aren't so useful now with 3 monitors
-    -- , ("M-e", switchHook $ shiftNextScreen)
+    -- , ("M-e", switchHook $ shiftNextScreen)   -- I have M-{w,e,r} bound to 1 screen each
 
     , ("M-S-d d", spawn "~/.screenlayout/dual.sh")
     , ("M-S-d n", spawn "~/local/mybin/display-normal")
