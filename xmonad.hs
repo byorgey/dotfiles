@@ -234,7 +234,7 @@ myTopics host =
       spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
   , ti "fenwick" "research/fenwick"
   , ti "disco" "projects/disco"
-  -- , ti "aoc"   "playing/AoC"
+  , ti "aoc"   "learning/AoC"
   -- , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
   , ti "cf" "learning/cf"
