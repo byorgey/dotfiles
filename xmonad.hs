@@ -247,6 +247,7 @@ myTopics host =
   , ti "AEC"   "projects/AEC"
   , ti "obs" ""
   , ti "teams"  ""
+  , ti "NAQ"   "projects/NAQ/Feb2021"
   , ti "keybase" ""
   ]
   where
