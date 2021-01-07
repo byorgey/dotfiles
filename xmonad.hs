@@ -187,7 +187,7 @@ myTopics host =
       shell
   , ti "xm-hack" "src/xmonad/xmonad-contrib"
   , TI "em-conf" "" (edit "~/.emacs")
-  , TI "music" "" (runInTerm "" "ssh milo")
+  , ti "music" "music"
   , ti "conf" ""
   , ti "misc" ""
   , ti "ref" "documents/reference"
@@ -217,21 +217,21 @@ myTopics host =
   --   (edit "~/documents/bible/study/Hebrews.tex" >>
   --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
+  , ti "150" "teaching/150"
   -- , ti "151" "teaching/151"
-  -- , ti "360" "teaching/360"
-  , ti "410" "teaching/410"
-  -- , ti "150" "teaching/150"
+  , ti "M240" "teaching/M240"
+  , ti "360" "teaching/360"
   -- , ti "365" "teaching/365"
-  , ti "382" "teaching/382"
-  , ti "exp" "teaching/explorations"
-  , ti "TEC" "teaching/TEC"
-  -- , ti "M240" "teaching/M240"
+  -- , ti "382" "teaching/382"
+  -- , ti "410" "teaching/410"
+  -- , ti "exp" "teaching/explorations"
+  -- , ti "TEC" "teaching/TEC"
   , TI "joyal" "writing/translation/series-formelles" $ do
       edit "~/writing/translation/series-formelles/series-formelles.lhs"
       spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
-  , TI "GCBP"  "research/GCBP" $ do
-      edit "~/research/GCBP/talk/GCBP-talk.lhs"
-      spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
+  -- , TI "GCBP"  "research/GCBP" $ do
+  --     edit "~/research/GCBP/talk/GCBP-talk.lhs"
+  --     spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
   , ti "fenwick" "research/fenwick"
   , ti "disco" "projects/disco"
   , ti "aoc"   "learning/AoC"
@@ -245,9 +245,9 @@ myTopics host =
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
   , ti "AEC"   "projects/AEC"
+  , ti "NAQ"   "projects/NAQ/Feb2021"
   , ti "obs" ""
   , ti "teams"  ""
-  , ti "NAQ"   "projects/NAQ/Feb2021"
   , ti "keybase" ""
   ]
   where
