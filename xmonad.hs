@@ -525,6 +525,7 @@ myKeymap host conf =
     -- , ("M-e", switchHook $ shiftNextScreen)   -- I have M-{w,e,r} bound to 1 screen each
 
     , ("M-S-d d", spawn "~/.screenlayout/dual.sh")
+    , ("M-S-d h", spawn "~/.screenlayout/hybrid.sh")
     , ("M-S-d n", spawn "~/local/mybin/display-normal")
 
     -- Move the current window to the "view" workspace and switch to
