@@ -34,8 +34,6 @@
     smart-compile
     rainbow-delimiters
     moz
-    ; haskell-mode
-    dante
     attrap
     idris-mode
     ghc
@@ -58,6 +56,18 @@
     polymode
     poly-markdown
     auto-yasnippet
+    vimish-fold
+    which-key
+    ; Haskell
+    lsp-mode
+    lsp-ui
+    lsp-ivy
+    company-lsp
+    haskell-mode
+    lsp-haskell
+    haskell-snippets
+    ormolu
+    ; dante
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -214,7 +224,7 @@
     (beginning-of-line (or (and arg (1+ arg)) 2))
     (if (and arg (not (= 1 arg))) (message "%d lines copied" arg)))
 
-(global-set-key (kbd "C-c C-k") 'copy-line)
+; (global-set-key (kbd "C-c C-k") 'copy-line)
 
 ; Align paragraph on =
 (defun align-on-equals ()
@@ -378,6 +388,7 @@
    (quote
     (markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
  '(perl-indent-level 2)
+ '(safe-local-variable-values (quote ((dante-methods stack))))
  '(scroll-bar-mode nil)
  '(send-mail-function (quote sendmail-send-it))
  '(sendmail-program "/usr/bin/msmtp")
@@ -697,6 +708,12 @@
 ; (global-set-key (kbd "H-w") #'aya-create)
 ; (global-set-key (kbd "H-y") #'aya-expand)
 
+(global-set-key (kbd "C-c C-f") #'vimish-fold)
+(global-set-key (kbd "C-c C-d") #'vimish-fold-delete)
+
+(global-set-key (kbd "C-c C-k n") 'kattis-new)
+(global-set-key (kbd "C-c C-k t") 'kattis-test)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Grading/feedback
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -740,25 +757,129 @@
   ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  Haskell-mode & dante
+;; Kattis
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package dante
-  :ensure t
-  :after haskell-mode
-  :commands 'dante-mode
+(require 'ansi-color)
+(defun display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
+(defun kattis-new (problem lang)
+  "Start a new solution to a Kattis problem."
+  (interactive "sProblem name: \nsLanguage: ")
+  (cd "~/learning/Kattis")
+  (shell-command (concat "kattis new " problem " " lang))
+  (find-file (concat (downcase problem) "/" problem "." lang)))
+
+(defun kattis-test ()
+  "Test the Kattis solution in the current buffer."
+  (interactive)
+  (shell-command (concat "kattis test " (file-name-nondirectory (buffer-file-name)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  Haskell-mode, LSP
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package lsp-mode
+  :commands (lsp lsp-execute-code-action)
+  :hook ((go-mode . lsp-deferred)
+         (lsp-mode . lsp-enable-which-key-integration)
+         (lsp-mode . lsp-diagnostics-modeline-mode))
+  :bind ("C-c C-c" . #'lsp-execute-code-action)
+  :custom
+  (lsp-diagnostics-modeline-scope :project)
+  (lsp-file-watch-threshold 5000)
+  (lsp-enable-file-watchers nil))
+
+(use-package lsp-ui
+  :custom
+  (lsp-ui-doc-delay 0.75)
+  (lsp-ui-doc-max-height 10)
+  :after lsp-mode)
+
+(use-package lsp-ivy
+  :after (ivy lsp-mode))
+
+(use-package company-lsp
+  :disabled
+  :custom (company-lsp-enable-snippet t)
+  :after (company lsp-mode))
+
+(use-package haskell-mode
+
+  :config
+  (defcustom haskell-formatter 'stylish
+    "The Haskell formatter to use. One of: 'ormolu, 'stylish, nil. Set it per-project in .dir-locals."
+    :safe 'symbolp)
+
+  (defun haskell-smart-format ()
+    "Format a buffer based on the value of 'haskell-formatter'."
+    (interactive)
+    (cl-ecase haskell-formatter
+      ('ormolu (ormolu-format-buffer))
+      ('stylish (haskell-mode-stylish-buffer))
+      (nil nil)
+      ))
+
+  (defun haskell-switch-formatters ()
+    "Switch from ormolu to stylish-haskell, or vice versa."
+    (interactive)
+    (setq haskell-formatter
+          (cl-ecase haskell-formatter
+            ('ormolu 'stylish)
+            ('stylish 'ormolu)
+            (nil nil))))
+
+  ;; haskell-mode doesn't know about newer GHC features.
+  (let ((new-extensions '("QuantifiedConstraints"
+                          "DerivingVia"
+                          "BlockArguments"
+                          "DerivingStrategies"
+                          "StandaloneKindSignatures"
+                          "ImportQualifiedPost"
+                          )))
+    (setq
+     haskell-ghc-supported-extensions
+     (append haskell-ghc-supported-extensions new-extensions)))
+
+  :bind (("C-c h c" . haskell-cabal-visit-file)
+         ("C-c h i" . haskell-navigate-imports)
+         ("C-c h I" . haskell-navigate-imports-return))
+
   :init
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;; OR:
-  ;; (add-hook 'haskell-mode-hook 'flymake-mode)
-  (add-hook 'haskell-mode-hook 'dante-mode)
   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
   )
 
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; indentation
+(use-package haskell-snippets
+  :after (haskell-mode yasnippet)
+  :defer)
 
-(add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode)))
+(use-package lsp-haskell
+  :hook (haskell-mode . lsp)
+  :custom
+  (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
+  (lsp-haskell-process-args-hie '())
+  )
+
+(use-package ormolu)
+
+;; (use-package dante
+;;   :ensure t
+;;   :after haskell-mode
+;;   :commands 'dante-mode
+;;   :init
+;;   (add-hook 'haskell-mode-hook 'flycheck-mode)
+;;   ;; OR:
+;;   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
+;;   (add-hook 'haskell-mode-hook 'dante-mode)
+;;   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+;;   )
+
+;;   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;   ;; indentation
+
+;; (add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; keymap
