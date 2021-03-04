@@ -248,6 +248,7 @@ myTopics host =
   , ti "NAQ"   "projects/NAQ/Feb2021"
   , ti "obs" ""
   , ti "teams"  ""
+  , TI "discord" "" $ spawnOn "discord" "discord"
   , ti "keybase" ""
   ]
   where
@@ -350,6 +351,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
       , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class")
       , NS "disco" (customTerm ++ " -title disco -e stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
       , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark")
+      , NS "python" (customTerm ++ " -title python -e python3 -i") (title =? "python")
       ]
 
 myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
@@ -432,7 +434,7 @@ myKeymap host conf =
     , ("M-a w", namedScratchpadAction scratchpads "timer")
     , ("M-a p", namedScratchpadAction scratchpads "ping")
     , ("M-a b", namedScratchpadAction scratchpads "blink")
-    , ("M-a h", namedScratchpadAction scratchpads "hip")
+    , ("M-a h", namedScratchpadAction scratchpads "python")
     , ("M-a o", namedScratchpadAction scratchpads "ozark")
     ]
 
