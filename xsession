@@ -11,7 +11,7 @@ xsetroot -cursor_name left_ptr
 export PATH=$HOME/local/bin:/usr/local/bin:$PATH
 export BROWSER=firefox
 
-keynav &
+# keynav &
 if [ `hostname` = 'hypatia' ]; then
   source $HOME/.screenlayout/big-big-small.sh
 fi
