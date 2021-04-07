@@ -313,6 +313,13 @@
 
 (require 'whitespace)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; CFDG mode
+
+(require 'cfdg3-mode)
+(autoload 'cfdg3-mode "cfdg3-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.cfdg\\'" . cfdg3-mode))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom variables
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -1178,7 +1185,7 @@
   :innermodes '(poly-haskell-latex-innermode))
 
 (add-to-list 'auto-mode-alist '("\\.tex\\'" . poly-latex-haskell-mode))
-(add-to-list 'auto-mode-alist '("\\.lhs\\'" . poly-latex-haskell-mode))
+;; (add-to-list 'auto-mode-alist '("\\.lhs\\'" . poly-latex-haskell-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Unused stuff
