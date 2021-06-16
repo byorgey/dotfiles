@@ -181,6 +181,7 @@ myTopics host =
   , ti "write" "writing"
   , TI "org" "notes"
     (edit "--name org ~/notes/journal.org -f vc-status -f other-window -f toggle-window-split")
+  , TI "Roam" "" (spawnOn "Roam" "roam-research")
   , TI "draw" "" (spawnOn "draw" "inkscape")
   , TI "xm-conf" ".xmonad" $ do
       edit "~/.xmonad/xmonad.hs"
@@ -560,6 +561,7 @@ myKeymap host conf =
     , ("M-x t", spawn "xclock -update 1")                       -- (0)
     , ("M-x S-g", spawn "javaws ~/playing/go/cgoban.jnlp")      -- (0)
     , ("M-x n", goto' "org")
+    , ("M-x r", goto' "Roam")
     , ("M-x e", switchHook $ runOrRaise "evince" (className =? "Evince"))
     , ("M-x l", spawn "evince ~/documents/personal/liturgy/Psalm90.pdf")
 
