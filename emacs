@@ -620,6 +620,7 @@
       ("Microsoft YaHei" "Microsoft YaHei UI" "Symbola")))))
  '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
  '(user-mail-address "yorgey@hendrix.edu")
+ '(vimish-fold-marks (quote ("-- {{{" . "-- }}}")))
  '(whitespace-style
    (quote
     (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
@@ -725,6 +726,8 @@
 
 (global-set-key (kbd "C-c C-f") #'vimish-fold)
 (global-set-key (kbd "C-c C-d") #'vimish-fold-delete)
+
+(add-hook 'find-file-hooks 'vimish-fold-from-marks)
 
 (global-set-key (kbd "C-c C-k n") 'kattis-new)
 (global-set-key (kbd "C-c C-k t") 'kattis-test)
