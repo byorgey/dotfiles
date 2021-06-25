@@ -436,7 +436,7 @@ myKeymap host conf =
     , ("M-a p", namedScratchpadAction scratchpads "ping")
     , ("M-a b", namedScratchpadAction scratchpads "blink")
     , ("M-a h", namedScratchpadAction scratchpads "python")
-    , ("M-a o", namedScratchpadAction scratchpads "ozark")
+    , ("M-a o", namedScratchpadAction scratchpads "disco")
     ]
 
     -- sync using Unison in a new floating window, but only on my laptop
