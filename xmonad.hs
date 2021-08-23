@@ -250,6 +250,7 @@ myTopics host =
   , ti "obs" ""
   , ti "teams"  ""
   , TI "discord" "" $ spawnOn "discord" "discord"
+  , ti "swarm" "projects/swarm"
   , ti "keybase" ""
   ]
   where
