@@ -19,3 +19,5 @@
 	default = simple
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main
