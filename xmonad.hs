@@ -369,6 +369,10 @@ myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
   , ppSort   = fmap (namedScratchpadFilterOutWorkspace.) DO.getSortByOrder
   , ppHiddenNoWindows = const ""
   }
+  where
+    battery :: Logger
+    battery = logCmd "/usr/bin/acpi | tail -n 1 | sed -r 's/.*?: (.*%).*/\\1/; s/[dD]ischarging, ([0-9]+%)/\\1-/; s/[cC]harging, ([0-9]+%)/\\1+/; s/[cC]harged, //'"
+
 
 -- my custom keybindings.
 myKeys h host = myKeymap host (byorgeyConfig h host)
