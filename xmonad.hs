@@ -709,6 +709,7 @@ mySearchMap method = M.fromList $                               -- (0b)
         , ((0, xK_n), method stepNT)
         , ((0, xK_o), method stepOT)
         , ((shiftMask, xK_g), method leoGerman)
+        , ((shiftMask, xK_k), method kattis)
         ]
 
 -- Search Perseus for ancient Greek dictionary entries
@@ -737,6 +738,9 @@ stepOT = searchEngineF "step-OT" $ \q ->
 
 leoGerman :: SearchEngine
 leoGerman = searchEngine "leo" "https://dict.leo.org/ende/index_de.html#/search="
+
+kattis :: SearchEngine
+kattis = searchEngine "kattis" "https://open.kattis.com/problems/"
 
 -- Prompt search: get input from the user via a prompt, then
 --   run the search in firefox and automatically switch to the web
