@@ -96,6 +96,8 @@
 ;; A few other packages
 (require 'beeminder)
 
+(load-file "/home/brent/local/lib/emacs/swarm-mode.el")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -316,9 +318,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CFDG mode
 
-(require 'cfdg3-mode)
-(autoload 'cfdg3-mode "cfdg3-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.cfdg\\'" . cfdg3-mode))
+;; (require 'cfdg3-mode)
+;; (autoload 'cfdg3-mode "cfdg3-mode" nil t)
+;; (add-to-list 'auto-mode-alist '("\\.cfdg\\'" . cfdg3-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom variables
@@ -330,8 +332,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(LaTeX-math-list
-   (quote
-    ((38 "land")
+   '((38 "land")
      (124 "lor")
      (right "Rightarrow")
      (up "iff")
@@ -347,23 +348,20 @@
      (33 "neg")
      (35 "frac")
      (36 "sum")
-     (34 "dots"))))
- '(agda-input-user-translations (quote (("bB" "𝔹"))))
- '(agda2-include-dirs (quote (".")))
+     (34 "dots")))
+ '(agda-input-user-translations '(("bB" "𝔹")))
+ '(agda2-include-dirs '("."))
  '(agda2-program-args
    (if
        (equal
         (system-name)
         "hypatia")
-       (quote
-        ("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS"))
-     (quote
-      ("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS"))))
+       '("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS")
+     '("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-default-filter-days 2)
  '(beeminder-everyday-goals-list
-   (quote
-    (time-with-god work-journal jn dishes ac-liturgy morning itch)))
+   '(time-with-god work-journal jn dishes ac-liturgy morning itch))
  '(beeminder-username "byorgey")
  '(company-ghc-show-info t)
  '(compilation-always-kill t)
@@ -372,13 +370,12 @@
  '(darcsum-whatsnew-switches "-l")
  '(delete-selection-mode nil)
  '(face-font-family-alternatives
-   (quote
-    (("arial black" "arial" "DejaVu Sans")
+   '(("arial black" "arial" "DejaVu Sans")
      ("arial" "DejaVu Sans")
      ("courier" "Monospace")
      ("monaco" "Monospace")
      ("xiki" "verdana")
-     ("verdana" "DejaVu Sans"))))
+     ("verdana" "DejaVu Sans")))
  '(font-lock-keywords-case-fold-search t t)
  '(global-font-lock-mode t nil (font-lock))
  '(gnuserv-program (concat exec-directory "/gnuserv"))
@@ -387,30 +384,30 @@
  '(haskell-process-log t)
  '(haskell-process-path-ghci "ghci")
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-type 'stack-ghci)
  '(haskell-program-name "ghci \"+.\"")
- '(haskell-stylish-on-save t)
  '(haskell-tags-on-save t)
- '(ido-ignore-files
-   (quote
-    ("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$")))
- '(ido-mode (quote both) nil (ido))
+ '(ido-ignore-files '("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$"))
+ '(ido-mode 'both nil (ido))
  '(load-home-init-file t t)
+ '(lsp-haskell-formatting-provider "fourmolu")
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
- '(org-agenda-files (quote ("~/notes/")))
+ '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   (quote
-    (markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete)))
+   '(markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
- '(safe-local-variable-values (quote ((dante-methods stack))))
+ '(safe-local-variable-values
+   '((lsp-haskell-formatting-provider "stylish-haskell")
+     (lsp-haskell-formatting-provider "stylish")
+     (haskell-formatter 'stylish)
+     (dante-methods stack)))
  '(scroll-bar-mode nil)
- '(send-mail-function (quote sendmail-send-it))
+ '(send-mail-function 'sendmail-send-it)
  '(sendmail-program "/usr/bin/msmtp")
  '(show-trailing-whitespace t)
  '(smart-compile-alist
-   (quote
-    (("\\.lhs$" . "./build.sh")
+   '(("\\.lhs$" . "./build.sh")
      (emacs-lisp-mode emacs-lisp-byte-compile)
      (html-mode browse-url-of-buffer)
      (nxhtml-mode browse-url-of-buffer)
@@ -428,13 +425,12 @@
      ("\\.texi$" . "makeinfo %f")
      ("\\.mp$" . "mptopdf %f")
      ("\\.pl$" . "perl %f")
-     ("\\.rb$" . "ruby %f"))))
+     ("\\.rb$" . "ruby %f")))
  '(tex-dvi-view-command "xdvi -s 5")
  '(tex-start-commands "")
  '(tool-bar-mode nil)
  '(unicode-fonts-block-font-mapping
-   (quote
-    (("Aegean Numbers"
+   '(("Aegean Numbers"
       ("Noto Sans Symbols" "Aegean" "Symbola" "Quivira" "Code2001" "Everson Mono:weight=bold" "ALPHABETUM Unicode"))
      ("Alchemical Symbols"
       ("Noto Sans Symbols" "Symbola" "Quivira" "Everson Mono:weight=bold"))
@@ -617,16 +613,14 @@
      ("Variation Selectors Supplement"
       ("BabelStone Modern" "BabelStone Han"))
      ("Vertical Forms"
-      ("Microsoft YaHei" "Microsoft YaHei UI" "Symbola")))))
- '(unicode-fonts-fallback-font-list (quote ("Symbola" "Quivira" "DejaVu Sans Mono")))
+      ("Microsoft YaHei" "Microsoft YaHei UI" "Symbola"))))
+ '(unicode-fonts-fallback-font-list '("Symbola" "Quivira" "DejaVu Sans Mono"))
  '(user-mail-address "yorgey@hendrix.edu")
- '(vimish-fold-marks (quote ("-- {{{" . "-- }}}")))
+ '(vimish-fold-marks '("-- {{{" . "-- }}}"))
  '(whitespace-style
-   (quote
-    (face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark)))
+   '(face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark))
  '(writegood-weasel-words
-   (quote
-    ("many" "much" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course" "really" "nice" "in fact"))))
+   '("many" "much" "various" "very" "fairly" "several" "extremely" "exceedingly" "quite" "remarkably" "few" "surprisingly" "mostly" "largely" "huge" "tiny" "are a number" "is a number" "excellent" "interestingly" "significantly" "substantially" "clearly" "vast" "relatively" "completely" "literally" "not rocket science" "outside the box" "note that" "a number of" "trivial" "trivially" "not hard" "easy" "easily" "clear" "clearly" "obvious" "obviously" "of course" "really" "nice" "in fact")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Custom faces, font lock, etc.
@@ -827,8 +821,8 @@
 (use-package haskell-mode
 
   :config
-  (defcustom haskell-formatter 'stylish
-    "The Haskell formatter to use. One of: 'ormolu, 'stylish, nil. Set it per-project in .dir-locals."
+  (defcustom haskell-formatter 'fourmolu
+    "The Haskell formatter to use. One of: 'ormolu, 'fourmolu, 'stylish, nil. Set it per-project in .dir-locals."
     :safe 'symbolp)
 
   (defun haskell-smart-format ()
@@ -836,18 +830,10 @@
     (interactive)
     (cl-ecase haskell-formatter
       ('ormolu (ormolu-format-buffer))
+      ('fourmolu (fourmolu-format-buffer))
       ('stylish (haskell-mode-stylish-buffer))
       (nil nil)
       ))
-
-  (defun haskell-switch-formatters ()
-    "Switch from ormolu to stylish-haskell, or vice versa."
-    (interactive)
-    (setq haskell-formatter
-          (cl-ecase haskell-formatter
-            ('ormolu 'stylish)
-            ('stylish 'ormolu)
-            (nil nil))))
 
   ;; haskell-mode doesn't know about newer GHC features.
   (let ((new-extensions '("QuantifiedConstraints"
@@ -880,7 +866,10 @@
   (lsp-haskell-process-args-hie '())
   )
 
-(use-package ormolu)
+(defun lsp-haskell-install-save-hooks ()
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'haskell-mode-hook #'lsp-haskell-install-save-hooks)
 
 ;; (use-package dante
 ;;   :ensure t
@@ -929,17 +918,6 @@
 
 ;; (font-lock-add-keywords 'haskell-mode
 ;;   '(("undefined" . font-lock-warning-face)))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; insert LANGUAGE pragmas
-
-(defun insert-language-pragma (pragma)
-  "Insert a LANGUAGE pragma at the top of the file."
-  (interactive "SPragma: ")  ; ask for the name of the pragma
-  (let ((string  (format "{-# LANGUAGE %s #-}" pragma)))
-    (save-excursion
-      (goto-char (point-min))
-      (insert (concat string "\n")))))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; delete whitespace forward
