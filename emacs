@@ -398,9 +398,9 @@
    '(markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
-   '((lsp-haskell-formatting-provider "stylish-haskell")
-     (lsp-haskell-formatting-provider "stylish")
-     (haskell-formatter 'stylish)
+   '((lsp-haskell-formatting-provider . "fourmolu")
+     (lsp-haskell-formatting-provider . "stylish-haskell")
+     (lsp-haskell-formatting-provider . "stylish")
      (dante-methods stack)))
  '(scroll-bar-mode nil)
  '(send-mail-function 'sendmail-send-it)
@@ -821,19 +821,6 @@
 (use-package haskell-mode
 
   :config
-  (defcustom haskell-formatter 'fourmolu
-    "The Haskell formatter to use. One of: 'ormolu, 'fourmolu, 'stylish, nil. Set it per-project in .dir-locals."
-    :safe 'symbolp)
-
-  (defun haskell-smart-format ()
-    "Format a buffer based on the value of 'haskell-formatter'."
-    (interactive)
-    (cl-ecase haskell-formatter
-      ('ormolu (ormolu-format-buffer))
-      ('fourmolu (fourmolu-format-buffer))
-      ('stylish (haskell-mode-stylish-buffer))
-      (nil nil)
-      ))
 
   ;; haskell-mode doesn't know about newer GHC features.
   (let ((new-extensions '("QuantifiedConstraints"
