@@ -67,7 +67,6 @@
     lsp-haskell
     haskell-snippets
     ormolu
-    ; dante
    ) "a list of packages to ensure are installed at launch.")
 
 (require 'cl)
@@ -400,8 +399,7 @@
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
      (lsp-haskell-formatting-provider . "stylish-haskell")
-     (lsp-haskell-formatting-provider . "stylish")
-     (dante-methods stack)))
+     (lsp-haskell-formatting-provider . "stylish")))
  '(scroll-bar-mode nil)
  '(send-mail-function 'sendmail-send-it)
  '(sendmail-program "/usr/bin/msmtp")
@@ -858,53 +856,8 @@
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'haskell-mode-hook #'lsp-haskell-install-save-hooks)
 
-;; (use-package dante
-;;   :ensure t
-;;   :after haskell-mode
-;;   :commands 'dante-mode
-;;   :init
-;;   (add-hook 'haskell-mode-hook 'flycheck-mode)
-;;   ;; OR:
-;;   ;; (add-hook 'haskell-mode-hook 'flymake-mode)
-;;   (add-hook 'haskell-mode-hook 'dante-mode)
-;;   (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-;;   )
-
-;;   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;   ;; indentation
-
-;; (add-hook 'haskell-mode-hook (lambda () (haskell-indentation-mode)))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; keymap
-
-;; (eval-after-load 'haskell-mode
-;;           '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
-
-;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-;;   (setenv "PATH" (concat my-cabal-path ":" (getenv "PATH")))
-;;   (add-to-list 'exec-path my-cabal-path))
-
-;; (eval-after-load 'haskell-mode '(progn
-;;   (define-key haskell-mode-map (kbd "C-c n") 'haskell-goto-next-error)
-;;   (define-key haskell-mode-map (kbd "C-c p") 'haskell-goto-prev-error)
-;;   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-file)
-;;   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-;;   (define-key haskell-mode-map (kbd "C-c C-n C-t") 'haskell-process-do-type)
-;;   (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
-;;   (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
-;;   (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
-;; (eval-after-load 'haskell-cabal '(progn
-;;   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-;;   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-;;   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-;;   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; make undefined red
-
-;; (font-lock-add-keywords 'haskell-mode
-;;   '(("undefined" . font-lock-warning-face)))
+(font-lock-add-keywords 'haskell-mode
+  '(("undefined" . font-lock-warning-face)))
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; delete whitespace forward
@@ -913,28 +866,6 @@
   "*Delete all spaces and tabs after point."
   (interactive "*")
   (delete-region (point) (progn (skip-chars-forward " \t") (point))))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; hpaste
-
-;(when (not (string= system-name "ampersand.seas.upenn.edu"))
-;  (load (expand-file-name "~/local/lib/emacs/hpaste/hpaste.el")))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; ghc-mod
-
-;; (autoload 'ghc-init "ghc" nil t)
-;; (autoload 'ghc-debug "ghc" nil t)
-;; (add-hook 'haskell-mode-hook (lambda () (ghc-init)))
-
-  ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-  ;; company-ghc
-
-;; (require 'company)
-;; (add-hook 'haskell-mode-hook 'company-mode)
-
-;; (add-to-list 'company-backends 'company-ghc)
-
 
   ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
   ;; toggle stylish-on-save
