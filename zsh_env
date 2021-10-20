@@ -3,7 +3,7 @@ setopt ALL_EXPORT
 setopt EXTENDED_GLOB
 setopt NULL_GLOB
 
-PATH="/scratch/local/bin:$HOME/local/bin:$HOME/local/mybin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/stow/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
+PATH="/scratch/local/bin:$HOME/local/bin:$HOME/local/mybin:$HOME/.local/mybin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/stow/bin:$HOME/.gem/ruby/1.9.1/bin:$PATH"
 MANPATH="$HOME/local/man:$MANPATH"
 USE_X_FORWARDING="no"
 TZ="America/Chicago"
