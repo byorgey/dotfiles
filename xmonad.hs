@@ -121,6 +121,7 @@ getHost = do
     "hypatia"   -> Desktop True
     "augustine" -> Laptop True
     "plato"     -> Laptop True
+    "diophantus" -> Laptop True
     _           -> Desktop False
 
 myTerminal, myShell :: String
