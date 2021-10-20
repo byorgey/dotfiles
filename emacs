@@ -33,12 +33,10 @@
     java-snippets
     smart-compile
     rainbow-delimiters
-    moz
+    ;;moz
     attrap
     idris-mode
-    ghc
     darcsum
-    company-ghc
     company
     auto-complete
     markdown-mode
@@ -62,7 +60,6 @@
     lsp-mode
     lsp-ui
     lsp-ivy
-    company-lsp
     haskell-mode
     lsp-haskell
     haskell-snippets
@@ -90,12 +87,13 @@
 
 ;; Custom load path
 (add-to-list 'load-path (expand-file-name "~/local/lib/emacs"))
+(add-to-list 'load-path (expand-file-name "~/.local/lib/emacs"))
 (add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
+(add-to-list 'load-path (expand-file-name "~/.local/share/emacs/site-lisp"))
 
 ;; A few other packages
 (require 'beeminder)
-
-(load-file "/home/brent/local/lib/emacs/swarm-mode.el")
+(require 'swarm-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
@@ -394,7 +392,7 @@
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters moz markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
+   '(markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
@@ -690,7 +688,7 @@
 (global-set-key (kbd "M-<f11>") 'get-firefox-title)
 (global-set-key (kbd "<f11>") 'get-firefox-url)
 (global-set-key (kbd "M-<f12>") 'get-firefox-markdown-link)
-(global-set-key (kbd "<f12>") 'get-firefox-org-link)  ;; mozrepl
+;; (global-set-key (kbd "<f12>") 'get-firefox-org-link)  ;; mozrepl
 
 (global-set-key (kbd "C-c e") 'journal-goto-end)    ;; org-mode
 (global-set-key (kbd "C-c w") 'journal-count-words) ;; org-mode
@@ -916,71 +914,71 @@
 ;; mozrepl
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
+;; (autoload 'moz-minor-mode "moz" "Mozilla Minor and Inferior Mozilla Modes" t)
 
-(add-hook 'javascript-mode-hook 'javascript-custom-setup)
-(defun javascript-custom-setup ()
-  (moz-minor-mode 1))
+;; (add-hook 'javascript-mode-hook 'javascript-custom-setup)
+;; (defun javascript-custom-setup ()
+;;   (moz-minor-mode 1))
 
-(when (not (string= system-name "ampersand.seas.upenn.edu"))
-  (require 'moz))
+;; (when (not (string= system-name "ampersand.seas.upenn.edu"))
+;;   (require 'moz))
 
-(defun jk/moz-get (attr)
-  (comint-send-string (inferior-moz-process) attr)
-  ;; try to give the repl a chance to respond
-  (sleep-for 0 100))
+;; (defun jk/moz-get (attr)
+;;   (comint-send-string (inferior-moz-process) attr)
+;;   ;; try to give the repl a chance to respond
+;;   (sleep-for 0 100))
 
-(defun jk/moz-get-current-url ()
-  (interactive)
-  (jk/moz-get "repl._workContext.content.location.href"))
+;; (defun jk/moz-get-current-url ()
+;;   (interactive)
+;;   (jk/moz-get "repl._workContext.content.location.href"))
 
-(defun jk/moz-get-current-title ()
-  (interactive)
-  (jk/moz-get "repl._workContext.content.document.title"))
+;; (defun jk/moz-get-current-title ()
+;;   (interactive)
+;;   (jk/moz-get "repl._workContext.content.document.title"))
 
-(defun jk/moz-get-current (moz-fun)
-  (funcall moz-fun)
-  ;; doesn't work if repl takes too long to output string
-  (save-excursion
-                  (set-buffer (process-buffer (inferior-moz-process)))
-                  (goto-char (point-max))
-                  (previous-line)
-                  (setq jk/moz-current (buffer-substring-no-properties
-                                        (+ (point-at-bol) (length moz-repl-name) 3)
-                                        (- (point-at-eol) 1))))
-  (message "%s" jk/moz-current)
-  jk/moz-current
-)
+;; (defun jk/moz-get-current (moz-fun)
+;;   (funcall moz-fun)
+;;   ;; doesn't work if repl takes too long to output string
+;;   (save-excursion
+;;                   (set-buffer (process-buffer (inferior-moz-process)))
+;;                   (goto-char (point-max))
+;;                   (previous-line)
+;;                   (setq jk/moz-current (buffer-substring-no-properties
+;;                                         (+ (point-at-bol) (length moz-repl-name) 3)
+;;                                         (- (point-at-eol) 1))))
+;;   (message "%s" jk/moz-current)
+;;   jk/moz-current
+;; )
 
-(defun jk/moz-url ()
-  (interactive)
-  (jk/moz-get-current 'jk/moz-get-current-url)
-  )
+;; (defun jk/moz-url ()
+;;   (interactive)
+;;   (jk/moz-get-current 'jk/moz-get-current-url)
+;;   )
 
-(defun jk/moz-title ()
-  (interactive)
-  (jk/moz-get-current 'jk/moz-get-current-title)
-  )
+;; (defun jk/moz-title ()
+;;   (interactive)
+;;   (jk/moz-get-current 'jk/moz-get-current-title)
+;;   )
 
-(defun get-firefox-title ()
-  (interactive)
-  (insert (jk/moz-title))
-)
+;; (defun get-firefox-title ()
+;;   (interactive)
+;;   (insert (jk/moz-title))
+;; )
 
-(defun get-firefox-url ()
-  (interactive)
-  (insert (jk/moz-url))
-)
+;; (defun get-firefox-url ()
+;;   (interactive)
+;;   (insert (jk/moz-url))
+;; )
 
-(defun get-firefox-markdown-link ()
-  (interactive)
-  (insert (concat "[" (jk/moz-title) "](" (jk/moz-url) ")"))
-)
+;; (defun get-firefox-markdown-link ()
+;;   (interactive)
+;;   (insert (concat "[" (jk/moz-title) "](" (jk/moz-url) ")"))
+;; )
 
-(defun get-firefox-org-link ()
-  (interactive)
-  (insert (concat "[[" (jk/moz-url) "][" (jk/moz-title) "]]"))
-)
+;; (defun get-firefox-org-link ()
+;;   (interactive)
+;;   (insert (concat "[[" (jk/moz-url) "][" (jk/moz-title) "]]"))
+;; )
 
 ;; Templates used by the guy who wrote the above code.  Keeping it
 ;; here in case I ever want to use something like this.
