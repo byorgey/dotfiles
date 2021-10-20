@@ -167,11 +167,6 @@ byorgeyConfig h host =
 myUrgencyHook = withUrgencyHook dzenUrgencyHook                 -- (2)
     { args = ["-bg", "yellow", "-fg", "black"] }
 
-data TopicItem = TI { topicName   :: Topic   -- (22b)
-                    , topicDir    :: Dir
-                    , topicAction :: X ()
-                    }
-
 -- define some custom topics for use with the TopicSpace module.
 myTopics :: Host -> [TopicItem]
 myTopics host =
@@ -273,7 +268,7 @@ editVC :: String -> X ()
 editVC file = edit $ file ++ " -f vc-status -f toggle-window-split"
 
 myTopicNames :: Host -> [Topic]
-myTopicNames = map topicName . myTopics
+myTopicNames = topicNames . myTopics
 
 -- (22b)
 myTopicConfig :: Host -> TopicConfig
@@ -657,8 +652,8 @@ myKeymap host conf =
     , ("M-d b", diagramsGithub "contrib")
     , ("M-d h", diagramsGithub "haddock")
     , ("M-d r", diagramsGithub "builder")
-    , ("M-d a", github         "diagrams/active")
-    , ("M-d m", github         "diagrams/monoid-extras")
+    , ("M-d a", visitGithub         "diagrams/active")
+    , ("M-d m", visitGithub         "diagrams/monoid-extras")
 
     -- lockdown mode
     , ("M-C-l l", toggleLockdown)
@@ -683,7 +678,7 @@ newCodeWS = withWindowSet $ \w -> do
 -- modified variant of cycleRecentWS from XMonad.Actions.CycleRecentWS (17)
 -- which does not include visible but non-focused workspaces in the cycle
 cycleRecentWS' :: [KeySym] -> KeySym -> KeySym -> X ()
-cycleRecentWS' = cycleWindowSets options
+cycleRecentWS' = cycleWindowSets recentTags
  where options w = map (W.view `flip` w) (recentTags w)
        recentTags w = map W.tag $ W.hidden w ++ [W.workspace (W.current w)]
 
@@ -759,10 +754,10 @@ viewWeb :: X ()
 viewWeb = switchHook $ windows (W.view "web")                   -- (0,0a)
 
 diagramsGithub :: String -> X ()
-diagramsGithub = github . ("diagrams/diagrams-" ++)
+diagramsGithub = visitGithub . ("diagrams/diagrams-" ++)
 
-github :: String -> X ()
-github r = safeSpawn "firefox" ["http://github.com/" ++ r] >> viewWeb
+visitGithub :: String -> X ()
+visitGithub r = safeSpawn "firefox" ["http://github.com/" ++ r] >> viewWeb
 
 -- some nice colors for the prompt windows to match the dzen status bar.
 myXPConfig :: XPConfig
