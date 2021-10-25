@@ -172,7 +172,7 @@ myUrgencyHook = withUrgencyHook dzenUrgencyHook                 -- (2)
 myTopics :: Host -> [TopicItem]
 myTopics host =
   [ TI "web" "" (spawnOn "web" "firefox")
-  , TI "irc" "" (liftIO (threadDelay (5*1000000)) >> ircAction host)
+  , TI "irc" "" (ircAction host)
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
@@ -340,7 +340,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
       [ NS "mixer" (customTerm ++ " -e alsamixer") (title =? "alsamixer")
       , NS "term"  (customTerm ++ " -title term") (title =? "term")
       , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
-      , NS "fv"    (customTerm ++ " -e /home/brent/local/mybin/fv") (title =? "fv")
+      , NS "fv"    (customTerm ++ " -e /home/brent/.local/mybin/fv") (title =? "fv")
       , NS "ghci"  (customTerm ++ " -title ghci -e /home/brent/.ghcup/bin/ghci") (title =? "ghci")
       , NS "top"   (customTerm ++ " -e htop") (title =? "htop")
       , NS "stopwatch" (customTerm ++ " -e utimer -s") (title =? "utimer")

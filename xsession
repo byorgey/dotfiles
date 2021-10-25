@@ -8,21 +8,20 @@
 xmodmap $HOME/.Xmodmap
 xsetroot -cursor_name left_ptr
 
-export PATH=$HOME/local/bin:/usr/local/bin:$PATH
-export BROWSER=firefox
-
 # keynav &
 if [ `hostname` = 'hypatia' ]; then
   source $HOME/.screenlayout/big-big-small.sh
+fi
+if [ `hostname` = 'diophantus' ]; then
+  setxkbmap -option "compose:ralt"
 fi
 source $HOME/.fehbg
 
 eval `ssh-agent`
 urxvt -e ssh-add &
 
-
 redshift -l 35.1:-92.4 &
 # $HOME/src/TagTime/tagtimed.pl &
-run_keybase
 
+export TZ="America/Chicago"
 $HOME/.local/bin/xmonad 
