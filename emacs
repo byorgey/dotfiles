@@ -60,13 +60,9 @@
     lsp-mode
     lsp-ui
     lsp-ivy
-    haskell-mode
     lsp-haskell
     haskell-snippets
-    ormolu
    ) "a list of packages to ensure are installed at launch.")
-
-(require 'cl)
 
 ; method to check if all packages are installed
 (defun packages-installed-p ()
@@ -396,8 +392,7 @@
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
-     (lsp-haskell-formatting-provider . "stylish-haskell")
-     (lsp-haskell-formatting-provider . "stylish")))
+     (lsp-haskell-formatting-provider . "stylish-haskell")))
  '(scroll-bar-mode nil)
  '(send-mail-function 'sendmail-send-it)
  '(sendmail-program "/usr/bin/msmtp")
@@ -786,7 +781,7 @@
   (shell-command (concat "kattis test " (file-name-nondirectory (buffer-file-name)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;;  Haskell-mode, LSP
+;;  LSP, Haskell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (use-package lsp-mode
@@ -813,30 +808,6 @@
   :disabled
   :custom (company-lsp-enable-snippet t)
   :after (company lsp-mode))
-
-(use-package haskell-mode
-
-  :config
-
-  ;; haskell-mode doesn't know about newer GHC features.
-  (let ((new-extensions '("QuantifiedConstraints"
-                          "DerivingVia"
-                          "BlockArguments"
-                          "DerivingStrategies"
-                          "StandaloneKindSignatures"
-                          "ImportQualifiedPost"
-                          )))
-    (setq
-     haskell-ghc-supported-extensions
-     (append haskell-ghc-supported-extensions new-extensions)))
-
-  :bind (("C-c h c" . haskell-cabal-visit-file)
-         ("C-c h i" . haskell-navigate-imports)
-         ("C-c h I" . haskell-navigate-imports-return))
-
-  :init
-  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
-  )
 
 (use-package haskell-snippets
   :after (haskell-mode yasnippet)
@@ -997,7 +968,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (load-file (let ((coding-system-for-read 'utf-8))
-             (shell-command-to-string "agda-mode locate")))
+             (shell-command-to-string "/home/brent/.cabal/bin/agda-mode locate")))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Darcsum
