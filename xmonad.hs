@@ -247,6 +247,9 @@ myTopics host =
   , ti "teams"  ""
   , TI "discord" "" $ spawnOn "discord" "discord"
   , ti "swarm" "projects/swarm"
+  , TI "cpih" "writing/cpih" $ do
+      edit "~/writing/cpih/CPiH.lhs"
+      spawn "evince ~/writing/cpih/CPiH.pdf"
   , ti "keybase" ""
   ]
   where
