@@ -1,5 +1,5 @@
 #!/bin/zsh
-# gnome-power-manager 
+# gnome-power-manager
 # gnome-volume-manager &
 # gnome-settings-daemon &
 
@@ -23,5 +23,9 @@ urxvt -e ssh-add &
 redshift -l 35.1:-92.4 &
 # $HOME/src/TagTime/tagtimed.pl &
 
+# Set some environment variables so they will be in xmonad's environment
+export PATH=$HOME/.ghcup/bin:$HOME/.cabal/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export BROWSER=firefox
 export TZ="America/Chicago"
-$HOME/.local/bin/xmonad 
+
+$HOME/.local/bin/xmonad
