@@ -768,6 +768,7 @@ myXPConfig :: XPConfig
 myXPConfig = def                                                -- (23)
     { fgColor         = "#a8a3f7"
     , bgColor         = "#3f3c6d"
+    , font            = "xft:Monospace:pixelsize=12"
     , promptKeymap    = emacsLikeXPKeymap' myWordSep
     , historyFilter   = deleteConsecutive
     }
