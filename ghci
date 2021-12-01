@@ -4,7 +4,7 @@
 :seti -XDataKinds
 
 :m +Data.Maybe
-:m +Data.List
+import qualified Data.List as L
 :m +Data.Char
 :m +Data.Ord
 :m +Data.Monoid
