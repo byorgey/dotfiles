@@ -117,12 +117,12 @@ getHost :: IO Host
 getHost = do
   hostName <- nodeName `fmap` getSystemID
   return $ case hostName of
-    "hippasus"  -> Desktop True
-    "hypatia"   -> Desktop True
-    "augustine" -> Laptop True
-    "plato"     -> Laptop True
+    "hippasus"   -> Desktop True
+    "hypatia"    -> Desktop True
+    "augustine"  -> Laptop True
+    "plato"      -> Laptop True
     "diophantus" -> Laptop True
-    _           -> Desktop False
+    _            -> Desktop False
 
 myTerminal, myShell :: String
 myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
