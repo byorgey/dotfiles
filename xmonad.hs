@@ -357,7 +357,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
 
 myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
   { ppVisible = dzenColor "blue" "#a8a3f7" . pad
-  , ppExtras = [ date "%a %b %d  %I:%M %p"                      -- (1,28)
+  , ppExtras = [ logCmd "TZ='America/Chicago' date +\"%a %b %d  %I:%M %p\""
                , loadAvg                                        -- (28)
                ]
                ++ (case host of Laptop _ -> [battery]
