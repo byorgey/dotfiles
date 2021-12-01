@@ -70,8 +70,6 @@ alias less="less -R"
 
 alias ssha='eval `ssh-agent` && ssh-add'
 
-eval "$(hub alias -s zsh)"
-
 alias beep2="beep && sleep 0.2 && beep"
 
 hse () { source .hsenv_$1/bin/activate }
