@@ -171,8 +171,8 @@ myUrgencyHook = withUrgencyHook dzenUrgencyHook                 -- (2)
 -- define some custom topics for use with the TopicSpace module.
 myTopics :: Host -> [TopicItem]
 myTopics host =
-  [ TI "web" "" (spawnOn "web" "firefox")
-  , TI "irc" "" (ircAction host)
+  [ TI "web" "" (liftIO (threadDelay (10*1000000)) >> spawnOn "web" "firefox")
+  , TI "irc" "" (liftIO (threadDelay (10*1000000)) >> ircAction host)
   , ti "read" "papers"
   , ti "write" "writing"
   , TI "org" "notes"
