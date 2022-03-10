@@ -8,7 +8,7 @@ alias sz="source ~/.zshrc"
 alias dt="date '+%y-%m-%d'"
 alias s="screen -RR"
 alias sls="screen -ls"
-alias c='cal -3'
+alias c='ncal -3 -b'
 
 alias ls='ls -F'
 alias l='ls'

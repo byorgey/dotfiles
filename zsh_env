@@ -18,7 +18,7 @@ WORDCHARS='*?_[]~=&;!#$%^(){}'
 LC_ALL='en_US.utf8'
 LANG='en_US.utf8'
 LC_CTYPE=C
-TEXINPUTS=.:$HOME/local/texmf//:
+TEXINPUTS=.:$HOME/local/texmf//:$HOME/.local/texmf//:
 MUTT_EDITOR='emacs -nw'
 PACMAN=pacman
 TERM=rxvt-unicode
