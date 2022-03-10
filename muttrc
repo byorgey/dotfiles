@@ -1,20 +1,22 @@
-set imap_user = $LOGNAME 
+set sendmail = "/bin/msmtp"
+
+set imap_user = $LOGNAME
 # set spoolfile=imaps://$LOGNAME.mail.seas.upenn.edu/INBOX
 # set folder=imaps://$LOGNAME.mail.seas.upenn.edu/~/Mail/
 # set spoolfile=~/Maildir/.mbox
 set folder=~/Maildir
 
-source ~/.mutt/colors
+# source ~/.mutt/colors
 
-set certificate_file=~/.mutt/certificates
-source ~/.mutt/aliases
-set alias_file=~/.mutt/aliases
+# set certificate_file=~/.mutt/certificates
+# source ~/.mutt/aliases
+# set alias_file=~/.mutt/aliases
 
 # set up gpg
-source /usr/local/doc/mutt/samples/gpg.rc
+# source /usr/local/doc/mutt/samples/gpg.rc
 
 # lists
-source ~/.mutt/lists
+# source ~/.mutt/lists
 
 # this is totally sweet
 set query_command = "mutt_ldap_query.pl '%s'"
@@ -28,7 +30,7 @@ set copy
 #set attribution="%f said:\n"
 set editor="emacs -nw"
 #set strict_threads      # don't take re: xxxx too seriously
-set record=+.sent/      # where to save copies of my outgoing messages
+# set record=+.sent/      # where to save copies of my outgoing messages
 set edit_hdrs           # let me edit those headers!
 set nosave_empty
 set sort=threads
