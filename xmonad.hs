@@ -98,6 +98,7 @@ import           XMonad.Util.Loggers
 import           XMonad.Util.EZConfig
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Run
+import           XMonad.Util.WorkspaceCompare
 
 import qualified XMonad.Util.ExtensibleState           as XS
 
@@ -366,7 +367,7 @@ myDynamicLog h host = dynamicLogWithPP $ byorgeyPP              -- (1)
   , ppOrder  = \(ws:l:t:exs) -> [t,l,ws]++exs                   -- (1)
   , ppOutput = hPutStrLn h                                      -- (1,31)
   , ppTitle  = shorten 60
-  , ppSort   = fmap (namedScratchpadFilterOutWorkspace.) DO.getSortByOrder
+  , ppSort   = fmap (filterOutWs [scratchpadWorkspaceTag] .) DO.getSortByOrder
   , ppHiddenNoWindows = const ""
   }
   where
@@ -400,6 +401,8 @@ moveMode f = submap . M.fromList $
                      ]
       , (c, m) <- [(big, 0), (small, controlMask)]
     ]
+
+hiddenNonEmpty = hiddenWS :&: Not emptyWS
 
 myKeymap :: Host -> XConfig l -> [(String, X ())]
 myKeymap host conf =
@@ -476,12 +479,12 @@ myKeymap host conf =
     -- rotate workspaces.
 --    [ ("M-C-<R>",   nextWS )                   -- (16)
 --    , ("M-C-<L>",   prevWS )                   --  "
-    [ ("M-C-<R>",   DO.swapWith Next NonEmptyWS)                -- (22e)
-    , ("M-C-<L>",   DO.swapWith Prev NonEmptyWS)                -- "
-    , ("M-S-<R>",   DO.shiftTo Next HiddenNonEmptyWS)           -- "
-    , ("M-S-<L>",   DO.shiftTo Prev HiddenNonEmptyWS)           -- "
-    , ("M-<R>",     delay >> switchHook (DO.moveTo Next HiddenNonEmptyWS))   -- "
-    , ("M-<L>",     delay >> switchHook (DO.moveTo Prev HiddenNonEmptyWS))   -- "
+    [ ("M-C-<R>",   DO.swapWith Next (Not emptyWS))                -- (22e)
+    , ("M-C-<L>",   DO.swapWith Prev (Not emptyWS))                -- "
+    , ("M-S-<R>",   DO.shiftTo Next hiddenNonEmpty)           -- "
+    , ("M-S-<L>",   DO.shiftTo Prev hiddenNonEmpty)           -- "
+    , ("M-<R>",     delay >> switchHook (DO.moveTo Next hiddenNonEmpty))   -- "
+    , ("M-<L>",     delay >> switchHook (DO.moveTo Prev hiddenNonEmpty))   -- "
     , ("M-f",       switchHook $ newCodeWS)                   -- see below
 
 
@@ -505,7 +508,7 @@ myKeymap host conf =
                   $ cycleRecentWS' [xK_Super_L, xK_Shift_L] xK_Tab xK_grave)
 
     -- close all windows on current workspace and move to next
-    , ("M-S-z", switchHook $ killAll >> DO.moveTo Prev HiddenNonEmptyWS)     -- (22, 22e)
+    , ("M-S-z", switchHook $ killAll >> DO.moveTo Prev hiddenNonEmpty)     -- (22, 22e)
 
     -- dynamic workspace bindings
     , ("M-n", addWorkspacePrompt myXPConfig)                    -- (22c)
