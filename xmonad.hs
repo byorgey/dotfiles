@@ -27,6 +27,7 @@ import           XMonad.Hooks.ManageHelpers
                                    --      windows in the middle of the
                                    --      screen
 import           XMonad.Hooks.EwmhDesktops
+import           XMonad.Hooks.WorkspaceHistory
 
 -- Layout ----------------------------------------------------
 
@@ -147,7 +148,9 @@ byorgeyConfig h host =
        , normalBorderColor  = "#dddddd"
        , focusedBorderColor = "#0033ff"
                                                                 -- (22)
-       , logHook            = myDynamicLog h host
+       , logHook            = do
+           myDynamicLog h host
+           workspaceHistoryHookExclude [scratchpadWorkspaceTag]
        , manageHook         = manageSpawn
                               <+> myManageHook
                               <+> manageHook def
@@ -282,7 +285,6 @@ myTopicConfig host = def
   { topicDirs = M.fromList $ map (\(TI n d _) -> (n,d)) myTopics'
   , defaultTopicAction = const (return ())
   , defaultTopic = "web"
-  , maxTopicHistory = 10
   , topicActions = M.fromList $ map (\(TI n _ a) -> (n,a)) myTopics'
   }
  where myTopics' = myTopics host
