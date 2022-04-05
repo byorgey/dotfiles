@@ -347,7 +347,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
       [ NS "mixer" (customTerm ++ " -e alsamixer") (title =? "alsamixer")
       , NS "term"  (customTerm ++ " -title term") (title =? "term")
       , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
-      , NS "fv"    (customTerm ++ " -e /home/brent/.local/mybin/fv") (title =? "fv")
+      , NS "fv"    (customTerm ++ " -e /home/brent/local/mybin/fv") (title =? "fv")
       , NS "ghci"  (customTerm ++ " -title ghci -e /home/brent/.ghcup/bin/ghci") (title =? "ghci")
       , NS "top"   (customTerm ++ " -e htop") (title =? "htop")
       , NS "cal"   (customTerm ++ " -title cal -e sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
@@ -425,7 +425,7 @@ myKeymap host conf =
 
     ++
     [ ("M-S-x", spawnShell host)                          -- (0)
-    , ("M-S-b", spawn "$HOME/.local/mybin/urxvt-big")
+    , ("M-S-b", spawn "$HOME/local/mybin/urxvt-big")
     , ("M-g",   promptedGoto host)
     , ("M-C-g", promptedGotoOtherScreen host)
     , ("M-S-g", promptedShift)
