@@ -21,7 +21,6 @@ LC_CTYPE=C
 TEXINPUTS=.:$HOME/local/texmf//:$HOME/.local/texmf//:
 MUTT_EDITOR='emacs -nw'
 PACMAN=pacman
-TERM=rxvt-unicode
 STOW=$HOME/local/stow
 _JAVA_AWT_WM_NONREPARENTING=1
 source $HOME/.ghcup/env
