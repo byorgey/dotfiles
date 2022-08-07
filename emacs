@@ -388,7 +388,7 @@
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
+   '(yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
@@ -779,6 +779,18 @@
   "Test the Kattis solution in the current buffer."
   (interactive)
   (shell-command (concat "kattis test " (file-name-nondirectory (buffer-file-name)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;  YAML
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package lsp-yaml
+  :after lsp-mode
+  :config
+  (add-hook 'yaml-mode-hook #'lsp)
+  :custom
+  (lsp-yaml-schemas '((https://raw.githubusercontent.com/swarm-game/swarm/scheme/data/schema/scenario.json . '["data/scenarios/*.yaml" "data/scenarios/**/*.yaml"]))))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  LSP, Haskell
