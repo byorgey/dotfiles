@@ -218,9 +218,9 @@ myTopics host =
   --   (edit "~/documents/bible/study/Hebrews.tex" >>
   --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
   , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-  -- , ti "150" "teaching/150"
+  , ti "150" "teaching/150"
   -- , ti "151" "teaching/151"
-  , ti "M240" "teaching/M240"
+  -- , ti "M240" "teaching/M240"
   -- , ti "360" "teaching/360"
   -- , ti "CSO" "teaching/322"
   -- , ti "FP" "teaching/365"
