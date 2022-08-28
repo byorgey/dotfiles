@@ -181,7 +181,7 @@ myTopics host =
   , ti "write" "writing"
   , TI "org" "notes"
     (edit "--name org ~/notes/journal.org -f vc-status -f other-window -f toggle-window-split")
-  , TI "Roam" "" (spawnOn "Roam" "roam-research")
+  , TI "Roam" "" (spawnOn "Roam" "roam-research --no-sandbox")
   , TI "draw" "" (spawnOn "draw" "inkscape")
   , TI "xm-conf" ".xmonad" $ do
       edit "~/.xmonad/xmonad.hs"
