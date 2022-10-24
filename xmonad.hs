@@ -254,6 +254,7 @@ myTopics host =
   , TI "cpih" "writing/cpih" $ do
       edit "~/writing/cpih/CPiH.lhs"
       spawn "evince ~/writing/cpih/CPiH.pdf"
+  , ti "cai" "documents/Hendrix/ac-integrity/22L"
   , ti "keybase" ""
   ]
   where
