@@ -388,7 +388,7 @@
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
+   '(rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
