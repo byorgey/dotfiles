@@ -252,7 +252,7 @@ myTopics host =
   , TI "discord" "" $ spawnOn "discord" "discord"
   , ti "swarm" "projects/swarm"
   , TI "cpih" "writing/cpih" $ do
-      edit "~/writing/cpih/CPiH.lhs"
+      edit "~/writing/cpih/CPiH.tex"
       spawn "evince ~/writing/cpih/CPiH.pdf"
   , ti "CAI" "documents/Hendrix/CAI/23G"
   , ti "keybase" ""
