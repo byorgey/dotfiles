@@ -46,6 +46,8 @@ alias clearswap="sudo swapoff -a && sudo swapon -a"
 
 alias t="todo.sh"
 
+alias gs="~/teaching/drive/get-submissions.py"
+
 fog() {
   firefox "https://byorgey/fogbugz.com/f/cases/$1"
 }
