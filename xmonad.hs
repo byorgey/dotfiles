@@ -240,9 +240,9 @@ myTopics host =
   -- , ti "idris" "src/Idris-dev"
   , ti "kattis" "learning/Kattis"
   , ti "cf" "learning/cf"
-  , TI "progteam" "teaching/prog-team/reference" $ do
-      edit "~/teaching/prog-team/reference/Hendrix-comprog-reference.tex"
-      spawn "evince ~/teaching/prog-team/reference/Hendrix-comprog-reference.pdf"
+  , TI "progteam" "teaching/programming-team/reference" $ do
+      edit "~/teaching/programming-team/reference/Hendrix-comprog-reference.tex"
+      spawn "evince ~/teaching/programming-team/reference/Hendrix-comprog-reference.pdf"
   , ti "acweb" "documents/sites/academic-web"
   , ti "adv"   "teaching/advising"
   , ti "CCSC"  "projects/CCSC"
