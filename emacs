@@ -383,7 +383,7 @@
  '(ido-ignore-files '("\\`CVS/" "\\`#" "\\`.#" "\\`\\.\\./" "\\`\\./" "\\.hi$"))
  '(ido-mode 'both nil (ido))
  '(load-home-init-file t t)
- '(lsp-haskell-formatting-provider "stylish-haskell")
+ '(lsp-haskell-formatting-provider "fourmolu")
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
