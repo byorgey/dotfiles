@@ -1,3 +1,5 @@
+:set -package base -package split -package containers
+
 :seti -XNoMonomorphismRestriction
 :seti -XTypeFamilies
 :seti -XGADTs
