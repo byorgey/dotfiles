@@ -62,6 +62,11 @@
     lsp-ivy
     lsp-haskell
     haskell-snippets
+    dash
+    f
+    flycheck
+    magit-section
+    s
    ) "a list of packages to ensure are installed at launch.")
 
 ; method to check if all packages are installed
@@ -86,10 +91,12 @@
 (add-to-list 'load-path (expand-file-name "~/.local/lib/emacs"))
 (add-to-list 'load-path (expand-file-name "~/local/share/emacs/site-lisp"))
 (add-to-list 'load-path (expand-file-name "~/.local/share/emacs/site-lisp"))
+(add-to-list 'load-path (expand-file-name "~/.local/lib/lean4-mode"))
 
 ;; A few other packages
 (require 'beeminder)
 (require 'swarm-mode)
+(require 'lean4-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config

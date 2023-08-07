@@ -51,3 +51,6 @@ complete -F _todo t
 # $HOME/local/mybin/doomsday-test
  
 if [ -e /home/brent/.nix-profile/etc/profile.d/nix.sh ]; then . /home/brent/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+# opam configuration
+test -r /home/brent/.opam/opam-init/init.zsh && . /home/brent/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
