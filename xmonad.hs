@@ -254,7 +254,7 @@ myTopics host =
   , TI "cpih" "writing/cpih" $ do
       edit "~/writing/cpih/CPiH.tex"
       spawn "evince ~/writing/cpih/CPiH.pdf"
-  , ti "CAI" "documents/Hendrix/CAI/23G"
+  , ti "CAI" "documents/Hendrix/CAI/23L"
   , ti "keybase" ""
   ]
   where
@@ -583,7 +583,7 @@ myKeymap host conf =
     (case host of Laptop _ -> [("M-c n", goto' "net")]
                   _        -> [])
     ++
-    [ ("M-c v", spawn "urxvt -e alsamixer -c 1")                     -- (0)
+    [ ("M-c v", spawn "urxvt -e alsamixer -c 0")                     -- (0)
     , ("M-c k", spawn "xkill")
     , ("M-c M-S-a", killAll)
 
@@ -634,9 +634,11 @@ myKeymap host conf =
     , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ")  -- (22d)
 
     -- volume and music control.
-    , ("M-S-C-0", spawn "amixer -q -c 1 set Master toggle")       -- <XF86AudioMute>
-    , ("M-S-C--", spawn "amixer -q -c 1 set Master 5%- unmute")   -- <XF86AudioLowerVolume>
-    , ("M-S-C-=", spawn "amixer -q -c 1 set Master 5%+ unmute")   -- <XF86AudioRaiseVolume>
+    , ("M-S-C-0", spawn "amixer -q -c 0 set Master toggle")       -- <XF86AudioMute>
+    , ("M-S-C--", spawn "amixer -q -c 0 set Master 5%- unmute")   -- <XF86AudioLowerVolume>
+    , ("M-S-C-=", spawn "amixer -q -c 0 set Master 5%+ unmute")   -- <XF86AudioRaiseVolume>
+    , ("<XF86AudioLowerVolume>", spawn "amixer -q -c 0 set Master 5%- unmute")
+    , ("<XF86AudioRaiseVolume>", spawn "amixer -q -c 0 set Master 5%+ unmute")
     , ("<XF86AudioPlay>", spawn "cmus-remote -u")
     ]
     ++
