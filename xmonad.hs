@@ -7,11 +7,8 @@ import XMonad.StackSet qualified as W
 import Data.Char (isSpace)
 import Data.List (find, (\\))
 import Data.Map qualified as M
-import Data.Maybe (catMaybes, isJust)
-import System.Exit (
-  ExitCode (ExitSuccess),
-  exitWith,
- )
+import Data.Maybe (isJust, mapMaybe)
+import System.Exit (exitSuccess)
 
 import Control.Concurrent (threadDelay)
 import System.Posix.Unistd
@@ -118,7 +115,7 @@ import XMonad.Util.WorkspaceCompare
 
 import XMonad.Util.ExtensibleState qualified as XS
 
-import Control.Monad (when)
+import Control.Monad (unless, when)
 
 -- (31)
 main :: IO ()
@@ -186,7 +183,7 @@ byorgeyConfig h host =
               handleEventHook = followOnlyIf (queryFocused whenToFollow)
             }
             `removeKeysP` ["M-S-q"]
-            `additionalKeysP` (myKeys h host) -- (29)
+            `additionalKeysP` myKeys h host -- (29)
 
 -- have urgent events flash a yellow dzen bar with black text
 myUrgencyHook =
@@ -520,8 +517,8 @@ myKeymap host conf =
        , -- some gap-toggling
          ("M-C-p b", sendMessage $ ToggleStrut D) -- (3)
        , ("M-C-p t", sendMessage $ ToggleStrut U) --  "
-       , ("M-C-p a", sendMessage $ ToggleStruts) --  "
-       , ("M-C-p g", sendMessage $ ToggleGaps) -- (15a)
+       , ("M-C-p a", sendMessage ToggleStruts) --  "
+       , ("M-C-p g", sendMessage ToggleGaps) -- (15a)
        ]
     ++ [ ("M-C-p " ++ f ++ " <" ++ dk ++ ">", sendMessage $ m d) -- (15a)
        | (dk, d) <- [("L", L), ("D", D), ("U", U), ("R", R)]
@@ -539,7 +536,7 @@ myKeymap host conf =
     , ("M-S-<L>", DO.shiftTo Prev hiddenNonEmpty) -- "
     , ("M-<R>", delay >> switchHook (DO.moveTo Next hiddenNonEmpty)) -- "
     , ("M-<L>", delay >> switchHook (DO.moveTo Prev hiddenNonEmpty)) -- "
-    , ("M-f", switchHook $ newCodeWS) -- see below
+    , ("M-f", switchHook newCodeWS) -- see below
     , -- Don't want to kill default M-r binding now that I have 3
       -- monitors If I want these later, find new keybindings for them.
       -- I never used them often enough to remember the keybindings
@@ -565,7 +562,7 @@ myKeymap host conf =
     , -- dynamic workspace bindings
       ("M-n", addWorkspacePrompt myXPConfig) -- (22c)
     , ("M-S-n", renameWorkspace myXPConfig) -- "
-    , ("M-C-r", switchHook $ removeWorkspace) -- "
+    , ("M-C-r", switchHook removeWorkspace) -- "
     , ("M-C-S-r", switchHook $ killAll >> removeWorkspace) --
     ]
     -- xinerama screen numbers seem to be backwards in my setup
@@ -575,11 +572,11 @@ myKeymap host conf =
        ]
     ++
     -- Swap workspaces
-    [ ("M-C-t", switchHook $ swapNextScreen) -- Still useful with 2 monitors sometimes
+    [ ("M-C-t", switchHook swapNextScreen) -- Still useful with 2 monitors sometimes
     ]
     ++
     -- move between screens
-    [ ("M-s", switchHook $ nextScreen)
+    [ ("M-s", switchHook nextScreen)
     , -- , ("M-w", switchHook $ swapNextScreen)    -- These aren't so useful now with 3 monitors
       -- , ("M-e", switchHook $ shiftNextScreen)   -- I have M-{w,e,r} bound to 1 screen each
 
@@ -712,9 +709,9 @@ newCodeWS :: X ()
 newCodeWS = withWindowSet $ \w -> do
   let wss = W.workspaces w
       cws = map W.tag $ filter (\ws -> "code" `isPrefixOf` W.tag ws && isJust (W.stack ws)) wss
-      num = head $ [0 :: Integer ..] \\ catMaybes (map (readMaybe . drop 4) cws)
+      num = head $ [0 :: Integer ..] \\ mapMaybe (readMaybe . drop 4) cws
       new = "code" ++ show num
-  when (not $ new `elem` (map W.tag wss)) $ addWorkspace new
+  when (new `notElem` map W.tag wss) $ addWorkspace new
   windows $ W.view new
  where
   readMaybe s = case reads s of
@@ -726,13 +723,13 @@ newCodeWS = withWindowSet $ \w -> do
 cycleRecentWS' :: [KeySym] -> KeySym -> KeySym -> X ()
 cycleRecentWS' = cycleWindowSets recentTags
  where
-  options w = map (W.view `flip` w) (recentTags w)
+  options w = map (`W.view` w) (recentTags w)
   recentTags w = map W.tag $ W.hidden w ++ [W.workspace (W.current w)]
 
 -- Perform a search, using the given method, based on a keypress
 mySearchMap :: (SearchEngine -> a) -> M.Map (KeyMask, KeySym) a
 mySearchMap method =
-  M.fromList $ -- (0b)
+  M.fromList -- (0b)
     [ ((0, xK_g), method google) -- (20)
     , ((0, xK_w), method wikipedia) --  "
     , ((0, xK_h), method hoogle) --  "
@@ -873,7 +870,7 @@ myLayoutHook host =
   avoidStruts $ -- (3)
 
     -- make manual gap adjustment possible.
-    gaps (zip [U, D, L, R] (repeat 0)) $
+    gaps (map (,0) [U, D, L, R]) $
       -- start all workspaces in my home directory, with the ability
       -- to switch to a new working dir.                          -- (10,11)
       -- workspaceDir "~" $
@@ -904,8 +901,8 @@ myLayoutHook host =
                       ||| TwoPane (3 / 100) (1 / 2) -- resizable tall layout
 
 -- use ResizableTall instead of Tall, but still call it "Tall".
--- myTiled (Desktop True)  = named "Tall" $ ThreeCol 1 (3/100) (1/2)
-myTiled _ = named "Tall" $ ResizableTall 1 0.03 0.5 [] -- (9,5)
+-- myTiled (Desktop True)  = renamed "Tall" $ ThreeCol 1 (3/100) (1/2)
+myTiled _ = renamed [Replace "Tall"] $ ResizableTall 1 0.03 0.5 [] -- (9,5)
 
 {-
 findTag :: (a -> Bool) -> W.StackSet a l a1 s sd -> Maybe a
@@ -928,7 +925,7 @@ followOnlyIfQ _ _ = return $ All True
 
 -- Focus follows mouse only for Gimp windows
 whenToFollow :: Query Bool
-whenToFollow = (className =? "Gimp")
+whenToFollow = className =? "Gimp"
 
 queryFocused :: Query Bool -> X Bool
 queryFocused q = withWindowSet $ maybe (return False) (runQuery q) . W.peek
@@ -936,7 +933,7 @@ queryFocused q = withWindowSet $ maybe (return False) (runQuery q) . W.peek
 ------------------------------------------------------------
 -- Lockdown mode (for Getting Work Done)
 
-data LockdownState = LockdownState Bool
+newtype LockdownState = LockdownState Bool
   deriving (Typeable, Read, Show)
 
 instance ExtensionClass LockdownState where
@@ -956,7 +953,7 @@ toggleLockdown = XS.modify (\(LockdownState l) -> LockdownState (not l))
 withLockdown :: X () -> X ()
 withLockdown act = do
   LockdownState l <- XS.get
-  when (not l) act
+  unless l act
 
 ------------------------------------------------------------
 -- Touchpad
@@ -965,7 +962,7 @@ withLockdown act = do
 --   = off), or toggle it if given Nothing.
 setTouchpadState :: Maybe Bool -> X ()
 setTouchpadState s = do
-  sc <- (map words . lines) <$> liftIO (runProcessWithInput "/usr/bin/synclient" ["-l"] "")
+  sc <- map words . lines <$> liftIO (runProcessWithInput "/usr/bin/synclient" ["-l"] "")
   case find ((== ["TouchpadOff"]) . take 1) sc of
     Just [_, _, b] -> do
       let b' :: Int
@@ -975,9 +972,9 @@ setTouchpadState s = do
             Nothing -> 1 - read b
       when (b' == 0) $ liftIO (threadDelay (3 * 1000000))
       spawn ("synclient TouchpadOff=" ++ show b')
-      if (b' == 1)
+      if b' == 1
         then banishScreen LowerRight
-        else (when ((read b :: Int) == 1) $ warpToWindow (1 / 2) (1 / 2))
+        else when ((read b :: Int) == 1) $ warpToWindow (1 / 2) (1 / 2)
     Nothing -> do
       return ()
 
