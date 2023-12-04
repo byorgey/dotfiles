@@ -56,18 +56,19 @@
     auto-yasnippet
     vimish-fold
     which-key
-    ; Haskell
-    lsp-mode
-    lsp-ui
-    lsp-ivy
-    lsp-haskell
-    haskell-snippets
     dash
     f
     flycheck
     magit-section
     s
     thingatpt
+    editorconfig
+    ; Haskell
+    lsp-mode
+    lsp-ui
+    lsp-ivy
+    lsp-haskell
+    haskell-snippets
    ) "a list of packages to ensure are installed at launch.")
 
 ; method to check if all packages are installed
@@ -98,6 +99,28 @@
 (require 'beeminder)
 (require 'swarm-mode)
 (require 'lean4-mode)
+
+;; GitHub copilot
+
+(use-package copilot
+  :load-path (lambda () (expand-file-name "~/dotfiles/copilot.el"))
+  ;; don't show in mode line
+  :diminish)
+
+;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
+(define-key copilot-mode-map (kbd "<backtab>") #'copilot-next-completion)
+(define-key copilot-mode-map (kbd "M-C-<right>") #'copilot-accept-completion-by-word)
+(define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
+
+(defun bay/copilot-tab ()
+  "Tab command that will complete with copilot if a completion is
+available. Otherwise will try normal tab-indent."
+  (interactive)
+  (or (copilot-accept-completion)
+      (indent-for-tab-command)))
+
+;; seems to do away with special meaning for tab in certain modes
+;; (define-key global-map (kbd "<tab>") #'bay/copilot-tab)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
