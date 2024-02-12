@@ -481,6 +481,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(ido-mode 'both nil (ido))
  '(load-home-init-file t t)
  '(lsp-haskell-formatting-provider "fourmolu")
+ '(lsp-haskell-plugin-fourmolu-config-external t)
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
@@ -908,6 +909,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   :custom
   (lsp-ui-doc-delay 0.75)
   (lsp-ui-doc-max-height 10)
+  (lsp-ui-sideline-diagnostic-max-lines 10)
   :after lsp-mode)
 
 (use-package lsp-ivy
