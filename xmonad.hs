@@ -296,6 +296,7 @@ myTopics host =
           edit "~/writing/cpih/CPiH.tex"
           spawn "evince ~/writing/cpih/CPiH.pdf"
        , ti "CAI" "documents/Hendrix/CAI/23L"
+       , ti "hcpc" "projects/hcpc"
        , ti "keybase" ""
        ]
  where
