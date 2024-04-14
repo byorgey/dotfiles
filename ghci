@@ -1,4 +1,4 @@
-:set -package base -package split -package containers
+:set -package base -package containers
 
 :seti -XNoMonomorphismRestriction
 :seti -XTypeFamilies
@@ -11,7 +11,6 @@ import qualified Data.List as L
 :m +Data.Ord
 :m +Data.Monoid
 :m +Data.Tuple
-:m +Data.List.Split
 import Control.Arrow hiding ((|||))
 :m +Control.Applicative
 :m +Control.Monad
