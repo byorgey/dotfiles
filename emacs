@@ -440,8 +440,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
        (equal
         (system-name)
         "hypatia")
-       '("-i" "." "+RTS" "-K200M" "-H20G" "-M20G" "-RTS")
-     '("-i" "." "+RTS" "-K200M" "-H2G" "-M2G" "-RTS")))
+       '("-i" "." "+RTS" "-K200M" "-M8G" "-RTS")
+     '("-i" "." "+RTS" "-K200M" "-M4G" "-RTS")))
  '(beeminder-auth-token "DXWqHnPzAkYStnxVc76s")
  '(beeminder-default-filter-days 2)
  '(beeminder-everyday-goals-list
