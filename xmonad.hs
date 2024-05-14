@@ -297,7 +297,7 @@ myTopics host =
           spawn "evince ~/writing/cpih/CPiH.pdf"
        , ti "CAI" "documents/Hendrix/CAI/24G"
        , ti "hcpc" "projects/hcpc"
-       , ti "keybase" ""
+       , ti "idiom" "projects/infer-applicative"
        ]
  where
   -- Make a default topic item that just spawns a shell.
