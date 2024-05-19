@@ -46,6 +46,8 @@ bashcompinit
 source ~/.local/lib/todo_completion
 complete -F _todo t
 
+source <(jj util completion zsh)
+
 # source ~/.xsh
 
 # $HOME/local/mybin/doomsday-test
@@ -54,3 +56,4 @@ if [ -e /home/brent/.nix-profile/etc/profile.d/nix.sh ]; then . /home/brent/.nix
 
 # opam configuration
 test -r /home/brent/.opam/opam-init/init.zsh && . /home/brent/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+. "/home/brent/.acme.sh/acme.sh.env"
