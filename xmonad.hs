@@ -144,7 +144,8 @@ getHost = do
     _ -> Desktop False
 
 myTerminal, myShell :: String
-myTerminal = "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
+myTerminal = "gnome-terminal --hide-menubar"
+-- "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
 myShell = "zsh"
 
 byorgeyConfig h host =
@@ -351,7 +352,7 @@ spawnShell :: Host -> X ()
 spawnShell host = currentTopicDir (myTopicConfig host) >>= spawnShellIn
 
 spawnShellIn :: Dir -> X ()
-spawnShellIn dir = spawn $ myTerminal ++ " -title urxvt -e sh -c 'cd ''" ++ dir ++ "'' && " ++ myShell ++ "'"
+spawnShellIn dir = spawn $ myTerminal ++ " -t terminal --working-directory='" ++ dir ++ "'"
 
 delay :: X ()
 delay = io (threadDelay 0) -- I no longer remember what this is for
