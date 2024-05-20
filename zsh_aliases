@@ -39,6 +39,12 @@ alias dh1="darcs changes -v --last 1 | less"
 alias dhh="darcs changes | head"
 alias dr="darcs record"
 
+alias jjl="watch --color 'jj log --color=always --no-pager'"
+
+jjlr () {
+  watch --color "jj log --color=always --no-pager -r '$1'"
+}
+
 alias agu="sudo apt-get update && sudo apt-get upgrade"
 alias agdu="sudo apt-get autoremove && sudo apt-get update && sudo apt-get dist-upgrade"
 
@@ -79,7 +85,7 @@ alias dhse="deactivate_hsenv"
 
 alias git-authors="git log --format='%aN <%aE>' | sort -u"
 
-battery () { 
+battery () {
   acpi | grep -o "[0-9]*%" | head -c-1
   echo -n '%'
 }
