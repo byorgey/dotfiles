@@ -255,27 +255,27 @@ myTopics host =
        , TI "video" "video" (spawnOn "video" "cinelerra")
        , ti "bl" "src/BlogLiterately"
        , TI "view" "" (return ())
-         -- , TI "heb" "documents/bible/study"
+       , -- , TI "heb" "documents/bible/study"
          --   (edit "~/documents/bible/study/Hebrews.tex" >>
          --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
          -- , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-       , ti "150" "teaching/150"
-         -- , ti "151" "teaching/151"
+         ti "150" "teaching/150"
+       , -- , ti "151" "teaching/151"
          -- , ti "M240" "teaching/M240"
          -- , ti "360" "teaching/360"
-       , ti "CSO" "teaching/322"
+         ti "CSO" "teaching/322"
        , ti "FP" "teaching/365"
        , ti "382" "teaching/382"
-         -- , ti "410" "teaching/410"
+       , -- , ti "410" "teaching/410"
          -- , ti "exp" "teaching/explorations"
          -- , ti "TEC" "teaching/TEC"
-       , TI "joyal" "writing/translation/series-formelles" $ do
+         TI "joyal" "writing/translation/series-formelles" $ do
           edit "~/writing/translation/series-formelles/series-formelles.lhs"
           spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
-         -- , TI "GCBP"  "research/GCBP" $ do
+       , -- , TI "GCBP"  "research/GCBP" $ do
          --     edit "~/research/GCBP/talk/GCBP-talk.lhs"
          --     spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
-       , ti "fenwick" "projects/fenwick"
+         ti "fenwick" "projects/fenwick"
        , ti "disco" "projects/disco"
        , ti "aoc" "learning/AoC"
        , -- , ti "idris" "src/Idris-dev"
