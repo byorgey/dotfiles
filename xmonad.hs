@@ -145,7 +145,6 @@ getHost = do
 
 myTerminal, myShell :: String
 myTerminal = "gnome-terminal --hide-menubar"
--- "urxvt --perl-lib ~/.urxvt -fg lightgrey -bg black +sb"
 myShell = "zsh"
 
 byorgeyConfig h host =
@@ -313,7 +312,9 @@ myTopics host =
       (shell >> editVC ("~/src/diagrams/" ++ dirName ++ "/*.cabal"))
 
 ircAction :: Host -> X ()
-ircAction _ = runInTerm "" "mosh thales -- screen -dRR"
+ircAction _ = runInTerm' "" "mosh thales -- screen -dRR"
+
+runInTerm' opts cmd = asks (terminal . config) >>= \t -> unsafeSpawn $ t ++ " " ++ opts ++ " -- " ++ cmd
 
 edit :: String -> X ()
 edit = spawn . ("emacs " ++)
@@ -352,7 +353,7 @@ spawnShell :: Host -> X ()
 spawnShell host = currentTopicDir (myTopicConfig host) >>= spawnShellIn
 
 spawnShellIn :: Dir -> X ()
-spawnShellIn dir = spawn $ myTerminal ++ " -t terminal --working-directory='" ++ dir ++ "'"
+spawnShellIn dir = spawn $ myTerminal ++ " --working-directory='" ++ dir ++ "'"
 
 delay :: X ()
 delay = io (threadDelay 0) -- I no longer remember what this is for
@@ -395,18 +396,16 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
   steps = map (subtract (step * (fromIntegral n / 2))) $ take n [0, step ..]
   offsets = zip steps (reverse steps)
   sps =
-    [ NS "mixer" (customTerm ++ " -e alsamixer") (title =? "alsamixer")
+    [ NS "mixer" (customTerm ++ " -title alsamixer -e alsamixer") (title =? "alsamixer")
     , NS "term" (customTerm ++ " -title term") (title =? "term")
     , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
     , NS "fv" (customTerm ++ " -e /home/brent/.local/mybin/fv") (title =? "fv")
     , NS "ghci" (customTerm ++ " -title ghci -e /home/brent/.ghcup/bin/ghci") (title =? "ghci")
     , NS "top" (customTerm ++ " -e htop") (title =? "htop")
     , NS "cal" (customTerm ++ " -title cal -e sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
-    , NS "timer" (customTerm ++ " -e timer 25m") (title =? "timer")
     , NS "ping" (customTerm ++ " -e ping google.com") (title =? "ping")
     , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class")
     , NS "disco" (customTerm ++ " -title disco -e stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
-    , NS "ozark" (customTerm ++ " -title ozark -e ssh ozark") (title =? "ozark")
     , NS "python" (customTerm ++ " -title python -e python3 -i") (title =? "python")
     ]
 
@@ -482,7 +481,6 @@ myKeymap host conf =
         ]
     ]
     ++ [ ("M-S-x", spawnShell host) -- (0)
-       , ("M-S-b", spawn "$HOME/.local/mybin/urxvt-big")
        , ("M-g", promptedGoto host)
        , ("M-C-g", promptedGotoOtherScreen host)
        , ("M-S-g", promptedShift)
