@@ -63,6 +63,8 @@
     s
     thingatpt
     editorconfig
+    ef-themes
+    highlight-indentation
     ; Haskell
     lsp-mode
     lsp-ui
@@ -476,11 +478,15 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(load-home-init-file t t)
  '(lsp-haskell-formatting-provider "fourmolu")
  '(lsp-haskell-plugin-fourmolu-config-external t)
+ '(lsp-yaml-schema-store-enable nil)
+ '(lsp-yaml-schemas
+   '((/home/brent/projects/swarm/data/schema/scenario\.json .
+                                                            ["data/scenarios/**/*.yaml"])))
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
+   '(highlight-indentation gnu-elpa-keyring-update ef-themes rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
@@ -709,19 +715,25 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; Custom faces, font lock, etc.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
- '(font-lock-builtin-face ((((class color) (background light)) (:bold t :foreground "ForestGreen"))))
- '(font-lock-comment-face ((((class color) (background light)) (:bold t :foreground "DarkOrchid4"))))
- '(font-lock-constant-face ((((class color) (background light)) (:foreground "DarkGreen"))))
- '(font-lock-keyword-face ((((class color) (background light)) (:bold t :foreground "DarkGreen"))))
- '(font-lock-string-face ((((class color) (background light)) (:foreground "Red"))))
- '(font-lock-type-face ((((class color) (background light)) (:italic t :foreground "Purple"))))
- '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Green4")))))
+;; old colors
+
+;; (custom-set-faces
+;;  ;; custom-set-faces was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(default ((t (:inherit nil :stipple nil :background "white" :foreground "black" :inverse-video nil :box nil :strike-through nil :overline nil :underline nil :slant normal :weight normal :height 120 :width normal :foundry "unknown" :family "DejaVu Sans Mono"))))
+;;  '(font-lock-builtin-face ((((class color) (background light)) (:bold t :foreground "ForestGreen"))))
+;;  '(font-lock-comment-face ((((class color) (background light)) (:bold t :foreground "DarkOrchid4"))))
+;;  '(font-lock-constant-face ((((class color) (background light)) (:foreground "DarkGreen"))))
+;;  '(font-lock-keyword-face ((((class color) (background light)) (:bold t :foreground "DarkGreen"))))
+;;  '(font-lock-string-face ((((class color) (background light)) (:foreground "Red"))))
+;;  '(font-lock-type-face ((((class color) (background light)) (:italic t :foreground "Purple"))))
+;;  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Green4")))))
+
+;; From https://github.com/protesilaos/ef-themes
+(load-theme 'ef-frost t)
+
 (add-hook  'text-mode-hook
 	   (function (lambda ()
 		       (auto-fill-mode 1))))
@@ -880,8 +892,11 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   :after lsp-mode
   :config
   (add-hook 'yaml-mode-hook #'lsp)
-  :custom
-  (lsp-yaml-schemas '((https://raw.githubusercontent.com/swarm-game/swarm/scheme/data/schema/scenario.json . '["data/scenarios/*.yaml" "data/scenarios/**/*.yaml"]))))
+  (add-hook 'yaml-mode-hook #'highlight-indentation-mode)
+  )
+
+  ;; :custom
+  ;; (lsp-yaml-schemas '(("https://raw.githubusercontent.com/swarm-game/swarm/main/data/schema/scenario.json" . ["data/scenarios/*.yaml" "data/scenarios/**/*.yaml"]))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -908,11 +923,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (use-package lsp-ivy
   :after (ivy lsp-mode))
-
-(use-package company-lsp
-  :disabled
-  :custom (company-lsp-enable-snippet t)
-  :after (company lsp-mode))
 
 (use-package haskell-snippets
   :after (haskell-mode yasnippet)
@@ -1224,3 +1234,9 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; User-setting area is below this line.
 
 (put 'scroll-left 'disabled nil)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
