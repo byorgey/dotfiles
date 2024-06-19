@@ -312,7 +312,9 @@ myTopics host =
       (shell >> editVC ("~/src/diagrams/" ++ dirName ++ "/*.cabal"))
 
 ircAction :: Host -> X ()
-ircAction _ = runInTerm "" "mosh thales -- screen -dRR"
+ircAction _ = runInTerm' "" "mosh thales -- screen -dRR"
+
+runInTerm' opts cmd = asks (terminal . config) >>= \t -> unsafeSpawn $ t ++ " " ++ opts ++ " -- " ++ cmd
 
 edit :: String -> X ()
 edit = spawn . ("emacs " ++)
