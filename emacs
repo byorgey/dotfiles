@@ -391,10 +391,19 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown
 
+(use-package polymode
+  :ensure t
+  :defer t)
+
+;; (use-package poly-markdown
+;;   :ensure polymode
+;;   :defer t
+;;   :mode ("\\.md" . poly-markdown-mode))
+
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; (require 'markdown-mode)
+(require 'markdown-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Whitespace
