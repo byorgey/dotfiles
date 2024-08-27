@@ -732,6 +732,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;;  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "Green4")))))
 
 ;; From https://github.com/protesilaos/ef-themes
+(require 'ef-themes)
 (load-theme 'ef-frost t)
 
 (add-hook  'text-mode-hook
