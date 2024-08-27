@@ -391,10 +391,19 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown
 
+(use-package polymode
+  :ensure t
+  :defer t)
+
+;; (use-package poly-markdown
+;;   :ensure polymode
+;;   :defer t
+;;   :mode ("\\.md" . poly-markdown-mode))
+
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
-; (require 'markdown-mode)
+(require 'markdown-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Whitespace
@@ -449,7 +458,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(beeminder-everyday-goals-list
    '(time-with-god work-journal jn dishes ac-liturgy morning itch))
  '(beeminder-username "byorgey")
- '(company-ghc-show-info t)
  '(compilation-always-kill t)
  '(compilation-read-command nil)
  '(compilation-scroll-output t)
@@ -486,7 +494,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(highlight-indentation gnu-elpa-keyring-update ef-themes rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum company-ghc auto-complete))
+   '(highlight-indentation gnu-elpa-keyring-update ef-themes rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum auto-complete))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
@@ -903,6 +911,15 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;  LSP, Haskell
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; https://emacs-lsp.github.io/lsp-mode/page/performance/
+;; M-x lsp-doctor
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+(use-package company
+  :config (setq lsp-completion-provider :capf)
+)
 
 (use-package lsp-mode
   :commands (lsp lsp-execute-code-action)

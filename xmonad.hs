@@ -150,40 +150,40 @@ myShell = "zsh"
 byorgeyConfig h host =
   docks $
     ewmh $
-      --     noahProof host $
-      withNavigation2DConfig def $
-        myUrgencyHook $ -- (2)
-          def
-            { borderWidth = 2
-            , terminal = myTerminal
-            , workspaces = myTopicNames host
-            , modMask =
-                if host == Laptop False
-                  then modMask def
-                  else mod4Mask
-            , normalBorderColor = "#dddddd"
-            , focusedBorderColor = "#0033ff"
-            , -- (22)
-              logHook = do
-                myDynamicLog h host
-                workspaceHistoryHookExclude [scratchpadWorkspaceTag]
-            , manageHook =
-                manageSpawn
-                  <+> myManageHook
-                  <+> manageHook def
-            , layoutHook = myLayoutHook host
-            , focusFollowsMouse = False
-            , -- XXX fixme: comment!                                 -- (29)
-              startupHook =
-                return ()
-                  >> checkKeymap
-                    (byorgeyConfig h host)
-                    (myKeys h host)
-            , -- (0c), and see below
-              handleEventHook = followOnlyIf (queryFocused whenToFollow)
-            }
-            `removeKeysP` ["M-S-q"]
-            `additionalKeysP` myKeys h host -- (29)
+      ruthProof host $
+        withNavigation2DConfig def $
+          myUrgencyHook $ -- (2)
+            def
+              { borderWidth = 2
+              , terminal = myTerminal
+              , workspaces = myTopicNames host
+              , modMask =
+                  if host == Laptop False
+                    then modMask def
+                    else mod4Mask
+              , normalBorderColor = "#dddddd"
+              , focusedBorderColor = "#0033ff"
+              , -- (22)
+                logHook = do
+                  myDynamicLog h host
+                  workspaceHistoryHookExclude [scratchpadWorkspaceTag]
+              , manageHook =
+                  manageSpawn
+                    <+> myManageHook
+                    <+> manageHook def
+              , layoutHook = myLayoutHook host
+              , focusFollowsMouse = False
+              , -- XXX fixme: comment!                                 -- (29)
+                startupHook =
+                  return ()
+                    >> checkKeymap
+                      (byorgeyConfig h host)
+                      (myKeys h host)
+              , -- (0c), and see below
+                handleEventHook = followOnlyIf (queryFocused whenToFollow)
+              }
+              `removeKeysP` ["M-S-q"]
+              `additionalKeysP` myKeys h host -- (29)
 
 -- have urgent events flash a yellow dzen bar with black text
 myUrgencyHook =
@@ -258,17 +258,17 @@ myTopics host =
        , -- , TI "heb" "documents/bible/study"
          --   (edit "~/documents/bible/study/Hebrews.tex" >>
          --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
-         -- , TI "noah" "documents/noah/emacs" (edit "~/documents/noah/emacs/noah.txt")
-         ti "150" "teaching/150"
+         TI "ruth" "documents/ruth/emacs" (edit "~/documents/ruth/emacs/ruth.txt")
+       , ti "150" "teaching/150"
        , -- , ti "151" "teaching/151"
          -- , ti "M240" "teaching/M240"
          -- , ti "360" "teaching/360"
-         ti "CSO" "teaching/322"
-       , ti "FP" "teaching/365"
-       , ti "382" "teaching/382"
-       , -- , ti "410" "teaching/410"
-         -- , ti "exp" "teaching/explorations"
-         -- , ti "TEC" "teaching/TEC"
+         -- , ti "CSO" "teaching/322"
+         -- , ti "FP" "teaching/365"
+         ti "382" "teaching/382"
+       , ti "410" "teaching/410"
+       , ti "exp" "teaching/explorations"
+       , -- , ti "TEC" "teaching/TEC"
          TI "joyal" "writing/translation/series-formelles" $ do
           edit "~/writing/translation/series-formelles/series-formelles.lhs"
           spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
@@ -434,16 +434,16 @@ myDynamicLog h host =
 -- my custom keybindings.
 myKeys h host = myKeymap host (byorgeyConfig h host)
 
--- Lock down Noah's workspace.
-noahProof :: Host -> XConfig l -> XConfig l
-noahProof host conf =
-  conf {keys = M.map disableForNoah . keys conf}
-    `additionalKeysP` noahEscape
+-- Lock down Ruth's workspace.
+ruthProof :: Host -> XConfig l -> XConfig l
+ruthProof host conf =
+  conf {keys = M.map disableForRuth . keys conf}
+    `additionalKeysP` ruthEscape
  where
-  -- special key sequence to get out of Noah's workspace
-  noahEscape = [("M-S-C-n M-S-C-o M-S-C-a M-S-C-h", goto host "web")]
-  -- disable keybindings on Noah's workspace
-  disableForNoah act = bindOn [("noah", return ()), ("", act)]
+  -- special key sequence to get out of Ruth's workspace
+  ruthEscape = [("M-S-C-r M-S-C-u M-S-C-t M-S-C-h", goto host "web")]
+  -- disable keybindings on Ruth's workspace
+  disableForRuth act = bindOn [("ruth", return ()), ("", act)]
 
 moveMode f =
   submap . M.fromList $
