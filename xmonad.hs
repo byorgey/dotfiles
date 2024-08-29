@@ -298,6 +298,7 @@ myTopics host =
        , ti "CAI" "documents/Hendrix/CAI/24G"
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
+       , ti "keynote" "teaching/talks/HS24-keynote"
        ]
  where
   -- Make a default topic item that just spawns a shell.
