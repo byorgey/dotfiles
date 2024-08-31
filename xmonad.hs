@@ -670,18 +670,16 @@ myKeymap host conf =
        , ("M-y g", switchHook $ promptWSGroupView myXPConfig "Go to group: ") -- (22d)
        , ("M-y d", promptWSGroupForget myXPConfig "Forget group: ") -- (22d)
        , -- volume and music control.
-         ("M-S-C-0", spawn "amixer -q -c 0 set Master toggle") -- <XF86AudioMute>
-       , ("M-S-C--", spawn "amixer -q -c 0 set Master 5%- unmute") -- <XF86AudioLowerVolume>
-       , ("M-S-C-=", spawn "amixer -q -c 0 set Master 5%+ unmute") -- <XF86AudioRaiseVolume>
-       , ("<XF86AudioLowerVolume>", spawn "amixer -q -c 0 set Master 5%- unmute")
-       , ("<XF86AudioRaiseVolume>", spawn "amixer -q -c 0 set Master 5%+ unmute")
+         ("<F1>", spawn "amixer -q -c 0 set Master toggle")
+       , ("<F2>", spawn "amixer -q -c 0 set Master 5%- unmute")
+       , ("<F3>", spawn "amixer -q -c 0 set Master 5%+ unmute")
        , ("<XF86AudioPlay>", spawn "cmus-remote -u")
        ]
     ++ [("M-S-C-" ++ [k], spawn ("cmus-remote -" ++ [c])) | [k, c] <- ["zr", "xp", "cu", "vs", "bn"]]
     ++ [
          -- backlight control.
-         ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 10")
-       , ("<XF86MonBrightnessUp>", spawn "xbacklight -inc 10")
+         ("<F5>", spawn "brightnessctl -d intel_backlight set 10%-")
+       , ("<F6>", spawn "brightnessctl -d intel_backlight set 10%+")
        , -- disable browser back/forward keys.
          ("<XF86Back>", return ())
        , ("<XF86Forward>", return ())
