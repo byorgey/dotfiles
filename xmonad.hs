@@ -430,7 +430,7 @@ myDynamicLog h host =
       }
  where
   battery :: Logger
-  battery = logCmd "/usr/bin/acpi | tail -n 1 | sed -r 's/.*?: (.*%).*/\\1/; s/[dD]ischarging, ([0-9]+%)/\\1-/; s/[cC]harging, ([0-9]+%)/\\1+/; s/[cC]harged, //'"
+  battery = logCmd "/usr/bin/acpi | head -n 1 | sed -r 's/.*?: (.*%).*/\\1/; s/[dD]ischarging, ([0-9]+%)/\\1-/; s/[cC]harging, ([0-9]+%)/\\1+/; s/[cC]harged, //'"
 
 -- my custom keybindings.
 myKeys h host = myKeymap host (byorgeyConfig h host)
