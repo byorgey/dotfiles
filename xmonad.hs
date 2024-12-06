@@ -295,7 +295,7 @@ myTopics host =
        , TI "cpih" "writing/cpih" $ do
           edit "~/writing/cpih/CPiH.tex"
           spawn "evince ~/writing/cpih/CPiH.pdf"
-       , ti "CAI" "documents/Hendrix/CAI/24G"
+       , ti "CAI" "documents/Hendrix/CAI/24L"
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
        , ti "keynote" "teaching/talks/HS24-keynote"
@@ -430,7 +430,7 @@ myDynamicLog h host =
       }
  where
   battery :: Logger
-  battery = logCmd "/usr/bin/acpi | head -n 1 | sed -r 's/.*?: (.*%).*/\\1/; s/[dD]ischarging, ([0-9]+%)/\\1-/; s/[cC]harging, ([0-9]+%)/\\1+/; s/[cC]harged, //'"
+  battery = logCmd "/usr/bin/acpi | grep -v Unknown | sed -r 's/.*?: (.*%).*/\\1/; s/[dD]ischarging, ([0-9]+%)/\\1-/; s/[cC]harging, ([0-9]+%)/\\1+/; s/[cC]harged, //'"
 
 -- my custom keybindings.
 myKeys h host = myKeymap host (byorgeyConfig h host)
