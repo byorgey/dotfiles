@@ -947,12 +947,12 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   :after (haskell-mode yasnippet)
   :defer)
 
-(use-package lsp-haskell
-  :hook (haskell-mode . lsp)
-  :custom
-  (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
-  (lsp-haskell-process-args-hie '())
-  )
+;; (use-package lsp-haskell
+;;   :hook (haskell-mode . lsp)
+;;   :custom
+;;   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
+;;   (lsp-haskell-process-args-hie '())
+;;   )
 
 (defun lsp-haskell-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t)

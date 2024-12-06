@@ -25,3 +25,6 @@ STOW=$HOME/local/stow
 _JAVA_AWT_WM_NONREPARENTING=1
 source $HOME/.ghcup/env
 unsetopt ALL_EXPORT
+
+# opam configuration
+[[ ! -r /home/brent/.opam/opam-init/init.zsh ]] || source /home/brent/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null

@@ -46,6 +46,8 @@ bashcompinit
 source ~/.local/lib/todo_completion
 complete -F _todo t
 
+# eval "$(shmonad init)"
+
 source <(jj util completion zsh)
 
 # source ~/.xsh
