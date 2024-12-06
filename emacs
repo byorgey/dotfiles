@@ -488,8 +488,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(lsp-haskell-plugin-fourmolu-config-external t)
  '(lsp-yaml-schema-store-enable nil)
  '(lsp-yaml-schemas
-   '((/home/brent/projects/swarm/data/schema/scenario\.json .
-                                                            ["data/scenarios/**/*.yaml"])))
+   '((/home/brent/projects/swarm/data/schema/scenario.json .
+                                                           ["data/scenarios/**/*.yaml"])))
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
@@ -714,6 +714,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(unicode-fonts-fallback-font-list '("Symbola" "Quivira" "DejaVu Sans Mono"))
  '(user-mail-address "yorgey@hendrix.edu")
  '(vimish-fold-marks '("-- {{{" . "-- }}}"))
+ '(warning-suppress-types '((comp)))
  '(whitespace-style
    '(face tabs trailing lines space-before-tab newline empty space-after-tab tab-mark))
  '(writegood-weasel-words
