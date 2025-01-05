@@ -391,10 +391,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Markdown
 
-(use-package polymode
-  :ensure t
-  :defer t)
-
 ;; (use-package poly-markdown
 ;;   :ensure polymode
 ;;   :defer t
@@ -409,6 +405,34 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; Whitespace
 
 (require 'whitespace)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Swarm
+
+;; Attempted to define a poly-mode for Swarm within YAML.  It works;
+;; the problem is that all Swarm chunks are sent to the Swarm LSP as
+;; single, concatenated buffer, which leads to spurious type errors
+;; all over the place.  Not sure how to work around this.
+
+;; (use-package polymode
+;;   :ensure t
+;;   :mode ("\.yaml$" . poly-yaml-swarm-mode)
+;;   :config
+
+;;   (define-hostmode poly-yaml-hostmode :mode 'yaml-mode)
+
+;;   (define-innermode poly-swarm-condition-yaml-innermode
+;;     :mode 'swarm-mode
+;;     :head-matcher "^  \\( \\|-\\) condition: |\n"
+;;     :tail-matcher "^ \\{,4\\}[^ ]"
+;;     :head-mode 'host
+;;     :tail-mode 'host)
+
+;;   (define-polymode poly-yaml-swarm-mode
+;;     :hostmode 'poly-yaml-hostmode
+;;     :innermodes '(poly-swarm-condition-yaml-innermode)))
+
+(add-hook 'swarm-mode-hook #'lsp)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; CFDG mode
