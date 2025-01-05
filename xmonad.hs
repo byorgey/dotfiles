@@ -260,14 +260,14 @@ myTopics host =
          --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
          TI "ruth" "documents/ruth/emacs" (edit "~/documents/ruth/emacs/ruth.txt")
        , ti "150" "teaching/150"
-       , -- , ti "151" "teaching/151"
-         -- , ti "M240" "teaching/M240"
-         -- , ti "360" "teaching/360"
+       -- , ti "151" "teaching/151"
+       , ti "M240" "teaching/M240"
+       , ti "360" "teaching/360"
          -- , ti "CSO" "teaching/322"
          -- , ti "FP" "teaching/365"
-         ti "382" "teaching/382"
-       , ti "410" "teaching/410"
-       , ti "exp" "teaching/explorations"
+         -- , ti "382" "teaching/382"
+         -- , ti "410" "teaching/410"
+         -- , ti "exp" "teaching/explorations"
        , -- , ti "TEC" "teaching/TEC"
          TI "joyal" "writing/translation/series-formelles" $ do
           edit "~/writing/translation/series-formelles/series-formelles.lhs"
