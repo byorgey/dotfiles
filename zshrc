@@ -48,7 +48,7 @@ complete -F _todo t
 
 # eval "$(shmonad init)"
 
-source <(jj util completion zsh)
+source <(COMPLETE=zsh jj)
 
 # source ~/.xsh
 
