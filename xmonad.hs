@@ -295,7 +295,7 @@ myTopics host =
        , TI "cpih" "writing/cpih" $ do
           edit "~/writing/cpih/CPiH.tex"
           spawn "evince ~/writing/cpih/CPiH.pdf"
-       , ti "CAI" "documents/Hendrix/CAI/24L"
+       , ti "CAI" "documents/Hendrix/CAI/25G"
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
        , ti "keynote" "teaching/talks/HS24-keynote"
