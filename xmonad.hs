@@ -695,9 +695,9 @@ myKeymap host conf =
        , ("M-d r", diagramsGithub "builder")
        , ("M-d a", visitGithub "diagrams/active")
        , ("M-d m", visitGithub "diagrams/monoid-extras")
-       , -- lockdown mode
-         ("M-C-l l", toggleLockdown)
-         -- , ("M-C-l o c k d o w n 2 1 4 3 6 5 8 7 0 9", releaseLockdown)
+       , -- lockdown mode.  Intentionally make it easier to set than unset.
+         ("M-C-l l", setLockdown)
+       , ("M-C-l o c k d o w n 2 1 4 3 6 5 8 7 0 9", releaseLockdown)
        ]
  where
   goto' = goto host
