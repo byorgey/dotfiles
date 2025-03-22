@@ -405,9 +405,10 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
     , NS "top" (customTerm ++ " -e htop") (title =? "htop")
     , NS "cal" (customTerm ++ " -title cal -e sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
     , NS "ping" (customTerm ++ " -e ping google.com") (title =? "ping")
-    , NS "blink" (customTerm ++ " -e blink-class") (title =? "blink-class")
+    , NS "blink" (customTerm ++ " -e /home/brent/.local/mybin/blink-class") (title =? "blink-class")
     , NS "disco" (customTerm ++ " -title disco -e stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
     , NS "python" (customTerm ++ " -title python -e python3 -i") (title =? "python")
+    , NS "pomo" (customTerm ++ " -title pomo -e /home/brent/.local/mybin/pomo") (title =? "pomo")
     ]
 
 myDynamicLog h host =
@@ -506,6 +507,7 @@ myKeymap host conf =
        , ("M-a b", namedScratchpadAction scratchpads "blink")
        , ("M-a h", namedScratchpadAction scratchpads "python")
        , ("M-a o", namedScratchpadAction scratchpads "disco")
+       , ("M-a S-p", namedScratchpadAction scratchpads "pomo")
        ]
     -- sync using Unison in a new floating window, but only on my laptop
     ++ ( case host of
