@@ -65,6 +65,8 @@
     editorconfig
     ef-themes
     highlight-indentation
+    git-link
+    git-timemachine
     ; Haskell
     lsp-mode
     lsp-ui
@@ -101,6 +103,20 @@
 (require 'beeminder)
 (require 'swarm-mode)
 (require 'lean4-mode)
+
+;; git-link
+;; https://mathstodon.xyz/@shapr@recurse.social/114553205283188145
+
+(use-package git-link
+  :ensure t
+  :config (global-set-key (kbd "C-c k") 'git-link)
+  )
+
+(use-package git-timemachine
+  :ensure t
+  :config
+  (global-set-key (kbd "C-c t") 'git-timemachine)
+  )
 
 ;; ;; GitHub copilot
 
@@ -338,6 +354,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; Extra modes
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(add-hook 'emacs-startup-hook 'ultra-scroll-mode)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; unicode-fonts
 
@@ -518,12 +536,15 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
  '(package-selected-packages
-   '(highlight-indentation gnu-elpa-keyring-update ef-themes rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum auto-complete))
+   '(ultra-scroll highlight-indentation gnu-elpa-keyring-update ef-themes rust-mode yaml-mode markdown-mode+ floobits anaphora writeroom-mode writegood-mode unicode-fonts synosaurus smart-compile seq scala-mode2 request rainbow-delimiters markdown-mode magit java-snippets idris-mode darcsum auto-complete))
+ '(package-vc-selected-packages
+   '((ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")))
  '(perl-indent-level 2)
  '(safe-local-variable-values
    '((lsp-haskell-formatting-provider . "fourmolu")
      (lsp-haskell-formatting-provider . "stylish-haskell")))
  '(scroll-bar-mode nil)
+ '(scroll-conservatively 101)
  '(send-mail-function 'sendmail-send-it)
  '(sendmail-program "/usr/bin/msmtp")
  '(show-trailing-whitespace t)
@@ -840,10 +861,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (global-set-key (kbd "C-c g") 'writegood-mode)    ;; writegood-mode
 
-(global-set-key (kbd "C-c m") 'commit-to-line-or-region)
-
-(global-set-key (kbd "C-c t") 'mail-abbrev-insert-alias)
-
 ; (global-set-key (kbd "H-w") #'aya-create)
 ; (global-set-key (kbd "H-y") #'aya-expand)
 
@@ -876,26 +893,6 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; #nn in the other window.
 (fset 'note-other-window
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([M-left 67108896 5 23 24 111 134217788 19 35 25 13 right 67108896 5 134217847 24 111 24 11 99 25] 0 "%d")) arg)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; commits.to
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-;; http://ergoemacs.org/emacs/emacs_region.html
-
-(defun commit-to-line-or-region ()
-  "Commit to something in the current line or region."
-(interactive)
-(let (pos1 pos2 bds)
-  (if (use-region-p)
-     (setq pos1 (region-beginning) pos2 (region-end))
-    (progn
-      (setq bds (bounds-of-thing-at-point 'line))
-      (setq pos1 (car bds) pos2 (cdr bds))))
-
-  (copy-region-as-kill pos1 pos2)
-  (shell-command "/bin/bash /home/brent/local/mybin/commit &")
-  ))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Kattis
@@ -962,6 +959,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   (lsp-ui-doc-delay 0.75)
   (lsp-ui-doc-max-height 10)
   (lsp-ui-sideline-diagnostic-max-lines 10)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-sideline-show-code-actions t)
   :after lsp-mode)
 
 (use-package lsp-ivy
@@ -973,14 +972,12 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 ;; (use-package lsp-haskell
 ;;   :hook (haskell-mode . lsp)
-;;   :custom
-;;   (lsp-haskell-process-path-hie "haskell-language-server-wrapper")
-;;   (lsp-haskell-process-args-hie '())
 ;;   )
 
 (defun lsp-haskell-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'before-save-hook #'lsp-format-buffer t t))
+
+(add-hook 'before-save-hook #'lsp-organize-imports t t)
 (add-hook 'haskell-mode-hook #'lsp-haskell-install-save-hooks)
 
 (font-lock-add-keywords 'haskell-mode
