@@ -61,3 +61,8 @@ test -r /home/brent/.opam/opam-init/init.zsh && . /home/brent/.opam/opam-init/in
 
 # . "/home/brent/.acme.sh/acme.sh.env"
 
+fortune ~/dotfiles/habits/habits | boxes -d parchment
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"

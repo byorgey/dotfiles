@@ -3,13 +3,13 @@ setopt ALL_EXPORT
 setopt EXTENDED_GLOB
 setopt NULL_GLOB
 
-PATH="/scratch/local/bin:$HOME/local/bin:$HOME/local/mybin:$HOME/.local/mybin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/stow/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.elan/bin:$PATH"
+PATH="/scratch/local/bin:$HOME/local/bin:$HOME/local/mybin:$HOME/.local/mybin:$HOME/.local/bin:/usr/local/bin:/usr/local/sbin/:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/stow/bin:$HOME/.local/share/gem/ruby/3.0.0/bin:$HOME/.elan/bin:$HOME/.atuin/bin:$PATH"
 MANPATH="$HOME/local/man:$MANPATH"
 USE_X_FORWARDING="no"
 TZ="America/Chicago"
 HISTFILE=$HOME/.zhistory
-HISTSIZE=10000
-SAVEHIST=10000
+HISTSIZE=100000
+SAVEHIST=100000
 HIST_VERIFY=1
 HOSTNAME="`hostname`"
 PAGER='less'

@@ -10,10 +10,10 @@ alias s="screen -RR"
 alias sls="screen -ls"
 alias c='ncal -3 -b'
 
-alias ls='ls -F'
-alias l='ls'
-alias ll='ls -l'
-alias la='ls -al'
+alias ls='eza -F'
+alias l='eza'
+alias ll='eza -l'
+alias la='eza -al'
 
 alias wso="ssh byorgey@wso.williams.edu"
 alias cho="ssh byorgey@code.haskell.org"
