@@ -261,11 +261,11 @@ myTopics host =
          TI "ruth" "documents/ruth/emacs" (edit "~/documents/ruth/emacs/ruth.txt")
        , ti "150" "teaching/150"
        -- , ti "151" "teaching/151"
-       , ti "M240" "teaching/M240"
-       , ti "360" "teaching/360"
+       -- , ti "M240" "teaching/M240"
+       -- , ti "360" "teaching/360"
          -- , ti "CSO" "teaching/322"
          -- , ti "FP" "teaching/365"
-         -- , ti "382" "teaching/382"
+       , ti "382" "teaching/382"
          -- , ti "410" "teaching/410"
          -- , ti "exp" "teaching/explorations"
        , -- , ti "TEC" "teaching/TEC"
@@ -388,6 +388,10 @@ offsetRR (dl, dt) (W.RationalRect l t w h) = W.RationalRect (l + dl) (t + dt) w 
 
 customTerm :: String
 customTerm = "urxvt"
+  -- replace urxvt with "gnome-terminal --hide-menubar"
+  -- then replace -title with --title below, and -e with --
+  -- ...but manage hook for some reason does not float the resulting windows, can't
+  -- figure out why
 
 scratchpads :: [NamedScratchpad]
 scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) offsets sps
@@ -629,7 +633,7 @@ myKeymap host conf =
           Laptop _ -> [("M-c n", goto' "net")]
           _ -> []
        )
-    ++ [ ("M-c v", spawn "urxvt -e alsamixer -c 0") -- (0)
+    ++ [ ("M-c v", spawn "gnome-terminal -- alsamixer -c 0") -- (0)
        , ("M-c k", spawn "xkill")
        , ("M-c M-S-a", killAll)
        , ("C-<R>", windowGo R False)
