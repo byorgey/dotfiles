@@ -1,0 +1,9 @@
+Don't forget about hexyl! A handy binary file viewer.
+%
+Still using man? Try using *tldr* first!
+%
+Don't use *ps* - use *procs*!
+%
+Add more habits by editing dotfiles/habits/habits then running `make`.
+%
+To run a Jekyll site, `sudo bundle install` then `bundle exec jekyll serve`.
