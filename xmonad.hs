@@ -19,17 +19,11 @@ import XMonad.Layout.MagicFocus
 
 import XMonad.Hooks.DynamicLog hiding (pprWindowSet)
 import XMonad.Hooks.UrgencyHook
-
---      on IRC
 import XMonad.Hooks.ManageDocks
-
---      status bar with windows
 import XMonad.Hooks.ManageHelpers
-
---      windows in the middle of the
---      screen
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.WorkspaceHistory
+import XMonad.Hooks.OnPropertyChange
 
 -- Layout ----------------------------------------------------
 
@@ -180,7 +174,11 @@ byorgeyConfig h host =
                       (byorgeyConfig h host)
                       (myKeys h host)
               , -- (0c), and see below
-                handleEventHook = followOnlyIf (queryFocused whenToFollow)
+                handleEventHook = mconcat
+                  [ followOnlyIf (queryFocused whenToFollow)
+                  , onTitleChange myManageHook
+                  , onClassChange myManageHook
+                  ]
               }
               `removeKeysP` ["M-S-q"]
               `additionalKeysP` myKeys h host -- (29)
@@ -386,13 +384,6 @@ scratchpadSize = W.RationalRect (1 / 4) (1 / 4) (1 / 2) (1 / 2)
 offsetRR :: (Rational, Rational) -> W.RationalRect -> W.RationalRect
 offsetRR (dl, dt) (W.RationalRect l t w h) = W.RationalRect (l + dl) (t + dt) w h
 
-customTerm :: String
-customTerm = "urxvt"
-  -- replace urxvt with "gnome-terminal --hide-menubar"
-  -- then replace -title with --title below, and -e with --
-  -- ...but manage hook for some reason does not float the resulting windows, can't
-  -- figure out why
-
 scratchpads :: [NamedScratchpad]
 scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) offsets sps
  where
@@ -401,18 +392,18 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
   steps = map (subtract (step * (fromIntegral n / 2))) $ take n [0, step ..]
   offsets = zip steps (reverse steps)
   sps =
-    [ NS "mixer" (customTerm ++ " -title alsamixer -e alsamixer") (title =? "alsamixer")
-    , NS "term" (customTerm ++ " -title term") (title =? "term")
-    , NS "term2" (customTerm ++ " -title term2") (title =? "term2")
-    , NS "fv" (customTerm ++ " -e /home/brent/.local/mybin/fv") (title =? "fv")
-    , NS "ghci" (customTerm ++ " -title ghci -e /home/brent/.ghcup/bin/ghci") (title =? "ghci")
-    , NS "top" (customTerm ++ " -e htop") (title =? "htop")
-    , NS "cal" (customTerm ++ " -title cal -e sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
-    , NS "ping" (customTerm ++ " -e ping google.com") (title =? "ping")
-    , NS "blink" (customTerm ++ " -e /home/brent/.local/mybin/blink-class") (title =? "blink-class")
-    , NS "disco" (customTerm ++ " -title disco -e stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
-    , NS "python" (customTerm ++ " -title python -e python3 -i") (title =? "python")
-    , NS "pomo" (customTerm ++ " -title pomo -e /home/brent/.local/mybin/pomo") (title =? "pomo")
+    [ NS "mixer" (myTerminal ++ " --title mixer -- alsamixer") (title =? "mixer")
+    , NS "term" (myTerminal ++ " --title term") (title =? "term")
+    , NS "term2" (myTerminal ++ " --title term2") (title =? "term2")
+    , NS "fv" (myTerminal ++ " --title fv -- /home/brent/.local/mybin/fv") (title =? "fv")
+    , NS "ghci" (myTerminal ++ " --title ghci -- /home/brent/.ghcup/bin/ghci") (title =? "ghci")
+    , NS "top" (myTerminal ++ " --title htop -- htop") (title =? "htop")
+    , NS "cal" (myTerminal ++ " --title cal -- sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
+    , NS "ping" (myTerminal ++ " --title ping -- ping google.com") (title =? "ping")
+    , NS "blink" (myTerminal ++ " --title blink-class -- /home/brent/.local/mybin/blink-class") (title =? "blink-class")
+    , NS "disco" (myTerminal ++ " --title disco -- stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
+    , NS "python" (myTerminal ++ " --title python -- python3 -i") (title =? "python")
+    , NS "pomo" (myTerminal ++ " --title pomo -- /home/brent/.local/mybin/pomo") (title =? "pomo")
     ]
 
 myDynamicLog h host =
