@@ -6,4 +6,6 @@ Don't use *ps* - use *procs*!
 %
 Add more habits by editing dotfiles/habits/habits then running `make`.
 %
-To run a Jekyll site, `sudo bundle install` then `bundle exec jekyll serve`.
+To run a Jekyll site, `bundle install` then `bundle exec jekyll serve`.
+%
+Use `C-x +` to balance windows in emacs.
