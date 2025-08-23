@@ -10,10 +10,11 @@ alias s="screen -RR"
 alias sls="screen -ls"
 alias c='ncal -3 -b'
 
-alias ls='eza -F'
+alias ls='eza -F auto'
 alias l='eza'
 alias ll='eza -l'
 alias la='eza -al'
+alias lr='eza -lR'
 
 alias wso="ssh byorgey@wso.williams.edu"
 alias cho="ssh byorgey@code.haskell.org"
@@ -44,6 +45,8 @@ alias jjl="watch --color 'jj log --color=always --no-pager'"
 jjlr () {
   watch --color "jj log --color=always --no-pager -r '$1'"
 }
+
+alias doit="sudo !!"
 
 alias agu="sudo apt-get update && sudo apt-get upgrade"
 alias agdu="sudo apt-get autoremove && sudo apt-get update && sudo apt-get dist-upgrade"
