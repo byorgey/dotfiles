@@ -118,28 +118,6 @@
   (global-set-key (kbd "C-c t") 'git-timemachine)
   )
 
-;; ;; GitHub copilot
-
-;; (use-package copilot
-;;   :load-path (lambda () (expand-file-name "~/dotfiles/copilot.el"))
-;;   ;; don't show in mode line
-;;   :diminish)
-
-;; ;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
-;; (define-key copilot-mode-map (kbd "<backtab>") #'copilot-next-completion)
-;; (define-key copilot-mode-map (kbd "M-C-<right>") #'copilot-accept-completion-by-word)
-;; (define-key copilot-mode-map (kbd "M-C-<down>") #'copilot-accept-completion-by-line)
-
-;; (defun bay/copilot-tab ()
-;;   "Tab command that will complete with copilot if a completion is
-;; available. Otherwise will try normal tab-indent."
-;;   (interactive)
-;;   (or (copilot-accept-completion)
-;;       (indent-for-tab-command)))
-
-;; seems to do away with special meaning for tab in certain modes
-;; (define-key global-map (kbd "<tab>") #'bay/copilot-tab)
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -970,9 +948,9 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   :after (haskell-mode yasnippet)
   :defer)
 
-;; (use-package lsp-haskell
-;;   :hook (haskell-mode . lsp)
-;;   )
+(use-package lsp-haskell
+  :hook (haskell-mode . lsp)
+  )
 
 (defun lsp-haskell-install-save-hooks ()
   (add-hook 'before-save-hook #'lsp-format-buffer t t))
