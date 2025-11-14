@@ -937,7 +937,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
   (lsp-ui-doc-delay 0.75)
   (lsp-ui-doc-max-height 10)
   (lsp-ui-sideline-diagnostic-max-lines 10)
-  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-show-with-cursor nil)
   (lsp-ui-sideline-show-code-actions t)
   :after lsp-mode)
 
