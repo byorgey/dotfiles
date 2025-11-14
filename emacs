@@ -103,6 +103,7 @@
 (require 'beeminder)
 (require 'swarm-mode)
 (require 'lean4-mode)
+;; (require 'forester)   ; errors out: can't find treesit-ready-p
 
 ;; git-link
 ;; https://mathstodon.xyz/@shapr@recurse.social/114553205283188145
