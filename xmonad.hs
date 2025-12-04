@@ -18,12 +18,12 @@ import XMonad.Layout.MagicFocus
 -- Hooks -----------------------------------------------------
 
 import XMonad.Hooks.DynamicLog hiding (pprWindowSet)
-import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.EwmhDesktops
-import XMonad.Hooks.WorkspaceHistory
 import XMonad.Hooks.OnPropertyChange
+import XMonad.Hooks.UrgencyHook
+import XMonad.Hooks.WorkspaceHistory
 
 -- Layout ----------------------------------------------------
 
@@ -174,11 +174,12 @@ byorgeyConfig h host =
                       (byorgeyConfig h host)
                       (myKeys h host)
               , -- (0c), and see below
-                handleEventHook = mconcat
-                  [ followOnlyIf (queryFocused whenToFollow)
-                  , onTitleChange myManageHook
-                  , onClassChange myManageHook
-                  ]
+                handleEventHook =
+                  mconcat
+                    [ followOnlyIf (queryFocused whenToFollow)
+                    , onTitleChange myManageHook
+                    , onClassChange myManageHook
+                    ]
               }
               `removeKeysP` ["M-S-q"]
               `additionalKeysP` myKeys h host -- (29)
@@ -258,18 +259,18 @@ myTopics host =
          --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
          TI "ruth" "documents/ruth/emacs" (edit "~/documents/ruth/emacs/ruth.txt")
        , ti "150" "teaching/150"
-       -- , ti "151" "teaching/151"
-       -- , ti "M240" "teaching/M240"
-       -- , ti "360" "teaching/360"
+       , -- , ti "151" "teaching/151"
+         -- , ti "M240" "teaching/M240"
+         -- , ti "360" "teaching/360"
          -- , ti "CSO" "teaching/322"
          -- , ti "FP" "teaching/365"
-       , ti "382" "teaching/382"
-         -- , ti "410" "teaching/410"
+         ti "382" "teaching/382"
+       , -- , ti "410" "teaching/410"
          -- , ti "exp" "teaching/explorations"
-       , -- , ti "TEC" "teaching/TEC"
+         -- , ti "TEC" "teaching/TEC"
          TI "joyal" "writing/translation/series-formelles" $ do
-          edit "~/writing/translation/series-formelles/series-formelles.lhs"
-          spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
+           edit "~/writing/translation/series-formelles/series-formelles.lhs"
+           spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
        , -- , TI "GCBP"  "research/GCBP" $ do
          --     edit "~/research/GCBP/talk/GCBP-talk.lhs"
          --     spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
@@ -280,8 +281,8 @@ myTopics host =
          ti "kattis" "learning/Kattis"
        , ti "cf" "learning/cf"
        , TI "progteam" "teaching/programming-team/reference" $ do
-          edit "~/teaching/programming-team/reference/Hendrix-comprog-reference.tex"
-          spawn "evince ~/teaching/programming-team/reference/Hendrix-comprog-reference.pdf"
+           edit "~/teaching/programming-team/reference/Hendrix-comprog-reference.tex"
+           spawn "evince ~/teaching/programming-team/reference/Hendrix-comprog-reference.pdf"
        , ti "acweb" "documents/sites/academic-web"
        , ti "adv" "teaching/advising"
        , ti "CCSC" "projects/CCSC"
@@ -291,12 +292,12 @@ myTopics host =
        , TI "discord" "" $ spawnOn "discord" "discord"
        , ti "swarm" "projects/swarm"
        , TI "cpih" "writing/cpih" $ do
-          edit "~/writing/cpih/CPiH.tex"
-          spawn "evince ~/writing/cpih/CPiH.pdf"
+           edit "~/writing/cpih/CPiH.tex"
+           spawn "evince ~/writing/cpih/CPiH.pdf"
        , ti "CAI" "documents/Hendrix/CAI/25L"
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
-       , ti "keynote" "teaching/talks/HS24-keynote"
+       , ti "forest" "writing/forester"
        ]
  where
   -- Make a default topic item that just spawns a shell.
@@ -415,8 +416,8 @@ myDynamicLog h host =
           , loadAvg -- (28)
           ]
             ++ ( case host of
-                  Laptop _ -> [battery]
-                  _ -> []
+                   Laptop _ -> [battery]
+                   _ -> []
                )
       , ppOrder = \(ws : l : t : exs) -> [t, l, ws] ++ exs -- (1)
       , ppOutput = hPutStrLn h -- (1,31)
@@ -484,8 +485,8 @@ myKeymap host conf =
        ,
          ( "M-S-C-g"
          , workspacePrompt myXPConfig $ \ws ->
-            -- (27)
-            withAll' (W.shiftWin ws) >> goto host ws -- (22)
+             -- (27)
+             withAll' (W.shiftWin ws) >> goto host ws -- (22)
          )
        , ("M-S-t", setTouchpadState Nothing)
        , -- in conjunction with manageHook, open a small temporary
@@ -506,9 +507,9 @@ myKeymap host conf =
        ]
     -- sync using Unison in a new floating window, but only on my laptop
     ++ ( case host of
-          Laptop _ ->
-            [("M-a y", namedScratchpadAction scratchpads "sync")]
-          _ -> []
+           Laptop _ ->
+             [("M-a y", namedScratchpadAction scratchpads "sync")]
+           _ -> []
        )
     ++ [ ("M-S-a", kill) -- (0)
        , ("M-S-C-a", killAll) -- (22)
@@ -621,8 +622,8 @@ myKeymap host conf =
     , ("M-c t", goto' "tex-conf")
     ]
     ++ ( case host of
-          Laptop _ -> [("M-c n", goto' "net")]
-          _ -> []
+           Laptop _ -> [("M-c n", goto' "net")]
+           _ -> []
        )
     ++ [ ("M-c v", spawn "gnome-terminal -- alsamixer -c 0") -- (0)
        , ("M-c k", spawn "xkill")
