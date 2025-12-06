@@ -297,7 +297,10 @@ myTopics host =
        , ti "CAI" "documents/Hendrix/CAI/25L"
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
-       , ti "forest" "writing/forester"
+       , TI "forest" "writing/forest" $ do
+           edit "~/writing/forest/trees/index.tree"
+           runInTerm' "" "python3 -m http.server 1313 -d ~/writing/forest/output"
+           runInTerm' "" "bash -c 'cd ~/writing/forest && while sleep 0.1; do /bin/ls trees/*/*.tree trees/*.tree | entr -d ~/.opam/default/bin/forester build forest.toml; done'"
        , ti "MACS" "documents/Hendrix/MACS"
        ]
  where
