@@ -402,7 +402,7 @@ scratchpads = zipWith (\o s -> s (customFloating (offsetRR o scratchpadSize))) o
     , NS "cal" (myTerminal ++ " --title cal -- sh -c 'ncal -3 -b && sleep 100'") (title =? "cal")
     , NS "ping" (myTerminal ++ " --title ping -- ping google.com") (title =? "ping")
     , NS "blink" (myTerminal ++ " --title blink-class -- /home/brent/.local/mybin/blink-class") (title =? "blink-class")
-    , NS "disco" (myTerminal ++ " --title disco -- stack --stack-yaml /home/brent/projects/disco/stack.yaml exec disco") (title =? "disco")
+    , NS "disco" (myTerminal ++ " --title disco -- disco") (title =? "disco")
     , NS "python" (myTerminal ++ " --title python -- python3 -i") (title =? "python")
     , NS "pomo" (myTerminal ++ " --title pomo -- /home/brent/.local/mybin/pomo") (title =? "pomo")
     ]
