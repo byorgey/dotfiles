@@ -298,6 +298,7 @@ myTopics host =
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
        , ti "forest" "writing/forester"
+       , ti "MACS" "documents/Hendrix/MACS"
        ]
  where
   -- Make a default topic item that just spawns a shell.
