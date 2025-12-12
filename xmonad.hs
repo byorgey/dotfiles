@@ -249,15 +249,15 @@ myTopics host =
       , ("SVGFonts", "SVGFonts")
       , ("dia-geo", "geometry")
       ]
-    ++ [ ti "sp" "research/species"
-       , TI "anki" "" (spawnOn "anki" "anki")
-       , TI "video" "video" (spawnOn "video" "cinelerra")
-       , ti "bl" "src/BlogLiterately"
-       , TI "view" "" (return ())
-       , -- , TI "heb" "documents/bible/study"
-         --   (edit "~/documents/bible/study/Hebrews.tex" >>
-         --    spawn "evince ~/documents/bible/study/Hebrews.pdf")
-         TI "ruth" "documents/ruth/emacs" (edit "~/documents/ruth/emacs/ruth.txt")
+    ++ [ TI "anki" "" (spawnOn "anki" "anki")
+       , TI
+           "view"
+           ""
+           (return ())
+       , TI
+           "ruth"
+           "documents/ruth/emacs"
+           (edit "~/documents/ruth/emacs/ruth.txt")
        , ti "150" "teaching/150"
        , -- , ti "151" "teaching/151"
          -- , ti "M240" "teaching/M240"
@@ -271,10 +271,6 @@ myTopics host =
          TI "joyal" "writing/translation/series-formelles" $ do
            edit "~/writing/translation/series-formelles/series-formelles.lhs"
            spawn "evince ~/writing/translation/series-formelles/series-formelles.pdf"
-       , -- , TI "GCBP"  "research/GCBP" $ do
-         --     edit "~/research/GCBP/talk/GCBP-talk.lhs"
-         --     spawn "evince ~/research/GCBP/talk/GCBP-talk.pdf"
-         ti "fenwick" "projects/fenwick"
        , ti "disco" "projects/disco"
        , ti "aoc" "learning/AoC"
        , -- , ti "idris" "src/Idris-dev"
@@ -285,10 +281,8 @@ myTopics host =
            spawn "evince ~/teaching/programming-team/reference/Hendrix-comprog-reference.pdf"
        , ti "acweb" "documents/sites/academic-web"
        , ti "adv" "teaching/advising"
-       , ti "CCSC" "projects/CCSC"
-       , ti "NAQ" "projects/NAQ/Feb2021"
        , ti "obs" ""
-       , ti "teams" ""
+       , TI "teams" "" $ spawnOn "teams" "teams-for-linux"
        , TI "discord" "" $ spawnOn "discord" "discord"
        , ti "swarm" "projects/swarm"
        , TI "cpih" "writing/cpih" $ do
