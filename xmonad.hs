@@ -296,6 +296,7 @@ myTopics host =
            runInTerm' "" "python3 -m http.server 1313 -d ~/writing/forest/output"
            runInTerm' "" "bash -c 'cd ~/writing/forest && while sleep 0.1; do /bin/ls trees/*/*.tree trees/*.tree | entr -d ~/.opam/default/bin/forester build forest.toml; done'"
        , ti "MACS" "documents/Hendrix/MACS"
+       , TI "steam" "" $ spawnOn "steam" "steam"
        ]
  where
   -- Make a default topic item that just spawns a shell.
