@@ -25,7 +25,7 @@ redshift -l 35.1:-92.4 &
 
 # Set some environment variables so they will be in xmonad's environment
 export PATH=$HOME/.ghcup/bin:$HOME/.cabal/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-export BROWSER=firefox
+export BROWSER=librewolf
 export TZ="America/Chicago"
 
 $HOME/.local/bin/xmonad
