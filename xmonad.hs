@@ -194,7 +194,7 @@ myUrgencyHook =
 -- define some custom topics for use with the TopicSpace module.
 myTopics :: Host -> [TopicItem]
 myTopics host =
-  [ TI "web" "" (liftIO (threadDelay (10 * 1000000)) >> spawnOn "web" "firefox")
+  [ TI "web" "" (liftIO (threadDelay (10 * 1000000)) >> spawnOn "web" myBrowser)
   , TI "irc" "" (liftIO (threadDelay (10 * 1000000)) >> ircAction host)
   , ti "read" "papers"
   , ti "write" "writing"
@@ -309,6 +309,9 @@ myTopics host =
       wsName
       ("src/diagrams/" ++ dirName)
       (shell >> editVC ("~/src/diagrams/" ++ dirName ++ "/*.cabal"))
+
+myBrowser :: String
+myBrowser = "librewolf"
 
 ircAction :: Host -> X ()
 ircAction _ = runInTerm' "" "mosh thales -- screen -dRR"
@@ -605,7 +608,7 @@ myKeymap host conf =
       ("M-'", banishScreen LowerRight) -- (18)
     , ("M-b", warpToWindow (1 / 2) (1 / 2))
     , -- some programs to start with keybindings.
-      ("M-x f", spawnOn "web" "firefox") -- (22a)
+      ("M-x f", spawnOn "web" myBrowser) -- (22a)
     , ("M-x c", spawnOn "web" "chromium-browser")
     , ("M-x g", spawnOn "draw" "gimp") -- "
     , ("M-x m", spawn "rhythmbox") -- (0)
@@ -778,13 +781,13 @@ kattis :: SearchEngine
 kattis = searchEngine "kattis" "https://open.kattis.com/problems/"
 
 -- Prompt search: get input from the user via a prompt, then
---   run the search in firefox and automatically switch to the web
+--   run the search in a browser and automatically switch to the web
 --   workspace
 myPromptSearch :: SearchEngine -> X ()
 myPromptSearch (SearchEngine _ site) =
   inputPrompt myXPConfig "Search" ?+ \s ->
     -- (27)
-    switchHook (search "firefox" site s >> viewWeb) -- (0,20)
+    switchHook (search myBrowser site s >> viewWeb) -- (0,20)
 
 -- Select search: do a search based on the X selection
 mySelectSearch :: SearchEngine -> X ()
@@ -798,7 +801,7 @@ diagramsGithub :: String -> X ()
 diagramsGithub = visitGithub . ("diagrams/diagrams-" ++)
 
 visitGithub :: String -> X ()
-visitGithub r = safeSpawn "firefox" ["http://github.com/" ++ r] >> viewWeb
+visitGithub r = safeSpawn myBrowser ["http://github.com/" ++ r] >> viewWeb
 
 -- some nice colors for the prompt windows to match the dzen status bar.
 myXPConfig :: XPConfig
