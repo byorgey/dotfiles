@@ -1139,6 +1139,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (add-hook 'before-save-hook #'lsp-organize-imports t t)
 (add-hook 'haskell-mode-hook #'lsp-haskell-install-save-hooks)
+(add-hook 'haskell-mode-hook #'interactive-haskell-mode)
 
 (font-lock-add-keywords 'haskell-mode
   '(("undefined" . font-lock-warning-face)))
