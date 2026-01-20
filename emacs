@@ -950,6 +950,10 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 	(function (lambda ()
 		(font-lock-mode 1))))
 
+(add-hook  'forester-mode-hook
+	   (function (lambda ()
+		       (auto-fill-mode 0))))
+
 (defvar font-lock-auto-mode-list
   (list 'c-mode 'c++-mode 'c++-c-mode 'emacs-lisp-mode 'lisp-mode 'perl-mode 'scheme-mode 'ruby-mode 'python-mode 'intero-mode 'latex-mode 'agda2-mode 'ott-mode 'markdown-mode)
   "List of modes to always start in font-lock-mode")
