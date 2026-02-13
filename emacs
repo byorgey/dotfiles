@@ -125,6 +125,9 @@
   (global-set-key (kbd "C-c t") 'git-timemachine)
   )
 
+(use-package majutsu
+  :vc (:url "https://github.com/0WD0/majutsu"))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -501,16 +504,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
- '(package-selected-packages
-   '(anaphora attrap auctex auto-complete auto-yasnippet company darcsum
-              editorconfig ef-themes floobits flycheck git-link
-              git-timemachine gnu-elpa-keyring-update haskell-snippets
-              highlight-indentation idris-mode java-snippets
-              kotlin-mode lsp-haskell lsp-ivy lsp-ui magit
-              poly-markdown proof-general rainbow-delimiters request
-              rust-mode smart-compile synosaurus tidal tree-sitter
-              ultra-scroll unicode-fonts vimish-fold which-key
-              writegood-mode yaml-mode yasnippet-snippets))
+ '(package-selected-packages nil)
  '(package-vc-selected-packages
    '((ultra-scroll :vc-backend Git :url
                    "https://github.com/jdtsmith/ultra-scroll")))
@@ -1031,6 +1025,9 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 (global-set-key (kbd "C-c C-k t") 'kattis-test)
 
 (global-set-key (kbd "C-c f n") 'forester-new-and-transclude-and-goto)
+(global-set-key (kbd "C-c f g") 'forester-goto)
+(global-set-key (kbd "C-c f e") 'forester-export-to-subtree)
+(global-set-key (kbd "C-c f p") 'forester-find-parents)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; kbd/feedback
@@ -1139,7 +1136,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (add-hook 'before-save-hook #'lsp-organize-imports t t)
 (add-hook 'haskell-mode-hook #'lsp-haskell-install-save-hooks)
-(add-hook 'haskell-mode-hook #'interactive-haskell-mode)
+; (add-hook 'haskell-mode-hook #'interactive-haskell-mode)
 
 (font-lock-add-keywords 'haskell-mode
   '(("undefined" . font-lock-warning-face)))
@@ -1292,9 +1289,12 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 
 (defun vc-status ()
   (interactive)
-  (let ((gitproject (locate-dominating-file (buffer-file-name) ".git"))
+  (let ((jjproject (locate-dominating-file (buffer-file-name) ".jj"))
+        (gitproject (locate-dominating-file (buffer-file-name) ".git"))
         (darcsproject (locate-dominating-file (buffer-file-name) "_darcs")))
-    (when gitproject
+    (when jjproject
+      (call-interactively 'majutsu))
+    (when (and gitproject (not jjproject))
       (call-interactively 'magit-status))
     (when darcsproject
       (darcsum-whatsnew darcsproject))))
