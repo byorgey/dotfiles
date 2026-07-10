@@ -292,9 +292,9 @@ myTopics host =
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
        , TI "forest" "writing/forest" $ do
-           edit "~/writing/forest/trees/index.tree"
+           edit "~/writing/forest/trees-raw/index.tree"
            runInTerm' "" "python3 -m http.server 1313 -d ~/writing/forest/output"
-           runInTerm' "" "bash -c 'cd ~/writing/forest && while sleep 0.1; do /bin/ls trees/*/*.tree trees/*.tree | entr -d ~/.opam/default/bin/forester build forest.toml; done'"
+           runInTerm' "" "bash -c 'cd ~/writing/forest && ./build-forest.sh"
        , ti "MACS" "documents/Hendrix/MACS"
        , TI "steam" "" $ spawnOn "steam" "steam"
        ]

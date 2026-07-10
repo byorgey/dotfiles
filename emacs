@@ -74,6 +74,7 @@
     lsp-haskell
     haskell-snippets
     tree-sitter
+    unfill      ; https://github.com/purcell/unfill/
    ) "a list of packages to ensure are installed at launch.")
 
 ; method to check if all packages are installed
@@ -131,6 +132,41 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Miscellaneous emacs config
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; stuff taken from https://emacsredux.com/blog/2026/04/07/stealing-from-the-best-emacs-configs/
+
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
+(setq bidi-inhibit-bpa t)
+
+(setq redisplay-skip-fontification-on-input t)
+
+(setq save-interprogram-paste-before-kill t)
+
+(setq kill-do-not-save-duplicates t)
+
+(add-hook 'after-save-hook
+          #'executable-make-buffer-file-executable-if-script-p)
+
+(setq window-combination-resize t)
+
+(winner-mode +1)
+
+(defun toggle-delete-other-windows ()
+  "Delete other windows in frame if any, or restore previous window config."
+  (interactive)
+  (if (and winner-mode
+           (equal (selected-window) (next-window)))
+      (winner-undo)
+    (delete-other-windows)))
+
+(global-set-key (kbd "C-x 1") #'toggle-delete-other-windows)
+
+(setq set-mark-command-repeat-pop t)
+
+(repeat-mode 1)
+
+;;; other stuff
 
 (setq-default indent-tabs-mode nil)
 
@@ -504,7 +540,16 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
  '(mark-even-if-inactive t)
  '(menu-bar-mode nil)
  '(org-agenda-files '("~/notes/"))
- '(package-selected-packages nil)
+ '(package-selected-packages
+   '(anaphora attrap auctex auto-complete auto-yasnippet company darcsum
+              editorconfig ef-themes floobits flycheck git-link
+              git-timemachine gnu-elpa-keyring-update haskell-snippets
+              highlight-indentation idris-mode java-snippets
+              kotlin-mode lsp-haskell lsp-ivy lsp-ui majutsu
+              poly-markdown proof-general rainbow-delimiters request
+              rust-mode smart-compile synosaurus tidal tree-sitter
+              ultra-scroll unfill unicode-fonts vimish-fold which-key
+              writegood-mode yaml-mode yasnippet-snippets))
  '(package-vc-selected-packages
    '((ultra-scroll :vc-backend Git :url
                    "https://github.com/jdtsmith/ultra-scroll")))
@@ -1024,6 +1069,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 (global-set-key (kbd "C-c C-k n") 'kattis-new)
 (global-set-key (kbd "C-c C-k t") 'kattis-test)
 
+(global-set-key (kbd "C-c f N") 'forester-new-and-goto)
 (global-set-key (kbd "C-c f n") 'forester-new-and-transclude-and-goto)
 (global-set-key (kbd "C-c f g") 'forester-goto)
 (global-set-key (kbd "C-c f e") 'forester-export-to-subtree)
@@ -1094,7 +1140,7 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; https://emacs-lsp.github.io/lsp-mode/page/performance/
 ;; M-x lsp-doctor
 (setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024)) ;; 1mb
+(setq read-process-output-max (* 4 1024 1024)) ;; 4mb
 
 (use-package company
   :config (setq lsp-completion-provider :capf)
