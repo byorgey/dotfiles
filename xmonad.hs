@@ -292,11 +292,11 @@ myTopics host =
        , ti "hcpc" "projects/hcpc"
        , ti "idiom" "projects/infer-applicative"
        , TI "forest" "writing/forest" $ do
-           edit "~/writing/forest/trees-raw/index.tree"
+           shell
            runInTerm' "" "python3 -m http.server 1313 -d ~/writing/forest/output"
-           runInTerm' "" "bash -c 'cd ~/writing/forest && ./build-forest.sh"
+           runInTerm' "" "bash -c 'cd ~/writing/forest && ./build-forest.sh'"
        , ti "MACS" "documents/Hendrix/MACS"
-       , TI "steam" "" $ spawnOn "steam" "steam"
+       , TI "steam" "" $ spawnOn "steam" "/bin/steam"
        ]
  where
   -- Make a default topic item that just spawns a shell.
