@@ -9,3 +9,6 @@ Add more habits by editing dotfiles/habits/habits then running `make`.
 To run a Jekyll site, `bundle install` then `bundle exec jekyll serve`.
 %
 Use `C-x +` to balance windows in emacs.
+%
+Use `C-m C-d` to toggle document view in Roam.
+
